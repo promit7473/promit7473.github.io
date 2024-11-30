@@ -24,8 +24,8 @@ body::after {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 5px;
-    background-color: #e0e0e0;
+    width: 3px;
+    background-color: #e8f9ff;
     z-index: 1000;
 }
 
@@ -247,7 +247,7 @@ h3:hover::after {
 
 .contact-link:hover {
     color: #007bff;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 .contact-link svg {
@@ -287,6 +287,22 @@ footer {
 footer p {
     margin: 0;
     font-size: 0.9rem;
+}
+
+/* Add this to your existing CSS file */
+.footer-wave path {
+    animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% {
+        fill: #f3f4f5;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+    }
+    100% {
+        fill: #f3f4f5;
+        filter: drop-shadow(0 0 15px rgba(135, 206, 250, 0.7));
+    }
 }
 
 

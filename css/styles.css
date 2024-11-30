@@ -71,7 +71,7 @@ h3:hover::after {
 	.projects {
 	display: grid;
 	grid-template-columns: repeat(3, 0.9fr); /* Maintain equal columns */
-	gap: 50px;
+	gap: 43px;
 	margin: 20px 0;
 	max-width: 820px; /* Adjust this value to match your page width */
 	margin-left: auto;
@@ -166,15 +166,15 @@ h3:hover::after {
 }
 
 .education:hover {
-	transform: scale(1.02);
+	transform: scale(1.04);
 }
 
 .education img {
-	max-width: 100px;
+	max-width: 90px;
 	height: auto;
-	margin-right: 20px;
+	margin-right: 5px;
 	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+	box-shadow: 0 4px 6px rgba(87, 77, 233, 0.2);
 }
 
 .education div {

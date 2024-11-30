@@ -1,32 +1,52 @@
-/* Responsive adjustments */
-@media (max-width: 1100px) {
-    body::before, 
-    body::after {
-        display: none; /* Remove vertical boundary lines on smaller screens */
-    }
+/* Responsive Base Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
 
+/* Responsive Typography */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
     body {
         max-width: 100%;
-        padding: 10px;
+        padding: 15px;
     }
 
     .projects {
-        grid-template-columns: repeat(2, 1fr); /* 2 projects per row on smaller screens */
-        gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
     }
 
     .languages-tools {
         justify-content: center;
-        gap: 20px;
+        gap: 25px;
     }
 
     .languages-tools img {
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
+        transition: transform 0.3s ease;
     }
 
-    header .image-container img {
-        max-width: 90%;
+    .languages-tools img:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 992px) {
+    body::before, 
+    body::after {
+        display: none;
+    }
+
+    .header .image-container img {
+        max-width: 85%;
         height: auto;
     }
 }
@@ -36,55 +56,110 @@
         padding: 10px;
     }
 
+    html {
+        font-size: 14px;
+    }
+
     .projects {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 20px;
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .project-card {
         max-width: 100%;
         width: 100%;
+        margin: 0 auto;
     }
 
     .education {
         flex-direction: column;
         text-align: center;
-        padding: 15px;
+        padding: 20px;
+        max-width: 100%;
     }
 
     .education img {
-        max-width: 100px;
-        margin-right: 0;
+        max-width: 120px;
         margin-bottom: 15px;
-    }
-
-    .education div {
-        text-align: center;
+        border-radius: 10px;
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+        text-align: center;
     }
 
     h3 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+        text-align: center;
     }
 
     .contact-links {
         flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
     }
 
     .contact-link {
         margin: 10px 0;
-        padding: 10px;
-        width: 200px;
+        padding: 12px;
+        width: 250px;
         justify-content: center;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-link:hover {
+        background-color: #e9ecef;
     }
 
     .languages-tools {
-        gap: 15px;
+        gap: 20px;
+    }
+
+    .languages-tools img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .project-card img {
+        height: 130px;
+        object-fit: cover;
+    }
+
+    .footer-wave svg {
+        height: 60px;
+    }
+}
+
+/* Enhanced Responsiveness */
+@media (max-width: 375px) {
+    .contact-link {
+        width: 100%;
+        padding: 10px;
     }
 
     .languages-tools img {
@@ -93,55 +168,8 @@
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        padding: 5px;
-    }
-
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    .project-card {
-        padding: 10px;
-    }
-
-    .project-card img {
-        height: 120px;
-    }
-
-    .footer-wave svg {
-        height: 50px;
-    }
-}
-
-/* Ensure responsiveness for all images */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Responsive typography */
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    html {
-        font-size: 12px;
-    }
-}
-
-/* Responsive layout adjustments */
-@media (max-width: 768px) {
-    .contact-container {
-        padding: 30px 10px 20px;
-    }
+/* Smooth Transitions */
+* {
+    transition: all 0.3s ease;
 }
     

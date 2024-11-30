@@ -25,7 +25,7 @@ body::after {
     top: 0;
     bottom: 0;
     width: 3px;
-    background-color: #e8f9ff;
+    background-color: #e7e5e5;
     z-index: 1000;
 }
 

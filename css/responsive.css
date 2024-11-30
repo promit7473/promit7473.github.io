@@ -3,30 +3,121 @@
     .projects {
         grid-template-columns: repeat(2, 1fr); /* 2 projects per row on smaller screens */
     }
-    body::before, 
-    body::after {
-        display: none;
-    }
+    
     body {
         max-width: 100%;
-        padding: 10px;
+        padding: 15px;
+    }
+
+    .languages-tools {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .languages-tools a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    header .image-container img {
+        max-width: 80%;
+        height: auto;
     }
 }
+
 @media (max-width: 700px) {
     .projects {
         grid-template-columns: 1fr; /* 1 project per row on mobile */
     }
+
     .education {
         flex-direction: column;
+        align-items: center;
         text-align: center;
     }
+
+    .education img {
+        max-width: 100px;
+        margin-bottom: 15px;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-link {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .languages-tools {
+        gap: 15px;
+    }
+
+    .languages-tools a img {
+        width: 40px;
+        height: 40px;
+    }
 }
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .project-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .project-card img {
+        width: 100%;
+        height: auto;
+    }
+}
+
 @keyframes subtle-float {
     0% {
-    transform: translateY(0);
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
     }
     100% {
-    transform: translateY(-10px);
+        transform: translateY(0);
     }
+}
+
+/* Additional mobile-friendly tweaks */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    overflow-x: hidden;
 }
     

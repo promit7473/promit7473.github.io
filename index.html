@@ -3,99 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meraj Hossain Promit</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h3 {
-            margin: 10px 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        .languages-tools {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .languages-tools img {
-            width: 40px;
-            height: 40px;
-        }
-        .image-container {
-            position: relative;
-            display: inline-block;
-        }
-        .profile-views {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            padding: 5px 10px;
-        }
-    </style>
+    <meta name="description" content="Meraj Hossain Promit - Aspiring Robotics Software Engineer Portfolio">
+    <meta name="keywords" content="Robotics, Software Engineering, ROS2, Machine Learning, Autonomous Systems">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Meraj Hossain Promit - Portfolio">
+    <meta property="og:description" content="Robotics Software Engineer Portfolio showcasing projects and skills">
+    <meta property="og:type" content="personal website">
+    
+    <title>Meraj Hossain Promit | Robotics Engineer</title>
+    
+    <!-- Favicon (Add your actual favicon) -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <h1>Hi 👋, I'm Meraj Hossain Promit</h1>
-    <h3>Aspiring Robotics Software Engineer</h3>
+    <header>
+        <h1>Hi 👋, I'm Meraj Hossain Promit</h1>
+        <h3>Aspiring Robotics Software Engineer</h3>
+        
+        <div class="image-container">
+            <img 
+                loading="lazy" 
+                src="https://www.chawtechsolutions.com/wp-content/uploads/2019/03/senior-front-end-developer-openings-1.gif" 
+                alt="Robotics and Software Engineering Animation" 
+            />
+        </div>
+        
+        <p>
+            🌱 Currently learning <strong>ROS2</strong> and <strong>Mobile Robotics Engineering</strong>
+        </p>
+    </header>
+
+    <main>
+        <section id="skills">
+            <h3>Languages and Tools</h3>
+            <div class="languages-tools" aria-label="Technology Skills">
+                <!-- Other technology icons remain the same -->
+                <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" />
+                </a>
+                <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" />
+                </a>
+                <a href="https://www.python.org" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" />
+                </a>
+                <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" />
+                </a>
+                <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
+                    <img src="https://img.icons8.com/?size=160&id=50ZQHdJTmPqw&format=png" alt="Bash" />
+                </a>
+                <a href="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" target="_blank" rel="noreferrer">
+                    <img src="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" alt="ROS2" />
+                </a>
+                <a href="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" target="_blank" rel="noreferrer">
+                    <img src="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" alt="Gazebo" />
+                </a>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h3>Projects</h3>
+            <div class="projects">
+                <!-- Project cards remain the same, but add:
+                     - Actual screenshots
+                     - Real GitHub repository links 
+                -->
+                <div class="project-card">
+                    <img 
+                        loading="lazy" 
+                        src="https://via.placeholder.com/250x150?text=ROS2+Project" 
+                        alt="ROS2 Navigation Stack Project" 
+                    />
+                    <h4>ROS2 Navigation Stack</h4>
+                    <p>Implemented autonomous navigation for a mobile robot using ROS2</p>
+                    <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/250x150?text=Robotics+Simulation" alt="Robotics Simulation">
+                    <h4>Gazebo Robotic Arm Simulation</h4>
+                    <p>Created a simulation of a robotic arm in Gazebo with inverse kinematics</p>
+                    <a href="#" aria-label="GitHub Repository">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/250x150?text=Machine+Learning" alt="Machine Learning Project">
+                    <h4>Machine Learning in Robotics</h4>
+                    <p>Developed a machine learning model for object recognition</p>
+                    <a href="#" aria-label="GitHub Repository">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+
+
+                
+                <!-- Repeat for other project cards -->
+                <!-- Other project cards follow similar pattern -->
+            </div>
+        </section>
+        
+        <section id="education">
+            <h3>Education</h3>
+            <div class="education">
+                <img 
+                    loading="lazy" 
+                    src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png" 
+                    alt="University of Dhaka Official Logo" 
+                />
+                <div>
+                    <h4>BSc. in Robotics & Mechatronics Engineering</h4>
+                    <p>University of Dhaka, Dhaka-1000</p>
+                    <p>August 2022 → Present</p>
+                </div>
+            </div>
+        </section>
+        
+        
+    </main>
 
     <div class="image-container">
-        <img src="https://www.chawtechsolutions.com/wp-content/uploads/2019/03/senior-front-end-developer-openings-1.gif" alt="Robotics Cover Image" />
+        <img 
+            loading="lazy" 
+            src="https://media.licdn.com/dms/image/D4D12AQFXsKEDWu9P8w/article-cover_image-shrink_600_2000/0/1709677190553?e=2147483647&v=beta&t=Ru4UfXCcV_GXbfF4KVFL9Zdx_uccLZ4yjlrpOPozYfE" 
+            alt="Robotics and Software Engineering Animation" 
+        />
     </div>
 
-    <p>
-        🌱I’m currently learning <strong>ROS2</strong> and <strong>Mobile robotics engineering</strong>.
-    </p>
-
-    <h3>Languages and Tools:</h3>
     
-    <div class="languages-tools">
-        <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" />
-        </a>
-        <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" />
-        </a>
-        <a href="https://www.python.org" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" />
-        </a>
-        <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" />
-        </a>
-        <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
-            <img src="https://img.icons8.com/?size=160&id=50ZQHdJTmPqw&format=png" alt="Bash" />
-        </a>
-        <a href="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" target="_blank" rel="noreferrer">
-            <img src="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" alt="ROS2" />
-        </a>
-        <a href="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" target="_blank" rel="noreferrer">
-            <img src="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" alt="Gazebo" />
-        </a>
+    <h3>GitHub Contribution Streak</h3>
+    <img 
+        loading="lazy"
+        src="https://github-readme-streak-stats.herokuapp.com/?user=promit7473&theme=light&hide_border=false" 
+        alt="GitHub Contribution Streak Statistics" 
+    />
+    <div class="contact-container">
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#f3f4f5"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#f3f4f5"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#f3f4f5"></path>
+            </svg>
+        </div>
+        
+        <section id="contact" class="contact-section">
+            <h3>Let's Connect</h3>
+            <div class="contact-links">
+                <a href="mailto:merajhossainpromit@gmail.com" class="contact-link" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>Email</span>
+                </a>
+                
+                <a href="https://linkedin.com/in/mhpromit7473" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                
+                <a href="https://github.com/promit7473" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7-.36.31-.68.86-.94 1.61-.3.13-1.11.39-1.79-.13a1.63 1.63 0 0 1-.35-.61"></path>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </section>
     </div>
     
-    
-    <a href="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" target="_blank" rel="noreferrer">
-            <img src="https://media.licdn.com/dms/image/D4D12AQFXsKEDWu9P8w/article-cover_image-shrink_600_2000/0/1709677190553?e=2147483647&v=beta&t=Ru4UfXCcV_GXbfF4KVFL9Zdx_uccLZ4yjlrpOPozYfE" alt="Gazebo"/>
-    </a>
-    
-    <h3>Github Streak</h3>
-    <p>
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=promit7473&" alt="GitHub Streak Stats" />
-    </p>
+    <footer>
+        <p>&copy; 2024 Meraj Hossain Promit. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
-
-
 

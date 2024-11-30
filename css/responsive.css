@@ -1,0 +1,32 @@
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+    .projects {
+        grid-template-columns: repeat(2, 1fr); /* 2 projects per row on smaller screens */
+    }
+    body::before, 
+    body::after {
+        display: none;
+    }
+    body {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+@media (max-width: 700px) {
+    .projects {
+        grid-template-columns: 1fr; /* 1 project per row on mobile */
+    }
+    .education {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+@keyframes subtle-float {
+    0% {
+    transform: translateY(0);
+    }
+    100% {
+    transform: translateY(-10px);
+    }
+}
+    

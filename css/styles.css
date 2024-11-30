@@ -255,6 +255,27 @@ h3:hover::after {
     transition: stroke 0.3s ease;
 }
 
+.logo,
+.logo a,
+.navbar-container,
+.logo-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    box-sizing: border-box;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    max-width: 150px;
+    vertical-align: middle;
+    display: block;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+}
+
 footer {
     background-color: #ffffff;
     color: rgb(17, 17, 17);

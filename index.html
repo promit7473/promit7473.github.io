@@ -1,229 +1,474 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meraj Hossain Promit - Aspiring Robotics Software Engineer Portfolio">
-    <meta name="keywords" content="Robotics, Software Engineering, ROS2, Machine Learning, Autonomous Systems">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Meraj Hossain Promit - Portfolio">
-    <meta property="og:description" content="Robotics Software Engineer Portfolio showcasing projects and skills">
-    <meta property="og:type" content="personal website">
-    
     <title>Meraj Hossain Promit | Robotics Engineer</title>
+    <meta name="description" content="Meraj Hossain Promit - A portfolio blending modern design with robotics engineering projects.">
+    <meta name="keywords" content="Robotics, Software Engineering, ROS2, Machine Learning, Autonomous Systems, Portfolio">
     
-    <!-- Favicon (Add your actual favicon) -->
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- External CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/menubar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Define CSS variables for dark theme */
+        html[data-theme='dark'] {
+            --background-color: #0d1117;
+            --primary-color: #f0f2f5; /* Light text for headings/important elements */
+            --secondary-color: #8b949e; /* Muted text for paragraphs */
+            --accent-color: #58a6ff; /* Blue accent */
+            --card-bg: #161b22; /* Darker background for cards */
+            --border-color: #21262d; /* Subtle border for sections/cards */
+            --nav-bg-opacity: 0.9;
+        }
+
+        /* Define CSS variables for light theme */
+        html[data-theme='light'] {
+            --background-color: #ffffff;
+            --primary-color: #1a202c; /* Dark text for headings/important elements */
+            --secondary-color: #4a5568; /* Muted text for paragraphs */
+            --accent-color: #3182ce; /* Blue accent for light mode */
+            --card-bg: #f7fafc; /* Lighter background for cards */
+            --border-color: #edf2f7; /* Subtle border for sections/cards */
+            --nav-bg-opacity: 0.9;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+            cursor: none; /* Hide default cursor */
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary-color);
+            transition: color 0.3s ease; /* Smooth theme transition */
+        }
+
+        .text-accent { color: var(--accent-color); transition: color 0.3s ease; }
+        .bg-card { background-color: var(--card-bg); transition: background-color 0.3s ease; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section Animation */
+        .hero-bg {
+            background: linear-gradient(45deg, var(--background-color), var(--card-bg), var(--background-color));
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Project/Education Card Hover Effect */
+        .project-card, .education-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent; /* Initial transparent border */
+        }
+        .project-card:hover, .education-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-color); /* Accent border on hover */
+        }
+
+        /* Skills button hover effect */
+        .skills-button {
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        .skills-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Social icon hover effect */
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
+
+        /* Text shadow for hero heading */
+        .hero-heading-shadow {
+            text-shadow: 0 0 15px rgba(88, 166, 255, 0.5); /* Subtle glow */
+        }
+
+        /* Custom Cursor */
+        #cursor-dot, #cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 9999;
+        }
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            filter: blur(0.5px); /* Soften the dot */
+            transition: transform 0.2s ease; /* Smooth scale transition */
+        }
+        #cursor-outline {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            opacity: 0.2; /* Slightly more visible */
+            filter: blur(3px); /* More blur for a softer glow effect */
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        body:hover #cursor-dot, body:hover #cursor-outline {
+            opacity: 1;
+        }
+        
+        /* Cursor hover effects for interactive elements */
+        a:hover #cursor-outline, button:hover #cursor-outline, .skills-button:hover #cursor-outline, .social-icon:hover #cursor-outline, .project-card:hover #cursor-outline, .education-card:hover #cursor-outline {
+            transform: translate(-50%, -50%) scale(1.8); /* Slightly larger scale */
+            opacity: 0.3; /* More opaque glow */
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-color); /* Add a glow effect */
+        }
+        a:hover #cursor-dot, button:hover #cursor-dot, .skills-button:hover #cursor-dot, .social-icon:hover #cursor-dot, .project-card:hover #cursor-dot, .education-card:hover #cursor-dot {
+            transform: translate(-50%, -50%) scale(0.7); /* Make dot slightly smaller on hover */
+        }
+
+        /* Email button glow */
+        .email-button {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .email-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            transition: all 0.5s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            z-index: -1;
+        }
+        .email-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.3;
+        }
+
+        /* Education Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding-left: 20px; /* Space for the line and dots */
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 10px; /* Position of the vertical line */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem; /* Space between items */
+            padding-left: 20px; /* Space for the dot */
+            display: flex; /* Use flexbox for alignment */
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--accent-color);
+            background-color: var(--background-color); /* Dot background matches body */
+            position: absolute;
+            left: 0; /* Aligned with the line */
+            top: 0; /* Top of the timeline item */
+            transform: translateX(-50%); /* Center dot on the line */
+            border-radius: 50%; /* Make it circular */
+            z-index: 2;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-card {
+            margin-left: 10px; /* Small gap between dot and card */
+            width: calc(100% - 30px); /* Adjust width to fit */
+            flex-grow: 1; /* Allow card to grow */
+        }
+
+        /* Responsive adjustments for timeline */
+        @media (max-width: 768px) {
+            .timeline-container {
+                padding-left: 0;
+            }
+            .timeline-container::before {
+                display: none; /* Hide line on small screens */
+            }
+            .timeline-item {
+                padding-left: 0;
+                margin-bottom: 1.5rem; /* Less space on small screens */
+            }
+            .timeline-dot {
+                display: none; /* Hide dots on small screens */
+            }
+            .education-card {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="logo">
-                    <a href="#home">
-                        <img src="images/signature.png" alt="RosDev Logo" class="logo-image">
-                    </a>
-                </div>
-                
-                <input type="checkbox" id="menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-icon">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </label>
-                
-                <ul class="menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="https://medium.com/@merajhossainpromit">Blog</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+
+<body class="antialiased">
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <!-- Header with Dynamic Background -->
+    <header class="hero-bg min-h-screen flex items-center justify-center text-center p-8">
+        <div>
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_800_800/B56ZXSRY9OHQAc-/0/1742989530253?e=1756339200&v=beta&t=-OA2fe9RJr12X_WQYYtUwuxHV4TitXyIgDXPfwlfJkE" alt="Robotics Animation" class="w-48 h-48 mx-auto rounded-full object-cover border-4 border-accent mb-6" loading="lazy">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-primary-color mb-4 hero-heading-shadow">Meraj Hossain Promit</h1>
+            <p class="text-2xl md:text-3xl text-secondary-color">Aspiring <span class="text-accent">Robotics Software Engineer</span></p>
+            <p class="mt-4 max-w-xl mx-auto text-lg text-secondary-color">I build intelligent, autonomous systems that bridge the gap between code and the physical world.</p>
+            <div class="mt-8">
+                <a href="#about" class="bg-accent text-white py-3 px-8 rounded-full font-bold uppercase tracking-wide hover:bg-opacity-80 transition-colors duration-300">Learn More</a>
             </div>
-        </nav>
-        <h1>Hi 👋, I'm Meraj Hossain Promit</h1>
-        <h3>Aspiring Robotics Software Engineer</h3>
-        
-        <div class="image-container">
-            <img 
-                loading="lazy" 
-                src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*zVnWJtyGOX_kUIDm6ccCfQ.gif" 
-                alt="Robotics and Software Engineering Animation" 
-            />
         </div>
-        
-        <p>
-            🌱 Currently learning <strong>ROS2</strong> and <strong>Mobile Robotics Engineering</strong>
-        </p>
     </header>
 
-    <main>
-        <section id="skills">
-            <h3>Languages and Tools</h3>
-            <div class="languages-tools" aria-label="Technology Skills">
-                <!-- Other technology icons remain the same -->
-                <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" />
-                </a>
-                <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" />
-                </a>
-                <a href="https://www.python.org" target="_blank" rel="noreferrer">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" />
-                </a>
-                <a href="https://www.linux.org/" target="_blank" rel="noreferrer">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" />
-                </a>
-                <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer">
-                    <img src="https://img.icons8.com/?size=160&id=50ZQHdJTmPqw&format=png" alt="Bash" />
-                </a>
-                <a href="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" target="_blank" rel="noreferrer">
-                    <img src="https://docs.olive-robotics.com/assets/ros2.f4e27747.png" alt="ROS2" />
-                </a>
-                <a href="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" target="_blank" rel="noreferrer">
-                    <img src="https://global.discourse-cdn.com/flex036/uploads/gazebo/original/1X/5275eff0b80fa68dfc0765f350a0211a5231770b.svg" alt="Gazebo" />
-                </a>
-            </div>
+    <main class="container">
+        <!-- Navigation Bar -->
+        <nav class="sticky top-0 z-50 py-4 bg-background-color/90 backdrop-blur-md shadow-lg">
+            <ul class="flex justify-center space-x-8 relative">
+                <!-- RosDev Logo -->
+                <li class="absolute left-4 top-1/2 -translate-y-1/2">
+                    <a href="#" class="text-primary-color text-2xl font-bold hover:text-accent transition-colors duration-200">RosDev</a>
+                </li>
+                <li><a href="#about" class="text-secondary-color hover:text-accent transition-colors duration-200">About</a></li>
+                <li><a href="#skills" class="text-secondary-color hover:text-accent transition-colors duration-200">Skills</a></li>
+                <li><a href="#projects" class="text-secondary-color hover:text-accent transition-colors duration-200">Projects</a></li>
+                <li><a href="#education" class="text-secondary-color hover:text-accent transition-colors duration-200">Education</a></li>
+                <li><a href="#contact" class="text-secondary-color hover:text-accent transition-colors duration-200">Contact</a></li>
+                <!-- Theme Toggle Button -->
+                <li class="absolute right-4 top-1/2 -translate-y-1/2">
+                    <button id="theme-toggle" class="text-secondary-color hover:text-accent transition-colors duration-200 text-xl focus:outline-none">
+                        <!-- Icon will be set by JS -->
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 border-b border-border-color">
+            <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg text-secondary-color">
+<center><h2></h2></center>
+<div class="max-w-3xl mx-auto text-lg text-secondary-color">
+    <p class="mb-4" style="text-align: justify; margin-left: 20px; margin-right: 20px;">As a passionate Robotics and Mechatronics Engineering student at the University of Dhaka, I'm driven by the intersection of hardware and intelligent software, aiming to create autonomous systems that interact with the physical world. My primary focus is mobile robotics, where I'm developing skills in ROS2, Gazebo, and relevant programming languages, designing algorithms for navigation, perception, and control. I'm also actively researching Deep Reinforcement Learning (DRL) within ROS2, utilizing platforms like Isaac Sim, and am a strong advocate for collaborative learning and open-source contributions.</p>
+</div>
         </section>
-        
-        <section id="projects">
-            <h3>Projects</h3>
-            <div class="projects">
-                <!-- Project cards remain the same, but add:
-                     - Actual screenshots
-                     - Real GitHub repository links 
-                -->
-                <div class="project-card">
-                    <img 
-                        loading="lazy" 
-                        src="https://via.placeholder.com/250x150?text=ROS2+Project" 
-                        alt="ROS2 Navigation Stack Project" 
-                    />
-                    <h4>ROS2 Navigation Stack</h4>
-                    <p>Implemented autonomous navigation for a mobile robot using ROS2</p>
-                    <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                </div>
-                
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/250x150?text=Robotics+Simulation" alt="Robotics Simulation">
-                    <h4>Gazebo Robotic Arm Simulation</h4>
-                    <p>Created a simulation of a robotic arm in Gazebo with inverse kinematics</p>
-                    <a href="#" aria-label="GitHub Repository">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                </div>
 
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/250x150?text=Machine+Learning" alt="Machine Learning Project">
-                    <h4>Machine Learning in Robotics</h4>
-                    <p>Developed a machine learning model for object recognition</p>
-                    <a href="#" aria-label="GitHub Repository">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                </div>
-
-
-                
-                <!-- Repeat for other project cards -->
-                <!-- Other project cards follow similar pattern -->
-            </div>
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 border-b border-border-color">
+            <h2 class="text-3xl font-bold mb-8 text-center">My Toolbox</h2>
+            <ul class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fas fa-cogs"></i> ROS2
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fab fa-python"></i> Python
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fab fa-cuttlefish"></i> C++
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fab fa-linux"></i> Linux
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fas fa-robot"></i> Gazebo
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fas fa-crosshairs"></i> SLAM
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fas fa-hands"></i> MoveIt
+                </li>
+                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
+                    <i class="fas fa-camera"></i> OpenCV
+                </li>
+            </ul>
         </section>
-        
-        <section id="education">
-            <h3>Education</h3>
-            <div class="education">
-                <img 
-                    loading="lazy" 
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Dhaka_University_logo.svg/1200px-Dhaka_University_logo.svg.png" 
-                    alt="University of Dhaka Official Logo" 
-                />
-                <div>
-                    <h4>BSc. in Robotics & Mechatronics Engineering</h4>
-                    <p>University of Dhaka, Dhaka-1000</p>
-                    <p>October 2022~Present</p>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 border-b border-border-color">
+            <h2 class="text-3xl font-bold mb-8 text-center">Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-card p-6 rounded-lg">
+                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0ib5nK3TdQi-h-ucI.gif" alt="ROS2 Navigation Stack GIF" class="rounded-lg mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-primary-color mb-2">ROS2 Navigation Stack</h3>
+                    <p class="text-secondary-color mb-4">Implemented autonomous navigation for a mobile robot using the ROS2 Nav2 stack, including mapping, localization (AMCL), and path planning.</p>
+                    <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="text-accent hover:underline">View on GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-card p-6 rounded-lg">
+                    <img src="https://us1.discourse-cdn.com/flex020/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" alt="Robotic Arm Simulation GIF" class="rounded-lg mb-4 w-full h-48 object-cover" loading="lazy">
+                    <h3 class="text-xl font-bold text-primary-color mb-2">Gazebo Robotic Arm Simulation</h3>
+                    <p class="text-secondary-color mb-4">Created a URDF model of a 6-DOF robotic arm and simulated its movement in Gazebo. Developed a MoveIt configuration for motion planning and inverse kinematics.</p>
+                    <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline">View on GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
                 </div>
             </div>
         </section>
-        
-        
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 border-b border-border-color">
+            <h2 class="text-3xl font-bold mb-8 text-center">Education</h2>
+            <div class="max-w-3xl mx-auto relative timeline-container">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item mb-12">
+                    <!-- The dot -->
+                    <div class="timeline-dot"></div>
+                    <!-- The card content -->
+                    <div class="education-card bg-card p-6 rounded-lg">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 text-accent text-4xl mt-1">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-primary-color">BSc.(Hons) Robotics & Mechatronics Engineering</h3>
+                                <p class="text-lg text-secondary-color">University of Dhaka</p>
+                                <p class="text-md text-secondary-color mt-1">October 2022 — Present</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more timeline items here if needed -->
+                 <div class="timeline-item mb-12">
+                    <div class="timeline-dot"></div>
+                    <div class="education-card bg-card p-6 rounded-lg">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 text-accent text-4xl mt-1">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-primary-color">Higher Secondary Certificate (HSC)</h3>
+                                <p class="text-lg text-secondary-color">Murari Chand College, Sylhet-3100</p>
+                                <p class="text-md text-secondary-color mt-1">2019 — 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+            <div class="text-center text-lg max-w-2xl mx-auto">
+                <p class="mb-6">I am always open to discussing new projects, collaborations, or opportunities in the robotics field. Feel free to reach out!</p>
+                <a href="mailto:merajhossainpromit@gmail.com" class="email-button bg-accent text-white py-4 px-10 rounded-full font-bold uppercase tracking-wide inline-flex items-center justify-center hover:bg-opacity-80 transition-all duration-300 text-lg relative overflow-hidden group">
+                    <i class="fas fa-envelope mr-3"></i> Email Me
+                </a>
+                <ul class="flex justify-center space-x-8 mt-10">
+                    <li><a href="https://github.com/promit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </section>
     </main>
 
-    <div class="image-container">
-        <img 
-            loading="lazy" 
-            src="https://media.licdn.com/dms/image/D4D12AQFXsKEDWu9P8w/article-cover_image-shrink_600_2000/0/1709677190553?e=2147483647&v=beta&t=Ru4UfXCcV_GXbfF4KVFL9Zdx_uccLZ4yjlrpOPozYfE" 
-            alt="Robotics and Software Engineering Animation" 
-        />
-    </div>
-
-    
-    ### 🛠️ Contribution Activity
-<p align="center">
-  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=promit7473&theme=vue" alt="GitHub Profile Summary">
-</p>
-
-
-    <div class="contact-container">
-        <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#f3f4f5"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#f3f4f5"></path>
-                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#f3f4f5"></path>
-            </svg>
-        </div>
-    
-        
-        <section id="contact" class="contact-section">
-            <h3>Let's Connect</h3>
-            <div class="contact-links">
-                <a href="mailto:merajhossainpromit@gmail.com" class="contact-link" aria-label="Email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>Email</span>
-                </a>
-                
-                <a href="https://linkedin.com/in/mhpromit7473" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                    <span>LinkedIn</span>
-                </a>
-                
-                <a href="https://github.com/promit7473" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7-.36.31-.68.86-.94 1.61-.3.13-1.11.39-1.79-.13a1.63 1.63 0 0 1-.35-.61"></path>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-            </div>
-        </section>
-    </div>
-    
-    
-    <footer>
-        <p>&copy; 2024 Meraj Hossain Promit. All Rights Reserved.</p>
+    <footer class="text-center py-8 text-secondary-color text-sm">
+        <p>Designed and built by Meraj Hossain Promit.</p>
     </footer>
-    <script src="js/navbar.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement; // This is the <html> tag
+
+            // Function to set the theme
+            const setTheme = (theme) => {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            };
+
+            // Check for saved theme preference or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            // Set initial icon based on current theme
+            themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                // Update icon based on new theme
+                themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            });
+
+            // --- Custom Cursor Logic ---
+            const cursorDot = document.getElementById("cursor-dot");
+            const cursorOutline = document.getElementById("cursor-outline");
+
+            window.addEventListener("mousemove", function (e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Apply cursor hover effects to interactive elements
+            document.querySelectorAll("a, button, .skills-button, .social-icon, .project-card, .education-card").forEach((el) => {
+                el.addEventListener("mouseenter", () => {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                    cursorOutline.style.opacity = '0.3';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(0.7)';
+                });
+                el.addEventListener("mouseleave", () => {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorOutline.style.opacity = '0.2';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 

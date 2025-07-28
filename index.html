@@ -4,56 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meraj Hossain Promit | Robotics Engineer</title>
-    <meta name="description" content="Meraj Hossain Promit - A portfolio blending modern design with robotics engineering projects.">
-    <meta name="keywords" content="Robotics, Software Engineering, ROS2, Machine Learning, Autonomous Systems, Portfolio">
+    <meta name="description" content="Meraj Hossain Promit - A portfolio blending a modern coder aesthetic with robotics engineering projects.">
+    <meta name="keywords" content="Robotics, Software Engineering, ROS2, Machine Learning, Deep Learning, Isaac Sim, Autonomous Systems, Portfolio, Developer">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Source Code Pro) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Define CSS variables for dark theme */
+        /* --- THEME AND FONT STYLES INSPIRED BY REFERENCE IMAGE --- */
+
+        /* Define CSS variables for dark theme (coder vibe) */
         html[data-theme='dark'] {
-            --background-color: #0d1117;
-            --primary-color: #f0f2f5; /* Light text for headings/important elements */
-            --secondary-color: #8b949e; /* Muted text for paragraphs */
-            --accent-color: #58a6ff; /* Blue accent */
-            --card-bg: #161b22; /* Darker background for cards */
-            --border-color: #21262d; /* Subtle border for sections/cards */
-            --nav-bg-opacity: 0.9;
+            --background-color: #121212; 
+            --primary-color: #e0e0e0;     
+            --secondary-color: #a0a0a0;   
+            --accent-color: #C8F65F;      /* Vibrant green from reference */
+            --card-bg: #1e1e1e;           
+            --border-color: #2c2c2c;      
+            --nav-bg-opacity: 0.85;
+            --hero-overlay-color: rgba(18, 18, 18, 0.7); /* Overlay for hero background */
         }
 
         /* Define CSS variables for light theme */
         html[data-theme='light'] {
-            --background-color: #ffffff;
-            --primary-color: #1a202c; /* Dark text for headings/important elements */
-            --secondary-color: #4a5568; /* Muted text for paragraphs */
-            --accent-color: #3182ce; /* Blue accent for light mode */
-            --card-bg: #f7fafc; /* Lighter background for cards */
-            --border-color: #edf2f7; /* Subtle border for sections/cards */
-            --nav-bg-opacity: 0.9;
+            --background-color: #f0f0f0;
+            --primary-color: #1e1e1e;
+            --secondary-color: #444444;
+            --accent-color: #8DA84A; /* Darker green for light theme contrast */
+            --card-bg: #ffffff;
+            --border-color: #dcdcdc;
+            --nav-bg-opacity: 0.85;
+            --hero-overlay-color: rgba(240, 240, 240, 0.6); /* Lighter overlay for light theme */
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Source Code Pro', monospace; 
             background-color: var(--background-color);
             color: var(--secondary-color);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
             cursor: none; /* Hide default cursor */
         }
         
         h1, h2, h3 {
-            font-family: 'Roboto Mono', monospace;
             color: var(--primary-color);
-            transition: color 0.3s ease; /* Smooth theme transition */
+            transition: color 0.3s ease;
+            font-weight: 700;
         }
 
         .text-accent { color: var(--accent-color); transition: color 0.3s ease; }
@@ -64,37 +68,75 @@
             margin: 0 auto;
             padding: 2rem;
         }
-
-        /* Hero Section Animation */
-        .hero-bg {
-            background: linear-gradient(45deg, var(--background-color), var(--card-bg), var(--background-color));
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
+        
+        /* Add '>>' prefix to links for terminal style */
+        .link-prefix::before {
+            content: ">> ";
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+        
+        a:hover .link-prefix::before {
+            color: var(--primary-color);
         }
 
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Hero Section Styling */
+        .hero-bg {
+            position: relative;
+        }
+        
+        .hero-background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            z-index: 0;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--hero-overlay-color);
+            z-index: 1;
+            transition: background-color 0.3s ease;
         }
 
         /* Project/Education Card Hover Effect */
         .project-card, .education-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 2px solid transparent; /* Initial transparent border */
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
         }
         .project-card:hover, .education-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent-color); /* Accent border on hover */
+            border-color: var(--accent-color);
+        }
+        .project-card .project-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card .project-description {
+            flex-grow: 1;
         }
 
         /* Skills button hover effect */
         .skills-button {
             transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid var(--border-color);
         }
         .skills-button:hover {
             transform: scale(1.05);
+            background-color: var(--accent-color);
+            color: #121212; /* Dark text on hover for contrast */
+            border-color: var(--accent-color);
         }
 
         /* Social icon hover effect */
@@ -106,9 +148,9 @@
             color: var(--accent-color);
         }
 
-        /* Text shadow for hero heading */
+        /* Text shadow for hero heading - REMOVED */
         .hero-heading-shadow {
-            text-shadow: 0 0 15px rgba(88, 166, 255, 0.5); /* Subtle glow */
+            text-shadow: none;
         }
 
         /* Custom Cursor */
@@ -127,31 +169,26 @@
             width: 8px;
             height: 8px;
             background-color: var(--accent-color);
-            filter: blur(0.5px); /* Soften the dot */
-            transition: transform 0.2s ease; /* Smooth scale transition */
         }
         #cursor-outline {
             width: 40px;
             height: 40px;
-            background-color: var(--accent-color);
             border: 2px solid var(--accent-color);
-            opacity: 0.2; /* Slightly more visible */
-            filter: blur(3px); /* More blur for a softer glow effect */
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease, border-color 0.3s ease;
+            opacity: 0.3;
+            transition: all 0.1s ease-out;
         }
         body:hover #cursor-dot, body:hover #cursor-outline {
             opacity: 1;
         }
         
         /* Cursor hover effects for interactive elements */
-        a:hover #cursor-outline, button:hover #cursor-outline, .skills-button:hover #cursor-outline, .social-icon:hover #cursor-outline, .project-card:hover #cursor-outline, .education-card:hover #cursor-outline {
-            transform: translate(-50%, -50%) scale(1.8); /* Slightly larger scale */
-            opacity: 0.3; /* More opaque glow */
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px var(--accent-color); /* Add a glow effect */
+        a:hover ~ #cursor-outline, button:hover ~ #cursor-outline, .interactive:hover ~ #cursor-outline {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0.4;
+            box-shadow: 0 0 15px var(--accent-color);
         }
-        a:hover #cursor-dot, button:hover #cursor-dot, .skills-button:hover #cursor-dot, .social-icon:hover #cursor-dot, .project-card:hover #cursor-dot, .education-card:hover #cursor-dot {
-            transform: translate(-50%, -50%) scale(0.7); /* Make dot slightly smaller on hover */
+        a:hover ~ #cursor-dot, button:hover ~ #cursor-dot, .interactive:hover ~ #cursor-dot {
+            transform: translate(-50%, -50%) scale(0.7);
         }
 
         /* Email button glow */
@@ -159,314 +196,295 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            background-color: transparent;
         }
-        .email-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-            transition: all 0.5s ease-out;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            z-index: -1;
-        }
-        .email-button:hover::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 0.3;
+        .email-button:hover {
+            color: var(--background-color);
+            background-color: var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-color);
         }
 
         /* Education Timeline Styles */
-        .timeline-container {
-            position: relative;
-            padding-left: 20px; /* Space for the line and dots */
-        }
-
+        .timeline-container { position: relative; padding-left: 20px; }
         .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 10px; /* Position of the vertical line */
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--border-color);
-            z-index: 0;
+            content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+            width: 2px; background-color: var(--border-color); z-index: 0;
         }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem; /* Space between items */
-            padding-left: 20px; /* Space for the dot */
-            display: flex; /* Use flexbox for alignment */
-            align-items: flex-start; /* Align items to the top */
-        }
-
+        .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 20px; display: flex; align-items: flex-start; }
         .timeline-dot {
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--accent-color);
-            background-color: var(--background-color); /* Dot background matches body */
-            position: absolute;
-            left: 0; /* Aligned with the line */
-            top: 0; /* Top of the timeline item */
-            transform: translateX(-50%); /* Center dot on the line */
-            border-radius: 50%; /* Make it circular */
-            z-index: 2;
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 16px; height: 16px; border: 2px solid var(--accent-color);
+            background-color: var(--background-color); position: absolute;
+            left: 0; top: 5px; transform: translateX(-50%); border-radius: 50%;
+            z-index: 2; transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .education-card { margin-left: 10px; width: calc(100% - 30px); flex-grow: 1; }
+        
+        /* NEW: Section divider style */
+        .section-divider {
+            border-bottom: 2px dashed var(--accent-color);
+            padding-bottom: 5rem; /* py-20 equivalent */
+            padding-top: 5rem; /* py-20 equivalent */
         }
 
-        .education-card {
-            margin-left: 10px; /* Small gap between dot and card */
-            width: calc(100% - 30px); /* Adjust width to fit */
-            flex-grow: 1; /* Allow card to grow */
-        }
-
-        /* Responsive adjustments for timeline */
         @media (max-width: 768px) {
-            .timeline-container {
-                padding-left: 0;
-            }
-            .timeline-container::before {
-                display: none; /* Hide line on small screens */
-            }
-            .timeline-item {
-                padding-left: 0;
-                margin-bottom: 1.5rem; /* Less space on small screens */
-            }
-            .timeline-dot {
-                display: none; /* Hide dots on small screens */
-            }
-            .education-card {
-                margin-left: 0;
-                width: 100%;
-            }
+            .timeline-container { padding-left: 0; }
+            .timeline-container::before, .timeline-dot { display: none; }
+            .timeline-item { padding-left: 0; margin-bottom: 1.5rem; }
+            .education-card { margin-left: 0; width: 100%; }
         }
     </style>
 </head>
 
 <body class="antialiased">
+    
+    <!-- Main content that triggers cursor effects -->
+    <div id="main-content">
+        <!-- Header with Dynamic Background and Robot Animation -->
+        <header class="hero-bg min-h-screen flex items-center justify-center text-center p-8 overflow-hidden">
+            <!-- Background GIF -->
+            <video autoplay loop muted playsinline class="hero-background-video">
+                <source src="https://cdn.dribbble.com/users/1040983/screenshots/5513953/media/d54f35032845c7c99251846f88998150.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Overlay for text readability -->
+            <div class="hero-overlay"></div>
+            
+            <!-- Content -->
+            <div class="relative z-10">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_800_800/B56ZXSRY9OHQAc-/0/1742989530253?e=1756339200&v=beta&t=-OA2fe9RJr12X_WQYYtUwuxHV4TitXyIgDXPfwlfJkE" alt="Meraj Hossain Promit" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-accent mb-6 shadow-lg interactive" loading="lazy">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4 hero-heading-shadow">Meraj Hossain Promit</h1>
+                <p class="text-xl md:text-2xl">Aspiring <span class="text-accent">Robotics Software Engineer</span></p>
+                <p class="mt-4 max-w-xl mx-auto text-lg">I build intelligent, autonomous systems that bridge the gap between code and the physical world.</p>
+                <div class="mt-8">
+                    <a href="#about" class="bg-accent text-background-color py-3 px-8 rounded-md font-bold uppercase tracking-wider hover:bg-opacity-80 transition-all duration-300 shadow-lg">Learn More</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Navigation Bar -->
+            <nav class="sticky top-0 z-50 py-4 mb-10 bg-background-color/85 backdrop-blur-md rounded-lg border border-border-color shadow-md">
+                <ul class="flex justify-center items-center space-x-6 md:space-x-8 relative text-sm md:text-base">
+                    <li class="absolute left-4 top-1/2 -translate-y-1/2 hidden md:block">
+                        <a href="#" class="text-primary-color text-lg font-bold hover:text-accent transition-colors duration-200">// MHP</a>
+                    </li>
+                    <li><a href="#about" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">About</a></li>
+                    <li><a href="#skills" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Skills</a></li>
+                    <li><a href="#projects" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Projects</a></li>
+                    <li><a href="#education" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Education</a></li>
+                    <li><a href="#contact" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Contact</a></li>
+                    <li class="absolute right-4 top-1/2 -translate-y-1/2">
+                        <button id="theme-toggle" class="text-secondary-color hover:text-accent transition-colors duration-200 text-xl focus:outline-none">
+                            <!-- Icon will be set by JS -->
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- About Section -->
+            <section id="about" class="section-divider">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> About Me</h2>
+                <div class="max-w-3xl mx-auto text-lg">
+                    <p class="mb-4 text-justify">As a passionate Robotics and Mechatronics Engineering student at the University of Dhaka, I'm driven by the intersection of hardware and intelligent software, aiming to create autonomous systems that interact with the physical world. My primary focus is mobile robotics, where I'm developing skills in ROS2, Gazebo, and relevant programming languages, designing algorithms for navigation, perception, and control. I'm also actively researching Deep Reinforcement Learning (DRL) within ROS2, utilizing platforms like Isaac Sim, and am a strong advocate for collaborative learning and open-source contributions.</p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section-divider">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> My Toolbox</h2>
+                <ul class="flex flex-wrap justify-center gap-3 md:gap-4 max-w-5xl mx-auto">
+                    <!-- Added 'interactive' class for cursor effect -->
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cogs text-accent"></i> ROS2</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-python text-accent"></i> Python</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-cuttlefish text-accent"></i> C++</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-linux text-accent"></i> Linux</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-robot text-accent"></i> Gazebo</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cubes text-accent"></i> Isaac Sim</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-crosshairs text-accent"></i> SLAM</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-hands text-accent"></i> MoveIt</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-camera text-accent"></i> OpenCV</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-brain text-accent"></i> Machine Learning</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-layer-group text-accent"></i> Deep Learning</li>
+                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-infinity text-accent"></i> Deep RL</li>
+                </ul>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section-divider">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Projects</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0ib5nK3TdQi-h-ucI.gif" alt="ROS2 Navigation Stack GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">ROS2 Navigation</h3>
+                            <p class="mb-4 text-sm project-description">Autonomous navigation using Nav2, including mapping, AMCL, and path planning.</p>
+                            <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://us1.discourse-cdn.com/flex020/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" alt="Robotic Arm Simulation GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Robotic Arm Sim</h3>
+                            <p class="mb-4 text-sm project-description">URDF model of a 6-DOF arm in Gazebo with MoveIt for motion planning.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif" alt="Computer Vision Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Object Detection</h3>
+                            <p class="mb-4 text-sm project-description">Real-time object detection and tracking system implemented with OpenCV and Python.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif" alt="Deep RL Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Deep RL Agent</h3>
+                            <p class="mb-4 text-sm project-description">Training a reinforcement learning agent to perform tasks in a simulated environment.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" alt="SLAM Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Visual SLAM</h3>
+                            <p class="mb-4 text-sm project-description">Implementation of a feature-based Visual SLAM algorithm for 3D reconstruction.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" alt="Isaac Sim Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Isaac Sim Task</h3>
+                            <p class="mb-4 text-sm project-description">Developing a pick-and-place task using NVIDIA's Isaac Sim robotics platform.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://miro.medium.com/v2/resize:fit:800/1*eYy062N2275fM1yY--remw.gif" alt="Path Planning Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">Path Planning</h3>
+                            <p class="mb-4 text-sm project-description">Implementing and comparing A* and RRT* path planning algorithms for mobile robots.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="project-card bg-card p-6 rounded-lg interactive">
+                        <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281" alt="Human-Robot Interaction Project GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <div class="project-content">
+                            <h3 class="text-xl mb-2">HRI System</h3>
+                            <p class="mb-4 text-sm project-description">A safety system for human-robot collaboration using depth sensors and predictive models.</p>
+                            <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline mt-auto">View on GitHub <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section-divider">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Education</h2>
+                <div class="max-w-3xl mx-auto timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">BSc.(Hons) Robotics & Mechatronics Engineering</h3>
+                            <p class="text-lg text-accent">University of Dhaka</p>
+                            <p class="text-md mt-1">October 2022 — Present</p>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Higher Secondary Certificate (HSC)</h3>
+                            <p class="text-lg text-accent">Murari Chand College, Sylhet</p>
+                            <p class="text-md mt-1">2019 — 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-20">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Get In Touch</h2>
+                <div class="text-center text-lg max-w-2xl mx-auto">
+                    <p class="mb-8">I'm always open to discussing new projects, collaborations, or opportunities in robotics. Feel free to reach out!</p>
+                    <a href="mailto:merajhossainpromit@gmail.com" class="email-button py-4 px-10 rounded-md font-bold uppercase tracking-wider inline-flex items-center justify-center transition-all duration-300 text-lg group">
+                        <i class="fas fa-envelope mr-3"></i> Email Me
+                    </a>
+                    <ul class="flex justify-center space-x-8 mt-12">
+                        <li><a href="https://github.com/promit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-github"></i></a></li>
+                        <li><a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 text-secondary-color text-sm border-t border-border-color">
+            <p>Designed &amp; Built by Meraj Hossain Promit</p>
+        </footer>
+    </div>
+
     <!-- Custom Cursor Elements -->
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
-    <!-- Header with Dynamic Background -->
-    <header class="hero-bg min-h-screen flex items-center justify-center text-center p-8">
-        <div>
-            <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_800_800/B56ZXSRY9OHQAc-/0/1742989530253?e=1756339200&v=beta&t=-OA2fe9RJr12X_WQYYtUwuxHV4TitXyIgDXPfwlfJkE" alt="Robotics Animation" class="w-48 h-48 mx-auto rounded-full object-cover border-4 border-accent mb-6" loading="lazy">
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-primary-color mb-4 hero-heading-shadow">Meraj Hossain Promit</h1>
-            <p class="text-2xl md:text-3xl text-secondary-color">Aspiring <span class="text-accent">Robotics Software Engineer</span></p>
-            <p class="mt-4 max-w-xl mx-auto text-lg text-secondary-color">I build intelligent, autonomous systems that bridge the gap between code and the physical world.</p>
-            <div class="mt-8">
-                <a href="#about" class="bg-accent text-white py-3 px-8 rounded-full font-bold uppercase tracking-wide hover:bg-opacity-80 transition-colors duration-300">Learn More</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <!-- Navigation Bar -->
-        <nav class="sticky top-0 z-50 py-4 bg-background-color/90 backdrop-blur-md shadow-lg">
-            <ul class="flex justify-center space-x-8 relative">
-                <!-- RosDev Logo -->
-                <li class="absolute left-4 top-1/2 -translate-y-1/2">
-                    <a href="#" class="text-primary-color text-2xl font-bold hover:text-accent transition-colors duration-200">RosDev</a>
-                </li>
-                <li><a href="#about" class="text-secondary-color hover:text-accent transition-colors duration-200">About</a></li>
-                <li><a href="#skills" class="text-secondary-color hover:text-accent transition-colors duration-200">Skills</a></li>
-                <li><a href="#projects" class="text-secondary-color hover:text-accent transition-colors duration-200">Projects</a></li>
-                <li><a href="#education" class="text-secondary-color hover:text-accent transition-colors duration-200">Education</a></li>
-                <li><a href="#contact" class="text-secondary-color hover:text-accent transition-colors duration-200">Contact</a></li>
-                <!-- Theme Toggle Button -->
-                <li class="absolute right-4 top-1/2 -translate-y-1/2">
-                    <button id="theme-toggle" class="text-secondary-color hover:text-accent transition-colors duration-200 text-xl focus:outline-none">
-                        <!-- Icon will be set by JS -->
-                    </button>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 border-b border-border-color">
-            <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
-            <div class="max-w-3xl mx-auto text-lg text-secondary-color">
-<center><h2></h2></center>
-<div class="max-w-3xl mx-auto text-lg text-secondary-color">
-    <p class="mb-4" style="text-align: justify; margin-left: 20px; margin-right: 20px;">As a passionate Robotics and Mechatronics Engineering student at the University of Dhaka, I'm driven by the intersection of hardware and intelligent software, aiming to create autonomous systems that interact with the physical world. My primary focus is mobile robotics, where I'm developing skills in ROS2, Gazebo, and relevant programming languages, designing algorithms for navigation, perception, and control. I'm also actively researching Deep Reinforcement Learning (DRL) within ROS2, utilizing platforms like Isaac Sim, and am a strong advocate for collaborative learning and open-source contributions.</p>
-</div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 border-b border-border-color">
-            <h2 class="text-3xl font-bold mb-8 text-center">My Toolbox</h2>
-            <ul class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fas fa-cogs"></i> ROS2
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fab fa-python"></i> Python
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fab fa-cuttlefish"></i> C++
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fab fa-linux"></i> Linux
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fas fa-robot"></i> Gazebo
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fas fa-crosshairs"></i> SLAM
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fas fa-hands"></i> MoveIt
-                </li>
-                <li class="p-3 bg-card rounded-lg text-sm text-primary-color flex items-center gap-2 hover:bg-accent hover:text-black skills-button">
-                    <i class="fas fa-camera"></i> OpenCV
-                </li>
-            </ul>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 border-b border-border-color">
-            <h2 class="text-3xl font-bold mb-8 text-center">Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-card p-6 rounded-lg">
-                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0ib5nK3TdQi-h-ucI.gif" alt="ROS2 Navigation Stack GIF" class="rounded-lg mb-4 w-full h-48 object-cover" loading="lazy">
-                    <h3 class="text-xl font-bold text-primary-color mb-2">ROS2 Navigation Stack</h3>
-                    <p class="text-secondary-color mb-4">Implemented autonomous navigation for a mobile robot using the ROS2 Nav2 stack, including mapping, localization (AMCL), and path planning.</p>
-                    <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="text-accent hover:underline">View on GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-card p-6 rounded-lg">
-                    <img src="https://us1.discourse-cdn.com/flex020/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" alt="Robotic Arm Simulation GIF" class="rounded-lg mb-4 w-full h-48 object-cover" loading="lazy">
-                    <h3 class="text-xl font-bold text-primary-color mb-2">Gazebo Robotic Arm Simulation</h3>
-                    <p class="text-secondary-color mb-4">Created a URDF model of a 6-DOF robotic arm and simulated its movement in Gazebo. Developed a MoveIt configuration for motion planning and inverse kinematics.</p>
-                    <a href="https://github.com/promit7473" target="_blank" class="text-accent hover:underline">View on GitHub <i class="fas fa-external-link-alt ml-1"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="py-20 border-b border-border-color">
-            <h2 class="text-3xl font-bold mb-8 text-center">Education</h2>
-            <div class="max-w-3xl mx-auto relative timeline-container">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item mb-12">
-                    <!-- The dot -->
-                    <div class="timeline-dot"></div>
-                    <!-- The card content -->
-                    <div class="education-card bg-card p-6 rounded-lg">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 text-accent text-4xl mt-1">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-primary-color">BSc.(Hons) Robotics & Mechatronics Engineering</h3>
-                                <p class="text-lg text-secondary-color">University of Dhaka</p>
-                                <p class="text-md text-secondary-color mt-1">October 2022 — Present</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more timeline items here if needed -->
-                 <div class="timeline-item mb-12">
-                    <div class="timeline-dot"></div>
-                    <div class="education-card bg-card p-6 rounded-lg">
-                        <div class="flex items-start gap-4">
-                            <div class="flex-shrink-0 text-accent text-4xl mt-1">
-                                <i class="fas fa-school"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl text-primary-color">Higher Secondary Certificate (HSC)</h3>
-                                <p class="text-lg text-secondary-color">Murari Chand College, Sylhet-3100</p>
-                                <p class="text-md text-secondary-color mt-1">2019 — 2022</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20">
-            <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
-            <div class="text-center text-lg max-w-2xl mx-auto">
-                <p class="mb-6">I am always open to discussing new projects, collaborations, or opportunities in the robotics field. Feel free to reach out!</p>
-                <a href="mailto:merajhossainpromit@gmail.com" class="email-button bg-accent text-white py-4 px-10 rounded-full font-bold uppercase tracking-wide inline-flex items-center justify-center hover:bg-opacity-80 transition-all duration-300 text-lg relative overflow-hidden group">
-                    <i class="fas fa-envelope mr-3"></i> Email Me
-                </a>
-                <ul class="flex justify-center space-x-8 mt-10">
-                    <li><a href="https://github.com/promit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer class="text-center py-8 text-secondary-color text-sm">
-        <p>Designed and built by Meraj Hossain Promit.</p>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
-            const htmlElement = document.documentElement; // This is the <html> tag
+            const htmlElement = document.documentElement;
 
             // Function to set the theme
             const setTheme = (theme) => {
                 htmlElement.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
+                themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
             };
 
-            // Check for saved theme preference or default to dark
+            // Load saved theme or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             setTheme(savedTheme);
 
-            // Set initial icon based on current theme
-            themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-
-            // Toggle theme on button click
+            // Theme toggle button event
             themeToggle.addEventListener('click', () => {
-                const currentTheme = htmlElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
                 setTheme(newTheme);
-                // Update icon based on new theme
-                themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
             });
 
-            // --- Custom Cursor Logic ---
+            // Custom cursor logic
             const cursorDot = document.getElementById("cursor-dot");
             const cursorOutline = document.getElementById("cursor-outline");
 
             window.addEventListener("mousemove", function (e) {
                 const posX = e.clientX;
                 const posY = e.clientY;
-
                 cursorDot.style.left = `${posX}px`;
                 cursorDot.style.top = `${posY}px`;
-
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: "forwards" });
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
             });
 
-            // Apply cursor hover effects to interactive elements
-            document.querySelectorAll("a, button, .skills-button, .social-icon, .project-card, .education-card").forEach((el) => {
-                el.addEventListener("mouseenter", () => {
-                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.8)';
-                    cursorOutline.style.opacity = '0.3';
-                    cursorDot.style.transform = 'translate(-50%, -50%) scale(0.7)';
-                });
-                el.addEventListener("mouseleave", () => {
-                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                    cursorOutline.style.opacity = '0.2';
-                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                });
-            });
+            // NOTE: All canvas animation script has been removed.
         });
     </script>
 </body>

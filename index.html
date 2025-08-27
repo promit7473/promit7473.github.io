@@ -225,11 +225,39 @@
         }
         .education-card { margin-left: 10px; width: calc(100% - 30px); flex-grow: 1; }
         
-        /* NEW: Section divider style */
+        /* Section divider style */
         .section-divider {
             border-bottom: 2px dashed var(--accent-color);
             padding-bottom: 5rem; /* py-20 equivalent */
             padding-top: 5rem; /* py-20 equivalent */
+        }
+
+        /* Signature Logo */
+        #signature-logo {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+            transition: filter 0.3s ease, opacity 0.5s ease-in-out;
+        }
+        html[data-theme='dark'] #signature-logo {
+            filter: invert(1);
+        }
+
+        /* Theme Toggle Button */
+        #theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        /* Nav Wrapper Styling for Fade Effect */
+        #nav-wrapper {
+            transition: opacity 0.5s ease-in-out;
         }
 
         @media (max-width: 768px) {
@@ -237,35 +265,48 @@
             .timeline-container::before, .timeline-dot { display: none; }
             .timeline-item { padding-left: 0; margin-bottom: 1.5rem; }
             .education-card { margin-left: 0; width: 100%; }
+            #signature-logo {
+                width: 120px;
+                top: 1rem;
+                left: 1rem;
+            }
+            #theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
         }
     </style>
 </head>
 
 <body class="antialiased">
     
+    <a href="#">
+        <img src="images/signature.png" alt="Signature" id="signature-logo" class="interactive">
+    </a>
+    <button id="theme-toggle" class="text-secondary-color hover:text-accent transition-colors duration-200 text-2xl focus:outline-none interactive">
+        <!-- Icon will be set by JS -->
+    </button>
+    
     <!-- Main content that triggers cursor effects -->
     <div id="main-content">
         <!-- Header with Dynamic Background and Robot Animation -->
         <header class="hero-bg min-h-screen flex items-center justify-center text-center p-8 overflow-hidden">
-            <!-- Background GIF -->
-            
+            <!-- Background Video -->
             <video autoplay loop muted playsinline class="hero-background-video">
                 <source src="https://blogs.nvidia.com/wp-content/uploads/2025/03/updatedhmi.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             
-            <!-- Background GIF -->
-            <!--
-	    <img src="https://x.com/i/status/1908925857453789261" alt="Robotics Animation" class="hero-background-video">
-	    --!>
             <!-- Overlay for text readability -->
             <div class="hero-overlay"></div>
             
             <!-- Content -->
             <div class="relative z-10">
-                <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_800_800/B56ZXSRY9OHQAc-/0/1742989530253?e=1756339200&v=beta&t=-OA2fe9RJr12X_WQYYtUwuxHV4TitXyIgDXPfwlfJkE" alt="Meraj Hossain Promit" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-accent mb-6 shadow-lg interactive" loading="lazy">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_200_200/B56ZXSRY9OHQAY-/0/1742989530217?e=1758758400&v=beta&t=BFwD9pNWQcaX3804uzimnwYQ4PfzhKgackdJBkj6PbY" alt="Meraj Hossain Promit" class="w-40 h-40 mx-auto rounded-full object-cover border-4 border-accent mb-6 shadow-lg interactive" loading="lazy">
                 <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4 hero-heading-shadow">Meraj Hossain Promit</h1>
-                <p class="text-xl md:text-2xl">Aspiring <span class="text-accent">Robotics Software Engineer</span></p>
+                <p class="text-xl md:text-2xl">
+                    Aspiring <span id="toggling-title" class="text-accent">Robotics System Researcher</span>
+                </p>
                 <p class="mt-4 max-w-xl mx-auto text-lg">I build intelligent, autonomous systems that bridge the gap between code and the physical world.</p>
                 <div class="mt-8">
                     <a href="#about" class="bg-accent text-background-color py-3 px-8 rounded-md font-bold uppercase tracking-wider hover:bg-opacity-80 transition-all duration-300 shadow-lg">Learn More</a>
@@ -274,29 +315,52 @@
         </header>
 
         <main class="container">
-            <!-- Navigation Bar -->
-            <nav class="sticky top-0 z-50 py-4 mb-10 bg-background-color/85 backdrop-blur-md rounded-lg border border-border-color shadow-md">
-                <ul class="flex justify-center items-center space-x-6 md:space-x-8 relative text-sm md:text-base">
-                    <li class="absolute left-4 top-1/2 -translate-y-1/2 hidden md:block">
-                        <a href="#" class="text-primary-color text-lg font-bold hover:text-accent transition-colors duration-200">// MHP</a>
-                    </li>
-                    <li><a href="#about" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">About</a></li>
-                    <li><a href="#skills" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Skills</a></li>
-                    <li><a href="#projects" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Projects</a></li>
-                    <li><a href="#education" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Education</a></li>
-                    <li><a href="#contact" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Contact</a></li>
-                    <li class="absolute right-4 top-1/2 -translate-y-1/2">
-                        <button id="theme-toggle" class="text-secondary-color hover:text-accent transition-colors duration-200 text-xl focus:outline-none">
-                            <!-- Icon will be set by JS -->
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+            <!-- Navigation Bar Wrapper -->
+            <div id="nav-wrapper" class="sticky top-0 z-50 py-4 mb-10">
+                <nav class="max-w-5xl mx-auto bg-background-color/85 backdrop-blur-md rounded-lg border border-border-color shadow-md">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex justify-center items-center">
+                            <!-- Desktop Menu -->
+                            <div class="hidden md:flex items-center">
+                                <ul class="flex items-center space-x-4 lg:space-x-6 text-sm py-2">
+                                    <li><a href="#about" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">About</a></li>
+                                    <li><a href="#skills" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Skills</a></li>
+                                    <li><a href="#projects" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Projects</a></li>
+                                    <li><a href="#education" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Education</a></li>
+                                    <li><a href="#publications" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Publications</a></li>
+                                    <li><a href="#experience" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Experience</a></li>
+                                    <li><a href="#contact" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Contact</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Mobile Menu Button -->
+                            <div class="md:hidden flex items-center w-full justify-center py-2">
+                                <button id="mobile-menu-button" class="text-secondary-color hover:text-accent transition-colors duration-200 text-2xl focus:outline-none">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-menu" class="hidden md:hidden">
+                        <ul class="flex flex-col items-center space-y-4 py-4 border-t border-border-color">
+                            <li><a href="#about" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">About</a></li>
+                            <li><a href="#skills" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Skills</a></li>
+                            <li><a href="#projects" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Projects</a></li>
+                            <li><a href="#education" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Education</a></li>
+                            <li><a href="#publications" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Publications</a></li>
+                            <li><a href="#experience" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Experience</a></li>
+                            <li><a href="#contact" class="text-secondary-color hover:text-primary-color transition-colors duration-200 link-prefix">Contact</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
 
             <!-- About Section -->
             <section id="about" class="section-divider">
                 <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> About Me</h2>
-                <div class="max-w-3xl mx-auto text-lg">
+                <div class="max-w-5xl mx-auto text-lg">
                     <p class="mb-4 text-justify">As a passionate Robotics and Mechatronics Engineering student at the University of Dhaka, I'm driven by the intersection of hardware and intelligent software, aiming to create autonomous systems that interact with the physical world. My primary focus is mobile robotics, where I'm developing skills in ROS2, Gazebo, and relevant programming languages, designing algorithms for navigation, perception, and control. I'm also actively researching Deep Reinforcement Learning (DRL) within ROS2, utilizing platforms like Isaac Sim, and am a strong advocate for collaborative learning and open-source contributions.</p>
                 </div>
             </section>
@@ -304,30 +368,32 @@
             <!-- Skills Section -->
             <section id="skills" class="section-divider">
                 <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> My Toolbox</h2>
-                <ul class="flex flex-wrap justify-center gap-3 md:gap-4 max-w-5xl mx-auto">
-                    <!-- Added 'interactive' class for cursor effect -->
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cogs text-accent"></i> ROS2</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-python text-accent"></i> Python</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-cuttlefish text-accent"></i> C++</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-linux text-accent"></i> Linux</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-robot text-accent"></i> Gazebo</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cubes text-accent"></i> Isaac Sim</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-crosshairs text-accent"></i> SLAM</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-hands text-accent"></i> MoveIt</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-camera text-accent"></i> OpenCV</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-brain text-accent"></i> Machine Learning</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-layer-group text-accent"></i> Deep Learning</li>
-                    <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-infinity text-accent"></i> Deep RL</li>
-                </ul>
+                <div class="max-w-5xl mx-auto">
+                    <ul class="flex flex-wrap justify-center gap-3 md:gap-4">
+                        <!-- Added 'interactive' class for cursor effect -->
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cogs text-accent"></i> ROS2</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-python text-accent"></i> Python</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-cuttlefish text-accent"></i> C++</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fab fa-linux text-accent"></i> Linux</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-robot text-accent"></i> Gazebo</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-cubes text-accent"></i> Isaac Sim</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-crosshairs text-accent"></i> SLAM</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-hands text-accent"></i> MoveIt</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-camera text-accent"></i> OpenCV</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-brain text-accent"></i> Machine Learning</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-layer-group text-accent"></i> Deep Learning</li>
+                        <li class="p-3 bg-card rounded-md text-sm text-primary-color flex items-center gap-2 skills-button interactive"><i class="fas fa-infinity text-accent"></i> Deep RL</li>
+                    </ul>
+                </div>
             </section>
 
             <!-- Projects Section -->
             <section id="projects" class="section-divider">
                 <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Projects</h2>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Project 1 -->
                     <div class="project-card bg-card p-6 rounded-lg interactive">
-                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0ib5nK3TdQi-h-ucI.gif" alt="ROS2 Navigation Stack GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif" alt="ROS2 Navigation Stack GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
                         <div class="project-content">
                             <h3 class="text-xl mb-2">ROS2 Navigation</h3>
                             <p class="mb-4 text-sm project-description">Autonomous navigation using Nav2, including mapping, AMCL, and path planning.</p>
@@ -337,7 +403,7 @@
 
                     <!-- Project 2 -->
                     <div class="project-card bg-card p-6 rounded-lg interactive">
-                        <img src="https://us1.discourse-cdn.com/flex020/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" alt="Robotic Arm Simulation GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
+                        <img src="https://us1.discourse-cdn.com/flexerasoftware/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" alt="Robotic Arm Simulation GIF" class="rounded-md mb-4 w-full h-40 object-cover" loading="lazy">
                         <div class="project-content">
                             <h3 class="text-xl mb-2">Robotic Arm Sim</h3>
                             <p class="mb-4 text-sm project-description">URDF model of a 6-DOF arm in Gazebo with MoveIt for motion planning.</p>
@@ -410,7 +476,7 @@
             <!-- Education Section -->
             <section id="education" class="section-divider">
                 <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Education</h2>
-                <div class="max-w-3xl mx-auto timeline-container">
+                <div class="max-w-5xl mx-auto timeline-container">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="education-card bg-card p-6 rounded-lg interactive">
@@ -430,18 +496,98 @@
                 </div>
             </section>
 
+            
+         
+            <!-- Experience Section -->
+            <section id="experience" class="section-divider">
+                <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Experience</h2>
+                <div class="max-w-5xl mx-auto timeline-container">
+                    <!-- Experience -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Research Student</h3>
+                            <p class="text-lg text-accent">NextGen Scholars (UTRGV & Concordia University)</p>
+                            <p class="text-md mt-1">August 2025 — Present</p>
+                            <p class="mt-2 text-sm">Conducting research in Deep Reinforcement Learning(With application in Robotics) under the mentorship of Current PhD students from the University of Texas Rio Grande Valley (UTRGV), USA and Concordia University. Canada</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">ROS Developement Intern (Remote)</h3>
+                            <p class="text-lg text-accent">Karthikesh Robotics Private Limited</p>
+                            <p class="text-md mt-1">June 2025 — Present</p>
+                            <p class="mt-2 text-sm">Design and development of cutting-edge autonomous mobile robots for various industrial and educational applications.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Project Lead</h3>
+                            <p class="text-lg text-accent">Mohakashchari- Dhaka University Rover Team</p>
+                            <p class="text-md mt-1">May 2025 — Present</p>
+                            <p class="mt-2 text-sm">Proposed the initial idea on IEEE Student Branch DU. Currently working on the design and frame integration while raising fund for the project.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Chair, IEEE Robotics & Automation Society</h3>
+                            <p class="text-lg text-accent">University of Dhaka Student Branch</p>
+                            <p class="text-md mt-1">May 2025 — Present</p>
+                            <p class="mt-2 text-sm">Overseeing chapter activities, event planning, and collaborations to promote robotics and automation research.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Research Student, Robotics Lab</h3>
+                            <p class="text-lg text-accent">University of Dhaka</p>
+                            <p class="text-md mt-1">April 2025 — Present</p>
+                            <p class="mt-2 text-sm">Conducting research under Dr. Sejuti Rahman on Deep Reinforcement Learning and ROS 2-based robotic simulations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Student Activity Secretary, IEEE RAS</h3>
+                            <p class="text-lg text-accent">University of Dhaka Student Branch</p>
+                            <p class="text-md mt-1">Jan 2024 — Dec 2024</p>
+                            <p class="mt-2 text-sm">Led student initiatives and coordinated events for the RAS student chapter.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="education-card bg-card p-6 rounded-lg interactive">
+                            <h3 class="font-bold text-xl">Private Research Student</h3>
+                            <p class="text-lg text-accent">North South University</p>
+                            <p class="text-md mt-1">Apr 2023 — May 2024</p>
+                            <p class="mt-2 text-sm">Conducted research on Melanoma Segmentation using Pseudo Annotations in the Computer Vision domain under Dr. Mahdy Rahman Chowdhury.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Contact Section -->
             <section id="contact" class="py-20">
                 <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-accent">&gt;</span> Get In Touch</h2>
-                <div class="text-center text-lg max-w-2xl mx-auto">
+                <div class="text-center text-lg max-w-5xl mx-auto">
                     <p class="mb-8">I'm always open to discussing new projects, collaborations, or opportunities in robotics. Feel free to reach out!</p>
                     <a href="mailto:merajhossainpromit@gmail.com" class="email-button py-4 px-10 rounded-md font-bold uppercase tracking-wider inline-flex items-center justify-center transition-all duration-300 text-lg group">
                         <i class="fas fa-envelope mr-3"></i> Email Me
                     </a>
-                    <ul class="flex justify-center space-x-8 mt-12">
-                        <li><a href="https://github.com/promit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-github"></i></a></li>
-                        <li><a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
+                    <div class="mt-12">
+                        <ul class="flex justify-center space-x-8">
+                            <li><a href="https://github.com/promit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-github"></i></a></li>
+                            <li><a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                        <ul class="flex justify-center space-x-8 mt-6">
+                            <li><a href="#" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="ai ai-google-scholar-square"></i></a></li>
+                            <li><a href="#" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="ai ai-orcid-square"></i></a></li>
+                            <li><a href="#" target="_blank" class="text-secondary-color text-3xl social-icon"><i class="ai ai-researchgate-square"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>
@@ -454,28 +600,96 @@
     <!-- Custom Cursor Elements -->
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
+    
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
             const htmlElement = document.documentElement;
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = mobileMenuButton.querySelector('i');
+            const navWrapper = document.getElementById('nav-wrapper');
+            const signatureLogo = document.getElementById('signature-logo');
+            const heroSection = document.querySelector('.hero-bg');
+            const togglingTitle = document.getElementById('toggling-title');
 
-            // Function to set the theme
+            // --- Toggling Title Logic ---
+            const titles = ["Robotics System Researcher","Robotics Software Engineer"];
+            let titleIndex = 0;
+            setInterval(() => {
+                titleIndex = (titleIndex + 1) % titles.length;
+                togglingTitle.style.opacity = 0;
+                setTimeout(() => {
+                    togglingTitle.textContent = titles[titleIndex];
+                    togglingTitle.style.opacity = 1;
+                }, 300); // match transition duration
+            }, 3000); // Change every 3 seconds
+            if(togglingTitle) {
+                togglingTitle.style.transition = 'opacity 0.3s ease-in-out';
+            }
+
+
+            // Function to set the theme and update icons
             const setTheme = (theme) => {
                 htmlElement.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
-                themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                const iconHtml = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                if (themeToggle) themeToggle.innerHTML = iconHtml;
+            };
+
+            // Function to toggle the theme
+            const toggleTheme = () => {
+                const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
             };
 
             // Load saved theme or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             setTheme(savedTheme);
 
-            // Theme toggle button event
-            themeToggle.addEventListener('click', () => {
-                const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                setTheme(newTheme);
-            });
+            // Theme toggle button events
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+            // Mobile menu toggle
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenuIcon.className = isHidden ? 'fas fa-bars' : 'fas fa-times';
+                });
+            }
+
+            // Close mobile menu when a link is clicked
+            if (mobileMenu) {
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuIcon.className = 'fas fa-bars';
+                    });
+                });
+            }
+            
+            // Nav bar visibility on scroll
+            const handleNavVisibility = () => {
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+                if (heroBottom < 100) {
+                    navWrapper.style.opacity = '0';
+                    navWrapper.style.pointerEvents = 'none';
+                    signatureLogo.style.opacity = '0';
+                    themeToggle.style.opacity = '0';
+                } else {
+                    navWrapper.style.opacity = '1';
+                    navWrapper.style.pointerEvents = 'auto';
+                    signatureLogo.style.opacity = '1';
+                    themeToggle.style.opacity = '1';
+                }
+            };
+
+            window.addEventListener('scroll', handleNavVisibility);
+            handleNavVisibility(); // Check on initial load
 
             // Custom cursor logic
             const cursorDot = document.getElementById("cursor-dot");
@@ -489,8 +703,6 @@
                 cursorOutline.style.left = `${posX}px`;
                 cursorOutline.style.top = `${posY}px`;
             });
-
-            // NOTE: All canvas animation script has been removed.
         });
     </script>
 </body>

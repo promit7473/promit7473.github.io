@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Meraj Hossain Promit</title>
+    <meta name="description" content="Read Meraj Hossain Promit's blog posts about robotics, Deep Reinforcement Learning, ROS2, and autonomous systems.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Navigation Header -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white font-['Orbitron']">MHP</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-red-400 transition-colors">Home</a>
+                    <a href="about.html" class="text-white hover:text-red-400 transition-colors">About</a>
+                    <a href="projects.html" class="text-white hover:text-red-400 transition-colors">Projects</a>
+                    <a href="blog.html" class="text-red-400">Blog</a>
+                    <a href="contact.html" class="text-white hover:text-red-400 transition-colors">Contact</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-white hover:text-red-400 transition-colors">Home</a>
+                <a href="about.html" class="block text-white hover:text-red-400 transition-colors">About</a>
+                <a href="projects.html" class="block text-white hover:text-red-400 transition-colors">Projects</a>
+                <a href="blog.html" class="block text-red-400">Blog</a>
+                <a href="contact.html" class="block text-white hover:text-red-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
+                    <span class="text-red-400">// </span>Technical Blog
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
+                    Deep dives into robotics, machine learning, and the future of autonomous systems. 
+                    Sharing knowledge, experiments, and insights from my journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="py-12 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="category-btn active bg-red-600 text-white px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-category="all">
+                    All Posts
+                </button>
+                <button class="category-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-category="ros">
+                    ROS/ROS2
+                </button>
+                <button class="category-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-category="rl">
+                    Reinforcement Learning
+                </button>
+                <button class="category-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-category="cv">
+                    Computer Vision
+                </button>
+                <button class="category-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-category="tutorials">
+                    Tutorials
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Featured Post -->
+                    <div class="blog-post lg:col-span-2 md:col-span-2 bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="rl">
+                        <div class="relative">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif" 
+                                 alt="Deep RL in ROS2" 
+                                 class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Featured</span>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Reinforcement Learning</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">March 15, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">12 min read</span>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
+                                Deep Reinforcement Learning in ROS2: A Complete Guide
+                            </h2>
+                            <p class="text-gray-300 mb-6 font-['Roboto_Mono'] leading-relaxed">
+                                Exploring the integration of Deep Reinforcement Learning algorithms with ROS2 for creating intelligent robotic systems. 
+                                This comprehensive guide covers everything from basic concepts to advanced implementations, including practical examples 
+                                and best practices for real-world applications.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Deep RL</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Python</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">PyTorch</span>
+                            </div>
+                            <a href="blog/deep-rl-ros2-guide.html" class="inline-flex items-center text-red-400 hover:text-red-300 font-['Roboto_Mono'] font-bold">
+                                Read Full Article <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Regular Blog Posts -->
+                    <div class="blog-post bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="ros">
+                        <div class="relative">
+                            <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif" 
+                                 alt="ROS2 Navigation" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">ROS2</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">March 10, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">8 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                Mastering ROS2 Navigation: From Theory to Practice
+                            </h3>
+                            <p class="text-gray-300 mb-4 font-['Roboto_Mono'] text-sm">
+                                A comprehensive guide to implementing autonomous navigation using ROS2 Nav2 stack, 
+                                covering mapping, localization, and path planning.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">ROS2</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Nav2</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">SLAM</span>
+                            </div>
+                            <a href="blog/ros2-navigation-guide.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono'] text-sm font-bold">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="blog-post bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="cv">
+                        <div class="relative">
+                            <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif" 
+                                 alt="Object Detection" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Computer Vision</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">March 5, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">6 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                Real-time Object Detection for Robotics
+                            </h3>
+                            <p class="text-gray-300 mb-4 font-['Roboto_Mono'] text-sm">
+                                Implementing YOLO-based object detection systems for robotic applications with 
+                                OpenCV and deep learning frameworks.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">YOLO</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">OpenCV</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Python</span>
+                            </div>
+                            <a href="blog/object-detection-robotics.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono'] text-sm font-bold">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="blog-post bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="tutorials">
+                        <div class="relative">
+                            <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
+                                 alt="Isaac Sim Tutorial" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Tutorial</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">February 28, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">10 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                Getting Started with Isaac Sim for Robotics
+                            </h3>
+                            <p class="text-gray-300 mb-4 font-['Roboto_Mono'] text-sm">
+                                A step-by-step tutorial for setting up NVIDIA Isaac Sim and creating your first 
+                                robotic simulation environment.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Isaac Sim</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Simulation</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Tutorial</span>
+                            </div>
+                            <a href="blog/isaac-sim-tutorial.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono'] text-sm font-bold">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="blog-post bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="rl">
+                        <div class="relative">
+                            <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" 
+                                 alt="SLAM and RL" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Reinforcement Learning</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">February 20, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">7 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                Combining SLAM with Reinforcement Learning
+                            </h3>
+                            <p class="text-gray-300 mb-4 font-['Roboto_Mono'] text-sm">
+                                Exploring innovative approaches to integrate SLAM algorithms with reinforcement learning 
+                                for enhanced robotic navigation and mapping.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">SLAM</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">RL</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Navigation</span>
+                            </div>
+                            <a href="blog/slam-rl-integration.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono'] text-sm font-bold">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="blog-post bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all" data-category="tutorials">
+                        <div class="relative">
+                            <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281" 
+                                 alt="HRI Tutorial" 
+                                 class="w-full h-48 object-cover">
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-gray-900 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Tutorial</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">February 15, 2024</span>
+                                <span class="mx-3 text-gray-600">•</span>
+                                <i class="fas fa-clock text-red-400 mr-2"></i>
+                                <span class="text-gray-400 font-['Roboto_Mono']">9 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                Building Safe Human-Robot Interaction Systems
+                            </h3>
+                            <p class="text-gray-300 mb-4 font-['Roboto_Mono'] text-sm">
+                                Learn how to implement safety systems for collaborative robots using depth sensors 
+                                and predictive collision avoidance algorithms.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">HRI</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Safety</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">ROS2</span>
+                            </div>
+                            <a href="blog/hri-safety-tutorial.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono'] text-sm font-bold">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105 font-['Roboto_Mono']">
+                        Load More Posts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                    <span class="text-red-400">// </span>Stay Updated
+                </h2>
+                <p class="text-gray-300 mb-8 font-['Roboto_Mono']">
+                    Get the latest posts on robotics, machine learning, and autonomous systems delivered to your inbox.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" 
+                           placeholder="Enter your email" 
+                           class="flex-1 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-red-600">
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition-all font-['Roboto_Mono']">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white font-['Orbitron']">MHP</span>
+                    </div>
+                    <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <i class="ai ai-google-scholar text-2xl"></i>
+                    </a>
+                    <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500 font-['Roboto_Mono']">
+                    © 2024 Meraj Hossain Promit. Designed with <span class="text-red-400">♥</span> for robotics.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Category filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => {
+                        b.classList.remove('bg-red-600', 'text-white');
+                        b.classList.add('bg-gray-700', 'text-gray-300');
+                    });
+
+                    // Add active class to clicked button
+                    this.classList.remove('bg-gray-700', 'text-gray-300');
+                    this.classList.add('bg-red-600', 'text-white');
+
+                    const category = this.getAttribute('data-category');
+
+                    blogPosts.forEach(post => {
+                        if (category === 'all' || post.getAttribute('data-category') === category) {
+                            post.style.display = 'block';
+                        } else {
+                            post.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

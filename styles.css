@@ -847,6 +847,26 @@ section {
     }
 }
 
+/* Visual Connector for Who Am I Section */
+.profile-img::after {
+    content: '';
+    position: absolute;
+    right: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(0, 212, 255, 0.8), rgba(0, 212, 255, 0.2));
+    display: none;
+    z-index: 5;
+}
+
+@media (min-width: 768px) {
+    .profile-img::after {
+        display: block;
+    }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .floating-cv-btn {

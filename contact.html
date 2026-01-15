@@ -28,19 +28,19 @@
     <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
+                <div class="flex items-center space-x-2 logo-glow">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-rocket text-white icon-glow"></i>
                     </div>
-                    <span class="text-xl font-bold text-white font-['Orbitron']">MHP</span>
+                    <span class="text-xl font-bold text-white font-['Orbitron'] gradient-text">MHP</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-white hover:text-red-400 transition-colors">Home</a>
-                    <a href="about.html" class="text-white hover:text-red-400 transition-colors">About</a>
-                    <a href="projects.html" class="text-white hover:text-red-400 transition-colors">Projects</a>
-                    <a href="blog.html" class="text-white hover:text-red-400 transition-colors">Blog</a>
-                    <a href="contact.html" class="text-red-400">Contact</a>
+                    <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                    <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="blog.html" class="text-white hover:text-cyan-400 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-cyan-400">Contact</a>
                 </div>
 
                 <button id="mobile-menu-btn" class="md:hidden text-white">
@@ -52,11 +52,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95">
             <div class="px-6 py-4 space-y-4">
-                <a href="index.html" class="block text-white hover:text-red-400 transition-colors">Home</a>
-                <a href="about.html" class="block text-white hover:text-red-400 transition-colors">About</a>
-                <a href="projects.html" class="block text-white hover:text-red-400 transition-colors">Projects</a>
-                <a href="blog.html" class="block text-white hover:text-red-400 transition-colors">Blog</a>
-                <a href="contact.html" class="block text-red-400">Contact</a>
+                <a href="index.html" class="block text-white hover:text-cyan-400 transition-colors">Home</a>
+                <a href="about.html" class="block text-white hover:text-cyan-400 transition-colors">About</a>
+                <a href="projects.html" class="block text-white hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="blog.html" class="block text-white hover:text-cyan-400 transition-colors">Blog</a>
+                <a href="contact.html" class="block text-cyan-400">Contact</a>
             </div>
         </div>
     </header>
@@ -70,7 +70,7 @@
         <div class="relative z-10 container mx-auto px-6">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                    <span class="text-red-400">// </span>Contact & Comms
+                    <span class="text-cyan-400">// </span>Contact & Comms
                 </h1>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
                     Let's connect! I'm always open to discussing new projects, collaborations, or opportunities in robotics and autonomous systems.
@@ -88,7 +88,7 @@
                     <!-- Contact Form -->
                     <div>
                         <h2 class="text-3xl font-bold mb-8 text-white font-['Orbitron']">
-                            <span class="text-red-400">></span> Send Message
+                            <span class="text-cyan-400">></span> Send Message
                         </h2>
                         
                         <form id="contact-form" class="space-y-6">
@@ -98,7 +98,7 @@
                                        id="name" 
                                        name="name" 
                                        required
-                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-red-600 transition-colors"
+                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-cyan-500 transition-colors"
                                        placeholder="Your Name">
                             </div>
                             
@@ -108,7 +108,7 @@
                                        id="email" 
                                        name="email" 
                                        required
-                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-red-600 transition-colors"
+                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-cyan-500 transition-colors"
                                        placeholder="your.email@example.com">
                             </div>
                             
@@ -117,7 +117,7 @@
                                 <select id="subject" 
                                         name="subject" 
                                         required
-                                        class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-red-600 transition-colors">
+                                        class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-cyan-500 transition-colors">
                                     <option value="">Select a topic</option>
                                     <option value="collaboration">Collaboration Opportunity</option>
                                     <option value="project">Project Discussion</option>
@@ -133,12 +133,12 @@
                                           name="message" 
                                           rows="6" 
                                           required
-                                          class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-red-600 transition-colors resize-none"
+                                          class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white font-['Roboto_Mono'] focus:outline-none focus:border-cyan-500 transition-colors resize-none"
                                           placeholder="Tell me about your project or inquiry..."></textarea>
                             </div>
                             
                             <button type="submit" 
-                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg font-bold transition-all transform hover:scale-105 font-['Roboto_Mono']">
+                                    class="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-3 px-6 rounded-lg font-bold transition-all transform hover:scale-105 font-['Roboto_Mono']">
                                 <i class="fas fa-paper-plane mr-2"></i> Send Message
                             </button>
                         </form>
@@ -149,13 +149,13 @@
                     <!-- Contact Information -->
                     <div>
                         <h2 class="text-3xl font-bold mb-8 text-white font-['Orbitron']">
-                            <span class="text-red-400">></span> Direct Channels
+                            <span class="text-cyan-400">></span> Direct Channels
                         </h2>
                         
                         <div class="space-y-6">
                             <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
                                 <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
                                         <i class="fas fa-envelope text-white"></i>
                                     </div>
                                     <div>
@@ -164,14 +164,14 @@
                                     </div>
                                 </div>
                                 <a href="mailto:merajhossainpromit@gmail.com" 
-                                   class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                                   class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
                                     merajhossainpromit@gmail.com
                                 </a>
                             </div>
                             
                             <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
                                 <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
                                         <i class="fab fa-linkedin text-white"></i>
                                     </div>
                                     <div>
@@ -181,14 +181,14 @@
                                 </div>
                                 <a href="https://linkedin.com/in/mhpromit7473" 
                                    target="_blank"
-                                   class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                                   class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
                                     linkedin.com/in/mhpromit7473
                                 </a>
                             </div>
                             
                             <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
                                 <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
                                         <i class="fab fa-github text-white"></i>
                                     </div>
                                     <div>
@@ -198,14 +198,14 @@
                                 </div>
                                 <a href="https://github.com/promit7473" 
                                    target="_blank"
-                                   class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                                   class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
                                     github.com/promit7473
                                 </a>
                             </div>
                             
                             <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
                                 <div class="flex items-center mb-4">
-                                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
                                         <i class="fas fa-map-marker-alt text-white"></i>
                                     </div>
                                     <div>
@@ -229,7 +229,7 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl font-bold mb-8 text-white font-['Orbitron']">
-                    <span class="text-red-400">// </span>Response Time
+                    <span class="text-cyan-400">// </span>Response Time
                 </h2>
                 <p class="text-gray-300 mb-8 font-['Roboto_Mono'] text-lg">
                     I typically respond to messages within 24-48 hours. For urgent matters or time-sensitive collaborations, 
@@ -238,15 +238,15 @@
                 
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                        <div class="text-3xl font-bold text-red-400 font-['Orbitron'] mb-2">24h</div>
+                        <div class="text-3xl font-bold text-cyan-400 font-['Orbitron'] mb-2">24h</div>
                         <p class="text-gray-300 font-['Roboto_Mono']">Email Response</p>
                     </div>
                     <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                        <div class="text-3xl font-bold text-red-400 font-['Orbitron'] mb-2">48h</div>
+                        <div class="text-3xl font-bold text-cyan-400 font-['Orbitron'] mb-2">48h</div>
                         <p class="text-gray-300 font-['Roboto_Mono']">Project Inquiries</p>
                     </div>
                     <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                        <div class="text-3xl font-bold text-red-400 font-['Orbitron'] mb-2">72h</div>
+                        <div class="text-3xl font-bold text-cyan-400 font-['Orbitron'] mb-2">72h</div>
                         <p class="text-gray-300 font-['Roboto_Mono']">Collaboration Proposals</p>
                     </div>
                 </div>
@@ -259,14 +259,14 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
-                    <span class="text-red-400">// </span>Frequently Asked Questions
+                    <span class="text-cyan-400">// </span>Frequently Asked Questions
                 </h2>
                 
                 <div class="space-y-6">
                     <div class="bg-gray-900 rounded-lg border border-gray-700">
                         <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
                             <h3 class="text-lg font-bold text-white font-['Orbitron']">What types of projects do you collaborate on?</h3>
-                            <i class="fas fa-chevron-down text-red-400 transition-transform"></i>
+                            <i class="fas fa-chevron-down text-cyan-400 transition-transform"></i>
                         </button>
                         <div class="faq-content hidden px-6 pb-4">
                             <p class="text-gray-300 font-['Roboto_Mono']">
@@ -280,7 +280,7 @@
                     <div class="bg-gray-900 rounded-lg border border-gray-700">
                         <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
                             <h3 class="text-lg font-bold text-white font-['Orbitron']">Are you available for freelance work?</h3>
-                            <i class="fas fa-chevron-down text-red-400 transition-transform"></i>
+                            <i class="fas fa-chevron-down text-cyan-400 transition-transform"></i>
                         </button>
                         <div class="faq-content hidden px-6 pb-4">
                             <p class="text-gray-300 font-['Roboto_Mono']">
@@ -294,7 +294,7 @@
                     <div class="bg-gray-900 rounded-lg border border-gray-700">
                         <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
                             <h3 class="text-lg font-bold text-white font-['Orbitron']">Can you help with academic research?</h3>
-                            <i class="fas fa-chevron-down text-red-400 transition-transform"></i>
+                            <i class="fas fa-chevron-down text-cyan-400 transition-transform"></i>
                         </button>
                         <div class="faq-content hidden px-6 pb-4">
                             <p class="text-gray-300 font-['Roboto_Mono']">
@@ -308,7 +308,7 @@
                     <div class="bg-gray-900 rounded-lg border border-gray-700">
                         <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center">
                             <h3 class="text-lg font-bold text-white font-['Orbitron']">Do you offer mentorship or guidance?</h3>
-                            <i class="fas fa-chevron-down text-red-400 transition-transform"></i>
+                            <i class="fas fa-chevron-down text-cyan-400 transition-transform"></i>
                         </button>
                         <div class="faq-content hidden px-6 pb-4">
                             <p class="text-gray-300 font-['Roboto_Mono']">
@@ -329,7 +329,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center space-x-2 mb-2">
-                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                        <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center">
                             <i class="fas fa-rocket text-white text-sm"></i>
                         </div>
                         <span class="text-lg font-bold text-white font-['Orbitron']">MHP</span>
@@ -338,16 +338,16 @@
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                    <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
                         <i class="fab fa-github text-2xl"></i>
                     </a>
-                    <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                    <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
                         <i class="fab fa-linkedin text-2xl"></i>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
+                    <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
                         <i class="ai ai-google-scholar text-2xl"></i>
                     </a>
-                    <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors">
+                    <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
                         <i class="fas fa-envelope text-2xl"></i>
                     </a>
                 </div>
@@ -355,7 +355,7 @@
             
             <div class="mt-8 pt-8 border-t border-gray-800 text-center">
                 <p class="text-gray-500 font-['Roboto_Mono']">
-                    © 2024 Meraj Hossain Promit. Designed with <span class="text-red-400">♥</span> for robotics.
+                    © 2024 Meraj Hossain Promit. Designed with <span class="text-cyan-400">♥</span> for robotics.
                 </p>
             </div>
         </div>
@@ -377,34 +377,82 @@
                 });
             });
             
-            // Contact form handling
+            // Contact form handling with Formspree
             const contactForm = document.getElementById('contact-form');
             const formMessage = document.getElementById('form-message');
-            
-            contactForm.addEventListener('submit', function(e) {
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
-                // Show success message
-                formMessage.classList.remove('hidden');
-                formMessage.classList.add('bg-green-900', 'border', 'border-green-600');
-                formMessage.innerHTML = `
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-400 mr-2"></i>
-                        <span class="text-green-300 font-['Roboto_Mono']">
-                            Thank you for your message! I'll get back to you within 24-48 hours.
-                        </span>
-                    </div>
-                `;
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.add('hidden');
-                }, 5000);
+
+                // Disable button and show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+                // Get form data
+                const formData = new FormData(contactForm);
+
+                try {
+                    // Send to Formspree
+                    // IMPORTANT: Replace 'YOUR_FORM_ID' with your actual Formspree form ID
+                    // Get it from https://formspree.io/ after signing up
+                    const response = await fetch('https://formspree.io/f/merajhossainpromit@gmail.com', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Show success message
+                        formMessage.classList.remove('hidden', 'bg-red-900', 'border-red-600');
+                        formMessage.classList.add('bg-green-900', 'border', 'border-green-600');
+                        formMessage.innerHTML = `
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                <span class="text-green-300 font-['Roboto_Mono']">
+                                    Thank you for your message! I'll get back to you within 24-48 hours.
+                                </span>
+                            </div>
+                        `;
+
+                        // Reset form
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    // Show error message
+                    formMessage.classList.remove('hidden', 'bg-green-900', 'border-green-600');
+                    formMessage.classList.add('bg-red-900', 'border', 'border-red-600');
+                    formMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-circle text-cyan-400 mr-2"></i>
+                            <span class="text-cyan-300 font-['Roboto_Mono']">
+                                Oops! Something went wrong. Please try again or email me directly.
+                            </span>
+                        </div>
+                    `;
+                } finally {
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+
+                    // Hide message after 7 seconds
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 7000);
+                }
             });
         });
     </script>
+
+    <!-- Floating CV Download Button -->
+    <a href="#" class="floating-cv-btn" title="Download Resume/CV">
+        <i class="fas fa-download"></i>
+        <span>Download CV</span>
+    </a>
 </body>
 </html>

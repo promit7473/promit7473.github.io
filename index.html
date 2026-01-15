@@ -25,15 +25,18 @@
 </head>
 
 <body class="antialiased">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
     <!-- Navigation Header -->
     <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
-                    </div>
-                    <span class="text-xl font-bold text-white font-['Orbitron']">MHP</span>
+                <div class="flex items-center space-x-2 logo-glow">
+                     <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                         <i class="fas fa-robot text-white icon-glow robot-animate"></i>
+                     </div>
+                     <span class="text-xl font-bold text-white font-['Orbitron'] gradient-text icon-glow">MHP</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
@@ -68,25 +71,36 @@
         <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <!-- Animated particles -->
-            <div class="particles absolute inset-0"></div>
+            <div class="particles absolute inset-0">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
         </div>
 
         <!-- Hero Content -->
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <div class="mb-8">
-                <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_200_200/B56ZXSRY9OHQAY-/0/1742989530217?e=1762387200&v=beta&t=pYzvQgNLzsY6FPAvr1o1wmYnxMoxpdZZPNv20Ko5PMQ" 
-                     alt="Meraj Hossain Promit" 
-                     class="w-40 h-40 mx-auto rounded-full border-4 border-red-600 shadow-2xl">
-            </div>
+             <div class="mb-8 profile-img">
+                 <img src="assets/images/promit.jpg"
+                      alt="Meraj Hossain Promit"
+                      class="w-40 h-40 mx-auto rounded-full shadow-2xl relative z-10">
+             </div>
             
             <h1 class="text-5xl md:text-7xl font-bold mb-4 font-['Orbitron'] text-white">
                 Meraj Hossain Promit
             </h1>
             
-            <div class="text-xl md:text-2xl mb-6 font-['Roboto_Mono']">
-                <span class="text-red-400">// </span>
-                <span id="dynamic-text" class="text-white">Robotics System Researcher</span>
-            </div>
+             <div class="text-xl md:text-2xl mb-6 font-['Roboto_Mono']">
+                 <span class="text-cyan-400 icon-glow">> </span>
+                 <span id="dynamic-text" class="text-white">Robotics System Researcher</span>
+             </div>
             
             <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto font-['Roboto_Mono']">
                 Building intelligent autonomous systems that bridge the gap between code and the physical world. 
@@ -94,87 +108,69 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="projects.html" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                <a href="projects.html" class="btn-primary relative z-10">
                     <i class="fas fa-rocket mr-2"></i> View Projects
                 </a>
-                <a href="blog.html" class="border-2 border-red-600 text-red-400 hover:bg-red-600 hover:text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                <a href="blog.html" class="btn-secondary relative z-10">
                     <i class="fas fa-blog mr-2"></i> Read Blog
                 </a>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-white text-2xl"></i>
-        </div>
-    </section>
-
-    <!-- Quick Stats Section -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 font-['Orbitron'] mb-2">8+</div>
-                    <div class="text-gray-400 font-['Roboto_Mono']">Projects</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 font-['Orbitron'] mb-2">3+</div>
-                    <div class="text-gray-400 font-['Roboto_Mono']">Years Experience</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 font-['Orbitron'] mb-2">5+</div>
-                    <div class="text-gray-400 font-['Roboto_Mono']">Publications</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 font-['Orbitron'] mb-2">12+</div>
-                    <div class="text-gray-400 font-['Roboto_Mono']">Tech Stack</div>
-                </div>
-            </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down text-white text-2xl icon-glow"></i>
         </div>
     </section>
 
     <!-- Featured Projects Preview -->
-    <section class="py-20 bg-gray-800">
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                <span class="text-red-400">// </span>Featured Missions
-            </h2>
+             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
+                 <span class="gradient-text code-prefix glowing-bg">> </span>Featured Missions
+             </h2>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105">
-                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif" 
-                         alt="ROS2 Navigation" 
-                         class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <div class="img-overlay">
+                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                             alt="ROS2 Navigation"
+                             class="w-full h-48 object-cover">
+                    </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">ROS2 Navigation Stack</h3>
                         <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Autonomous navigation using Nav2, including mapping, AMCL, and path planning algorithms.</p>
-                        <a href="projects.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105">
-                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif" 
-                         alt="Deep RL Agent" 
-                         class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <div class="img-overlay">
+                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
+                             alt="Deep RL Agent"
+                             class="w-full h-48 object-cover">
+                    </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Deep RL Agent</h3>
                         <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Training reinforcement learning agents to perform complex tasks in simulated environments.</p>
-                        <a href="projects.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105">
-                    <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
-                         alt="Isaac Sim" 
-                         class="w-full h-48 object-cover">
+                <div class="project-card">
+                    <div class="img-overlay">
+                        <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif"
+                             alt="Isaac Sim"
+                             class="w-full h-48 object-cover">
+                    </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Isaac Sim Tasks</h3>
                         <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Developing pick-and-place tasks using NVIDIA's Isaac Sim robotics platform.</p>
-                        <a href="projects.html" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
@@ -183,25 +179,25 @@
         </div>
     </section>
 
-    <!-- Latest Blog Preview -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                <span class="text-red-400">// </span>Latest Transmission
-            </h2>
-            
+     <!-- Latest Blog Preview -->
+     <section class="py-20">
+         <div class="container mx-auto px-6">
+             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
+                 <span class="gradient-text code-prefix glowing-bg">> </span>Latest Transmission
+             </h2>
+
             <div class="max-w-4xl mx-auto">
-                <div class="bg-gray-800 rounded-lg p-8 border border-gray-700">
+                <div class="blog-post p-8">
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-calendar-alt text-red-400 mr-2"></i>
+                        <i class="fas fa-calendar-alt gradient-text mr-2"></i>
                         <span class="text-gray-400 font-['Roboto_Mono']">March 15, 2024</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">Deep Reinforcement Learning in ROS2: A Complete Guide</h3>
                     <p class="text-gray-300 mb-6 font-['Roboto_Mono']">
-                        Exploring the integration of Deep Reinforcement Learning algorithms with ROS2 for creating intelligent robotic systems. 
+                        Exploring the integration of Deep Reinforcement Learning algorithms with ROS2 for creating intelligent robotic systems.
                         This comprehensive guide covers everything from basic concepts to advanced implementations...
                     </p>
-                    <a href="blog/deep-rl-ros2-guide.html" class="inline-flex items-center text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                    <a href="blog/deep-rl-ros2-guide.html" class="inline-flex items-center gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                         Read Full Article <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -214,27 +210,27 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-rocket text-white text-sm"></i>
-                        </div>
-                        <span class="text-lg font-bold text-white font-['Orbitron']">MHP</span>
+                    <div class="flex items-center space-x-2 mb-2 logo-glow">
+                         <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                             <i class="fas fa-robot text-white text-sm icon-glow robot-animate"></i>
+                         </div>
+                        <span class="text-lg font-bold text-white font-['Orbitron'] gradient-text">MHP</span>
                     </div>
                     <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
                 </div>
-                
+
                 <div class="flex space-x-6">
                     <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
+                        <i class="fab fa-github text-2xl icon-glow"></i>
                     </a>
                     <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-linkedin text-2xl"></i>
+                        <i class="fab fa-linkedin text-2xl icon-glow"></i>
                     </a>
                     <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="ai ai-google-scholar text-2xl"></i>
+                        <i class="ai ai-google-scholar text-2xl icon-glow"></i>
                     </a>
                     <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fas fa-envelope text-2xl"></i>
+                        <i class="fas fa-envelope text-2xl icon-glow"></i>
                     </a>
                 </div>
             </div>
@@ -246,6 +242,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating CV Download Button -->
+    <a href="#" class="floating-cv-btn" title="Download Resume/CV">
+        <i class="fas fa-download"></i>
+        <span>Download CV</span>
+    </a>
 
     <script src="script.js"></script>
 </body>

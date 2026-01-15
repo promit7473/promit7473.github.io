@@ -24,15 +24,18 @@
 </head>
 
 <body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
     <!-- Navigation Header -->
     <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
+                <div class="flex items-center space-x-2 logo-glow">
+                    <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-rocket text-white icon-glow"></i>
                     </div>
-                    <span class="text-xl font-bold text-white font-['Orbitron']">MHP</span>
+                    <span class="text-xl font-bold text-white font-['Orbitron'] gradient-text">MHP</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
@@ -69,9 +72,9 @@
         
         <div class="relative z-10 container mx-auto px-6">
             <div class="text-center">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                    <span class="text-red-400">// </span>Mission Profile
-                </h1>
+                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
+                     <span class="gradient-text code-prefix glowing-bg">> </span>Mission Profile
+                 </h1>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
                     Discover the journey, expertise, and vision behind my work in robotics and autonomous systems.
                 </p>
@@ -80,19 +83,19 @@
     </section>
 
     <!-- About Content -->
-    <section class="py-20 bg-gray-800">
+    <section class="py-20">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
+                 <div class="profile-img ml-12">
+                     <img src="assets/images/promit2.jpg"
+                          alt="Meraj Hossain Promit"
+                          class="max-w-lg h-auto rounded-lg shadow-2xl relative z-10">
+                 </div>
+
                 <div>
-                    <img src="https://media.licdn.com/dms/image/v2/D5603AQFdK1mZVrs8Ng/profile-displayphoto-shrink_200_200/B56ZXSRY9OHQAY-/0/1742989530217?e=1758758400&v=beta&t=BFwD9pNWQcaX3804uzimnwYQ4PfzhKgackdJBkj6PbY" 
-                         alt="Meraj Hossain Promit" 
-                         class="rounded-lg border-4 border-red-600 shadow-2xl">
-                </div>
-                
-                <div>
-                    <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                        <span class="text-red-400">></span> Who I Am
-                    </h2>
+                     <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                         <span class="gradient-text code-prefix glowing-bg">> </span> Who I Am
+                     </h2>
                     <p class="text-gray-300 mb-6 font-['Roboto_Mono'] leading-relaxed">
                         As a passionate Robotics and Mechatronics Engineering student at the University of Dhaka, I'm driven by the intersection of hardware and intelligent software, aiming to create autonomous systems that interact with the physical world.
                     </p>
@@ -108,16 +111,16 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="py-20 bg-gray-900">
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                <span class="text-red-400">// </span>Technical Arsenal
-            </h2>
-            
+             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
+                 <span class="gradient-text code-prefix glowing-bg">> </span>Technical Arsenal
+             </h2>
+
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                    <div class="text-red-400 text-3xl mb-4">
-                        <i class="fas fa-code"></i>
+                <div class="skill-card p-6">
+                    <div class="gradient-text text-3xl mb-4">
+                        <i class="fas fa-code icon-glow"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">Programming</h3>
                     <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
@@ -128,9 +131,9 @@
                     </ul>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                    <div class="text-red-400 text-3xl mb-4">
-                        <i class="fas fa-robot"></i>
+                <div class="skill-card p-6">
+                    <div class="gradient-text text-3xl mb-4">
+                        <i class="fas fa-robot icon-glow"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">Robotics</h3>
                     <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
@@ -141,9 +144,9 @@
                     </ul>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                    <div class="text-red-400 text-3xl mb-4">
-                        <i class="fas fa-brain"></i>
+                <div class="skill-card p-6">
+                    <div class="gradient-text text-3xl mb-4">
+                        <i class="fas fa-brain icon-glow"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">AI/ML</h3>
                     <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
@@ -158,11 +161,11 @@
     </section>
 
     <!-- Education Timeline -->
-    <section class="py-20 bg-gray-800">
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                <span class="text-red-400">// </span>Education Timeline
-            </h2>
+             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
+                 <span class="gradient-text code-prefix glowing-bg">> </span>Education Timeline
+             </h2>
             
             <div class="max-w-4xl mx-auto">
                 <div class="relative">
@@ -173,13 +176,13 @@
                     <div class="relative mb-12">
                         <div class="flex items-center">
                             <div class="w-1/2 text-right pr-8">
-                                <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <div class="education-card p-6">
                                     <h3 class="text-xl font-bold text-white font-['Orbitron']">BSc. Robotics & Mechatronics</h3>
-                                    <p class="text-red-400 font-['Roboto_Mono']">University of Dhaka</p>
+                                    <p class="gradient-text font-['Roboto_Mono']">University of Dhaka</p>
                                     <p class="text-gray-400 font-['Roboto_Mono']">2022 - Present</p>
                                 </div>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border-4 border-gray-800"></div>
+                            <div class="timeline-dot"></div>
                             <div class="w-1/2"></div>
                         </div>
                     </div>
@@ -187,11 +190,11 @@
                     <div class="relative mb-12">
                         <div class="flex items-center">
                             <div class="w-1/2"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border-4 border-gray-800"></div>
+                            <div class="timeline-dot"></div>
                             <div class="w-1/2 pl-8">
-                                <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <div class="education-card p-6">
                                     <h3 class="text-xl font-bold text-white font-['Orbitron']">Higher Secondary Certificate</h3>
-                                    <p class="text-red-400 font-['Roboto_Mono']">Murari Chand College</p>
+                                    <p class="gradient-text font-['Roboto_Mono']">Murari Chand College</p>
                                     <p class="text-gray-400 font-['Roboto_Mono']">2019 - 2022</p>
                                 </div>
                             </div>
@@ -203,40 +206,40 @@
     </section>
 
     <!-- Research Interests -->
-    <section class="py-20 bg-gray-900">
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                <span class="text-red-400">// </span>Research Focus Areas
-            </h2>
-            
+             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
+                 <span class="gradient-text code-prefix glowing-bg">> </span>Research Focus Areas
+             </h2>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700 hover:border-red-600 transition-all">
-                    <div class="text-4xl text-red-400 mb-4">
-                        <i class="fas fa-route"></i>
+                <div class="skill-card p-6 text-center">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-route icon-glow"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Autonomous Navigation</h3>
                     <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Path planning and obstacle avoidance algorithms</p>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700 hover:border-red-600 transition-all">
-                    <div class="text-4xl text-red-400 mb-4">
-                        <i class="fas fa-infinity"></i>
+                <div class="skill-card p-6 text-center">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-infinity icon-glow"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Deep Reinforcement Learning</h3>
                     <p class="text-gray-400 font-['Roboto_Mono'] text-sm">RL agents for robotic control and decision making</p>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700 hover:border-red-600 transition-all">
-                    <div class="text-4xl text-red-400 mb-4">
-                        <i class="fas fa-eye"></i>
+                <div class="skill-card p-6 text-center">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-eye icon-glow"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Computer Vision</h3>
                     <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Object detection and tracking for robotics</p>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700 hover:border-red-600 transition-all">
-                    <div class="text-4xl text-red-400 mb-4">
-                        <i class="fas fa-handshake"></i>
+                <div class="skill-card p-6 text-center">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-handshake icon-glow"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Human-Robot Interaction</h3>
                     <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Safe and intuitive HRI systems</p>
@@ -250,27 +253,27 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-rocket text-white text-sm"></i>
-                        </div>
-                        <span class="text-lg font-bold text-white font-['Orbitron']">MHP</span>
+                    <div class="flex items-center space-x-2 mb-2 logo-glow">
+                         <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                             <i class="fas fa-robot text-white text-sm icon-glow robot-animate"></i>
+                         </div>
+                         <span class="text-lg font-bold text-white font-['Orbitron'] gradient-text icon-glow">MHP</span>
                     </div>
                     <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
                 </div>
-                
+
                 <div class="flex space-x-6">
                     <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
+                        <i class="fab fa-github text-2xl icon-glow"></i>
                     </a>
                     <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-linkedin text-2xl"></i>
+                        <i class="fab fa-linkedin text-2xl icon-glow"></i>
                     </a>
                     <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="ai ai-google-scholar text-2xl"></i>
+                        <i class="ai ai-google-scholar text-2xl icon-glow"></i>
                     </a>
                     <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fas fa-envelope text-2xl"></i>
+                        <i class="fas fa-envelope text-2xl icon-glow"></i>
                     </a>
                 </div>
             </div>
@@ -282,6 +285,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating CV Download Button -->
+    <a href="#" class="floating-cv-btn" title="Download Resume/CV">
+        <i class="fas fa-download"></i>
+        <span>Download CV</span>
+    </a>
 
     <script src="script.js"></script>
 </body>

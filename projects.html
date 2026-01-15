@@ -24,15 +24,18 @@
 </head>
 
 <body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
     <!-- Navigation Header -->
     <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
+                <div class="flex items-center space-x-2 logo-glow">
+                    <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-rocket text-white icon-glow"></i>
                     </div>
-                    <span class="text-xl font-bold text-white font-['Orbitron']">MHP</span>
+                    <span class="text-xl font-bold text-white font-['Orbitron'] gradient-text">MHP</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
@@ -70,7 +73,7 @@
         <div class="relative z-10 container mx-auto px-6">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                    <span class="text-red-400">// </span>Projects Archive
+                    <span class="gradient-text">// </span>Projects Archive
                 </h1>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
                     A collection of my robotics projects, from autonomous navigation systems to Deep Reinforcement Learning agents.
@@ -80,22 +83,22 @@
     </section>
 
     <!-- Filter Section -->
-    <section class="py-12 bg-gray-800">
+    <section class="py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-wrap justify-center gap-4">
-                <button class="filter-btn active bg-red-600 text-white px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-filter="all">
+                <button class="filter-btn active" data-filter="all">
                     All Projects
                 </button>
-                <button class="filter-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-filter="ros">
+                <button class="filter-btn" data-filter="ros">
                     ROS/ROS2
                 </button>
-                <button class="filter-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-filter="ml">
+                <button class="filter-btn" data-filter="ml">
                     Machine Learning
                 </button>
-                <button class="filter-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-filter="simulation">
+                <button class="filter-btn" data-filter="simulation">
                     Simulation
                 </button>
-                <button class="filter-btn bg-gray-700 text-gray-300 hover:bg-gray-600 px-6 py-2 rounded-lg font-['Roboto_Mono'] transition-all" data-filter="cv">
+                <button class="filter-btn" data-filter="cv">
                     Computer Vision
                 </button>
             </div>
@@ -103,18 +106,18 @@
     </section>
 
     <!-- Projects Grid -->
-    <section class="py-20 bg-gray-900">
+    <section class="py-20">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Project 1: ROS2 Navigation -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="ros">
-                    <div class="relative">
-                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif" 
-                             alt="ROS2 Navigation" 
+                <div class="project-card" data-category="ros">
+                    <div class="img-overlay">
+                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                             alt="ROS2 Navigation"
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">ROS2</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">ROS2</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -123,15 +126,15 @@
                             Autonomous navigation using Nav2, including mapping, AMCL, and path planning algorithms for mobile robots.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">ROS2</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Nav2</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">SLAM</span>
+                            <span class="tag">ROS2</span>
+                            <span class="tag">Nav2</span>
+                            <span class="tag">SLAM</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -139,13 +142,13 @@
                 </div>
 
                 <!-- Project 2: Deep RL Agent -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="ml">
-                    <div class="relative">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif" 
-                             alt="Deep RL Agent" 
+                <div class="project-card" data-category="ml">
+                    <div class="img-overlay">
+                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
+                             alt="Deep RL Agent"
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">ML</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">ML</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -154,15 +157,15 @@
                             Training reinforcement learning agents to perform complex tasks in simulated environments using advanced algorithms.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Deep RL</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Python</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">PyTorch</span>
+                            <span class="tag">Deep RL</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -170,13 +173,13 @@
                 </div>
 
                 <!-- Project 3: Robotic Arm Simulation -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="simulation">
-                    <div class="relative">
+                <div class="project-card" data-category="simulation">
+                    <div class="img-overlay">
                         <img src="https://us1.discourse-cdn.com/flexerasoftware/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" 
                              alt="Robotic Arm Simulation" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Simulation</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">Simulation</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -185,15 +188,15 @@
                             URDF model of a 6-DOF arm in Gazebo with MoveIt for motion planning and trajectory optimization.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Gazebo</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">MoveIt</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">URDF</span>
+                            <span class="tag">Gazebo</span>
+                            <span class="tag">MoveIt</span>
+                            <span class="tag">URDF</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -201,13 +204,13 @@
                 </div>
 
                 <!-- Project 4: Object Detection -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="cv">
-                    <div class="relative">
+                <div class="project-card" data-category="cv">
+                    <div class="img-overlay">
                         <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif" 
                              alt="Object Detection" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">CV</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">CV</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -216,15 +219,15 @@
                             Real-time object detection and tracking system implemented with OpenCV and deep learning models.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">OpenCV</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">YOLO</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Python</span>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">YOLO</span>
+                            <span class="tag">Python</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -232,13 +235,13 @@
                 </div>
 
                 <!-- Project 5: Visual SLAM -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="cv">
-                    <div class="relative">
+                <div class="project-card" data-category="cv">
+                    <div class="img-overlay">
                         <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" 
                              alt="Visual SLAM" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">CV</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">CV</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -247,15 +250,15 @@
                             Implementation of a feature-based Visual SLAM algorithm for 3D reconstruction and localization.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">SLAM</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">OpenCV</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">C++</span>
+                            <span class="tag">SLAM</span>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">C++</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -263,13 +266,13 @@
                 </div>
 
                 <!-- Project 6: Isaac Sim Task -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="simulation">
-                    <div class="relative">
+                <div class="project-card" data-category="simulation">
+                    <div class="img-overlay">
                         <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
                              alt="Isaac Sim Task" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">Simulation</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">Simulation</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -278,15 +281,15 @@
                             Developing a pick-and-place task using NVIDIA's Isaac Sim robotics platform with RL integration.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Isaac Sim</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">RL</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Python</span>
+                            <span class="tag">Isaac Sim</span>
+                            <span class="tag">RL</span>
+                            <span class="tag">Python</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -294,13 +297,13 @@
                 </div>
 
                 <!-- Project 7: Path Planning -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="ros">
-                    <div class="relative">
+                <div class="project-card" data-category="ros">
+                    <div class="img-overlay">
                         <img src="https://miro.medium.com/v2/resize:fit:800/1*eYy062N2275fM1yY--remw.gif" 
                              alt="Path Planning" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">ROS</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">ROS</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -309,15 +312,15 @@
                             Implementing and comparing A* and RRT* path planning algorithms for mobile robots in complex environments.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">A*</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">RRT*</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Python</span>
+                            <span class="tag">A*</span>
+                            <span class="tag">RRT*</span>
+                            <span class="tag">Python</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -325,13 +328,13 @@
                 </div>
 
                 <!-- Project 8: HRI System -->
-                <div class="project-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-red-600 transition-all transform hover:scale-105" data-category="ml">
-                    <div class="relative">
+                <div class="project-card" data-category="ml">
+                    <div class="img-overlay">
                         <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281" 
                              alt="HRI System" 
                              class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-['Roboto_Mono']">ML</span>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="tag">ML</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -340,15 +343,15 @@
                             A safety system for human-robot collaboration using depth sensors and predictive models for collision avoidance.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">HRI</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">Safety</span>
-                            <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-['Roboto_Mono']">ROS2</span>
+                            <span class="tag">HRI</span>
+                            <span class="tag">Safety</span>
+                            <span class="tag">ROS2</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 <i class="fab fa-github mr-1"></i> GitHub
                             </a>
-                            <a href="#" class="text-red-400 hover:text-red-300 font-['Roboto_Mono']">
+                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -364,27 +367,27 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-rocket text-white text-sm"></i>
+                    <div class="flex items-center space-x-2 mb-2 logo-glow">
+                        <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-sm icon-glow"></i>
                         </div>
-                        <span class="text-lg font-bold text-white font-['Orbitron']">MHP</span>
+                        <span class="text-lg font-bold text-white font-['Orbitron'] gradient-text">MHP</span>
                     </div>
                     <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
                 </div>
-                
+
                 <div class="flex space-x-6">
                     <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
+                        <i class="fab fa-github text-2xl icon-glow"></i>
                     </a>
                     <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fab fa-linkedin text-2xl"></i>
+                        <i class="fab fa-linkedin text-2xl icon-glow"></i>
                     </a>
                     <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="ai ai-google-scholar text-2xl"></i>
+                        <i class="ai ai-google-scholar text-2xl icon-glow"></i>
                     </a>
                     <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-red-400 transition-colors">
-                        <i class="fas fa-envelope text-2xl"></i>
+                        <i class="fas fa-envelope text-2xl icon-glow"></i>
                     </a>
                 </div>
             </div>
@@ -429,5 +432,11 @@
             });
         });
     </script>
+
+    <!-- Floating CV Download Button -->
+    <a href="#" class="floating-cv-btn" title="Download Resume/CV">
+        <i class="fas fa-download"></i>
+        <span>Download CV</span>
+    </a>
 </body>
 </html>

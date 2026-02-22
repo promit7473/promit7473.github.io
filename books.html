@@ -31,11 +31,9 @@
     <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2 logo-glow">
-                     <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                         <i class="fas fa-robot text-white icon-glow robot-animate"></i>
-                     </div>
-                     <span class="text-xl font-bold text-white font-['Orbitron'] gradient-text icon-glow">MHP</span>
+                <div class="flex items-center space-x-3 logo-glow">
+                    <div class="brand-mark" aria-hidden="true">MP</div>
+                    <span class="text-xl font-bold text-white font-['Orbitron'] tracking-wide">Meraj Promit</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
@@ -43,7 +41,8 @@
                      <a href="about.html" class="text-white hover:text-red-400 transition-colors">About</a>
                      <a href="projects.html" class="text-white hover:text-red-400 transition-colors">Projects</a>
                       <a href="books.html" class="text-red-400">Books</a>
-                     <a href="contact.html" class="text-white hover:text-red-400 transition-colors">Contact</a>
+                     <a href="blog.html" class="text-white hover:text-red-400 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-white hover:text-red-400 transition-colors">Contact</a>
                 </div>
 
                 <button id="mobile-menu-btn" class="md:hidden text-white">
@@ -59,7 +58,8 @@
                  <a href="about.html" class="block text-white hover:text-red-400 transition-colors">About</a>
                  <a href="projects.html" class="block text-white hover:text-red-400 transition-colors">Projects</a>
                   <a href="books.html" class="block text-red-400">Books</a>
-                <a href="contact.html" class="block text-white hover:text-red-400 transition-colors">Contact</a>
+                <a href="blog.html" class="block text-white hover:text-red-400 transition-colors">Blog</a>
+                 <a href="contact.html" class="block text-white hover:text-red-400 transition-colors">Contact</a>
             </div>
         </div>
     </header>
@@ -111,7 +111,7 @@
              <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 <!-- Book 1 -->
-                <div class="project-card" data-category="ros">
+                <div class="project-card" data-category="ai">
                     <div class="img-overlay">
                         <img src="https://via.placeholder.com/300x400/00d4ff/ffffff?text=Deep+Learning"
                              alt="Deep Learning Book"
@@ -145,7 +145,7 @@
                 </div>
 
                 <!-- Project 2: Deep RL Agent -->
-                <div class="project-card" data-category="ml">
+                <div class="project-card" data-category="control">
                     <div class="img-overlay">
                         <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
                              alt="Deep RL Agent"
@@ -176,7 +176,7 @@
                 </div>
 
                 <!-- Project 3: Robotic Arm Simulation -->
-                <div class="project-card" data-category="simulation">
+                <div class="project-card" data-category="robotics">
                     <div class="img-overlay">
                         <img src="https://us1.discourse-cdn.com/flexerasoftware/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" 
                              alt="Robotic Arm Simulation" 
@@ -207,7 +207,7 @@
                 </div>
 
                 <!-- Project 4: Object Detection -->
-                <div class="project-card" data-category="cv">
+                <div class="project-card" data-category="control">
                     <div class="img-overlay">
                         <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif" 
                              alt="Object Detection" 
@@ -238,7 +238,7 @@
                 </div>
 
                 <!-- Project 5: Visual SLAM -->
-                <div class="project-card" data-category="cv">
+                <div class="project-card" data-category="ai">
                     <div class="img-overlay">
                         <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" 
                              alt="Visual SLAM" 
@@ -269,7 +269,7 @@
                 </div>
 
                 <!-- Project 6: Isaac Sim Task -->
-                <div class="project-card" data-category="simulation">
+                <div class="project-card" data-category="robotics">
                     <div class="img-overlay">
                         <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
                              alt="Isaac Sim Task" 
@@ -300,7 +300,7 @@
                 </div>
 
                 <!-- Project 7: Path Planning -->
-                <div class="project-card" data-category="ros">
+                <div class="project-card" data-category="ml">
                     <div class="img-overlay">
                         <img src="https://miro.medium.com/v2/resize:fit:800/1*eYy062N2275fM1yY--remw.gif" 
                              alt="Path Planning" 
@@ -370,11 +370,9 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2 mb-2 logo-glow">
-                         <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
-                             <i class="fas fa-robot text-white text-sm icon-glow robot-animate"></i>
-                         </div>
-                         <span class="text-lg font-bold text-white font-['Orbitron'] gradient-text icon-glow">MHP</span>
+                    <div class="flex items-center space-x-3 mb-2 logo-glow">
+                        <div class="brand-mark brand-mark--sm" aria-hidden="true">MP</div>
+                        <span class="text-lg font-bold text-white font-['Orbitron'] tracking-wide">Meraj Promit</span>
                     </div>
                     <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
                 </div>
@@ -408,28 +406,18 @@
         // Filter functionality
         document.addEventListener('DOMContentLoaded', function() {
             const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
+            const bookCards = document.querySelectorAll('.project-card');
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-red-600', 'text-white');
-                        b.classList.add('bg-gray-700', 'text-gray-300');
-                    });
-
-                    // Add active class to clicked button
-                    this.classList.remove('bg-gray-700', 'text-gray-300');
-                    this.classList.add('bg-red-600', 'text-white');
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
                     const filter = this.getAttribute('data-filter');
 
-                    projectCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                    bookCards.forEach(card => {
+                        const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
+                        card.style.display = shouldShow ? '' : 'none';
                     });
                 });
             });

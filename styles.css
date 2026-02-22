@@ -175,6 +175,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation with Glass Effect - ICY */
 #navbar {
+    padding-top: env(safe-area-inset-top, 0px);
     background: rgba(10, 22, 40, 0.7);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -192,18 +193,39 @@ h1, h2, h3, h4, h5, h6 {
 /* Glowing Logo - ICY */
 .logo-glow {
     position: relative;
-    overflow: hidden;
 }
 
 .logo-glow::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, rgba(129, 212, 250, 0.2) 40%, transparent 70%);
-    animation: icyPulse 3s ease-in-out infinite;
+    inset: -0.35rem;
+    border-radius: 14px;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.22) 0%, transparent 70%);
+    filter: blur(12px);
+    z-index: -1;
+}
+
+.brand-mark {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e6f7ff;
+    background: linear-gradient(145deg, rgba(0, 180, 216, 0.95), rgba(8, 104, 172, 0.95));
+    border: 1px solid rgba(179, 229, 252, 0.45);
+    box-shadow: 0 8px 20px rgba(0, 140, 200, 0.35);
+}
+
+.brand-mark--sm {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.72rem;
 }
 
 @keyframes icyPulse {
@@ -574,6 +596,7 @@ a:hover {
 }
 
 nav a::after {
+    pointer-events: none;
     content: '';
     position: absolute;
     bottom: -5px;
@@ -694,6 +717,25 @@ nav a:hover::after {
     25% { transform: rotate(8deg) scale(1.1); }
     50% { transform: rotate(0deg) scale(1.15); }
     75% { transform: rotate(-8deg) scale(1.1); }
+}
+
+
+
+/* Hero spacing to avoid fixed navbar overlap on small screens */
+.hero-section {
+    padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        align-items: flex-start;
+        padding-top: calc(7.5rem + env(safe-area-inset-top, 0px));
+    }
+
+    .profile-img img {
+        width: 8rem;
+        height: 8rem;
+    }
 }
 
 /* Section Spacing */

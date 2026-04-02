@@ -1,7 +1,29 @@
 // --- MAIN JAVASCRIPT FILE ---
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Note: Mobile menu toggle is handled by components.js
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenuIcon.className = isHidden ? 'fas fa-bars' : 'fas fa-times';
+        });
+    }
+
+    // Close mobile menu when a link is clicked
+    if (mobileMenu) {
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fas fa-bars';
+            });
+        });
+    }
 
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');

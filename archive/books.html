@@ -27,8 +27,41 @@
     <!-- Mesh Gradient Background -->
     <div class="mesh-gradient"></div>
 
-    <!-- Navigation (injected by components.js) -->
-    <div id="nav-placeholder"></div>
+    <!-- Navigation Header -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-gray-900 bg-opacity-95 backdrop-blur-sm" id="navbar">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="logo-glow">
+                    <span class="text-2xl font-bold font-['Dancing_Script'] gradient-text icon-glow">Promit</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                     <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                     <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
+                     <a href="blog.html" class="text-white hover:text-cyan-400 transition-colors">Blog</a>
+                      <a href="books.html" class="text-cyan-400">Books</a>
+                     <a href="contact.html" class="text-white hover:text-cyan-400 transition-colors">Contact</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-white hover:text-cyan-400 transition-colors">Home</a>
+                 <a href="about.html" class="block text-white hover:text-cyan-400 transition-colors">About</a>
+                 <a href="projects.html" class="block text-white hover:text-cyan-400 transition-colors">Projects</a>
+                 <a href="blog.html" class="block text-white hover:text-cyan-400 transition-colors">Blog</a>
+                  <a href="books.html" class="block text-cyan-400">Books</a>
+                <a href="contact.html" class="block text-white hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 overflow-hidden">
@@ -333,10 +366,38 @@
         </div>
     </section>
 
-    <!-- Footer (injected by components.js) -->
-    <div id="footer-placeholder"></div>
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="mb-2 logo-glow">
+                        <span class="text-xl font-bold font-['Dancing_Script'] gradient-text icon-glow">Promit</span>
+                    </div>
+                    <p class="text-gray-400 font-['Roboto_Mono']">Robotics Engineer & Researcher</p>
+                </div>
 
-    <script src="components.js"></script>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/promit7473" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i class="fab fa-github text-2xl icon-glow"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mhpromit7473" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i class="fab fa-linkedin text-2xl icon-glow"></i>
+                    </a>
+                    <a href="mailto:merajhossainpromit@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i class="fas fa-envelope text-2xl icon-glow"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500 font-['Roboto_Mono']">
+                    <span class="footer-clock"></span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
     <script>
         // Filter functionality
@@ -369,5 +430,11 @@
             });
         });
     </script>
+
+    <!-- Floating CV Download Button -->
+    <a href="mailto:merajhossainpromit@gmail.com?subject=CV%20Request&body=Hi%20Meraj%2C%20I%20would%20like%20to%20request%20your%20CV." class="floating-cv-btn" title="Request CV via Email">
+        <i class="fas fa-download"></i>
+        <span>Request CV</span>
+    </a>
 </body>
 </html>

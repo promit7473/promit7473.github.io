@@ -508,4 +508,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
 
     console.log('🚀 Portfolio website initialized with icy enhancements!');
+
+    // Footer Clock — shows visitor's local time and Promit's GMT+6 time
+    function updateFooterClock() {
+        const clocks = document.querySelectorAll('.footer-clock');
+        if (!clocks.length) return;
+
+        const now = new Date();
+
+        // Visitor local time
+        const localOpts = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
+        const localTime = now.toLocaleTimeString(undefined, localOpts);
+        const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local';
+
+        // Promit's time (GMT+6)
+        const gmt6Opts = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Dhaka' };
+        const gmt6Time = now.toLocaleTimeString('en-US', gmt6Opts);
+
+        clocks.forEach(el => {
+            el.innerHTML =
+                `<span class="text-gray-500 font-['Roboto_Mono'] text-xs">` +
+                `<i class="fas fa-clock text-cyan-600 mr-1"></i>` +
+                `<span class="text-cyan-400">Promit (GMT+6):</span> <span class="text-white">${gmt6Time}</span>` +
+                `<span class="text-gray-600 mx-2">|</span>` +
+                `<span class="text-gray-400">You:</span> <span class="text-white">${localTime}</span>` +
+                `</span>`;
+        });
+    }
+    updateFooterClock();
+    setInterval(updateFooterClock, 1000);
 });

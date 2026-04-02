@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering ROS2 Navigation: From Theory to Practice | Meraj Hossain Promit</title>
+    <meta name="description" content="A comprehensive guide to ROS2 Navigation Stack (Nav2), covering costmaps, planners, AMCL, lifecycle nodes, behavior trees, and real-world examples.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
+    <!-- Navigation (injected by components.js) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Blog Post Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <span class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-['Roboto_Mono']">ROS2</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Orbitron'] text-white">
+                    Mastering ROS2 Navigation: From Theory to Practice
+                </h1>
+                <div class="flex items-center justify-center text-gray-300 font-['Roboto_Mono'] mb-8">
+                    <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
+                    <span>June 10, 2024</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-clock text-cyan-400 mr-2"></i>
+                    <span>15 min read</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-user text-cyan-400 mr-2"></i>
+                    <span>Meraj Hossain Promit</span>
+                </div>
+                <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                     alt="ROS2 Navigation"
+                     class="w-full rounded-lg border-2 border-cyan-600">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <article class="prose prose-invert max-w-none">
+                    <!-- Introduction -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Introduction
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Autonomous navigation is one of the most fundamental capabilities any mobile robot must possess. The ROS2 Navigation Stack — commonly known as Nav2 — provides a production-grade, highly configurable framework for achieving exactly this. Whether you are building a warehouse AMR, a delivery robot, or a research platform, Nav2 gives you the building blocks to get from point A to point B reliably.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            In this guide we walk through the entire Nav2 stack from the ground up. We will cover the costmap architecture, global and local planners, AMCL-based localization, lifecycle node management, and behavior trees that orchestrate the high-level navigation logic. By the end you will have a working understanding of every moving part and how to tune them for your specific robot.
+                        </p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="mb-12 bg-gray-900 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">//</span> Table of Contents
+                        </h3>
+                        <ol class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                            <li><a href="#nav2-architecture" class="text-cyan-400 hover:text-cyan-300">1. Nav2 Architecture Overview</a></li>
+                            <li><a href="#costmaps" class="text-cyan-400 hover:text-cyan-300">2. Costmaps: Global and Local</a></li>
+                            <li><a href="#planners" class="text-cyan-400 hover:text-cyan-300">3. Path Planners and Controllers</a></li>
+                            <li><a href="#amcl-localization" class="text-cyan-400 hover:text-cyan-300">4. AMCL Localization</a></li>
+                            <li><a href="#lifecycle-nodes" class="text-cyan-400 hover:text-cyan-300">5. Lifecycle Nodes and the Nav2 Bringup</a></li>
+                            <li><a href="#behavior-trees" class="text-cyan-400 hover:text-cyan-300">6. Behavior Trees for Navigation</a></li>
+                            <li><a href="#real-examples" class="text-cyan-400 hover:text-cyan-300">7. Real-World Examples and Tuning</a></li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 1: Nav2 Architecture -->
+                    <div id="nav2-architecture" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Nav2 Architecture Overview
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Nav2 is not a monolithic program — it is a collection of ROS2 action servers, plugins, and lifecycle-managed nodes that communicate over standard interfaces. Understanding the data flow is the first step to using it effectively.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Core Nav2 Servers</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                                <li>• <strong>bt_navigator:</strong> Orchestrates navigation tasks via behavior trees</li>
+                                <li>• <strong>nav2_planner:</strong> Computes global collision-free paths</li>
+                                <li>• <strong>nav2_controller:</strong> Executes local trajectory following</li>
+                                <li>• <strong>nav2_recoveries:</strong> Handles stuck-recovery behaviors</li>
+                                <li>• <strong>nav2_costmap_2d:</strong> Maintains 2D occupancy grids for planning</li>
+                                <li>• <strong>nav2_map_server:</strong> Loads and serves static maps</li>
+                                <li>• <strong>nav2_lifecycle_manager:</strong> Brings all servers up and down cleanly</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># Minimal Nav2 bringup launch
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from nav2_common.launch import RewrittenYaml
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='nav2_bringup',
+            executable='bringup_launch.py',
+            name='nav2',
+            parameters=[{'use_sim_time': True}]
+        )
+    ])</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Costmaps -->
+                    <div id="costmaps" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Costmaps: Global and Local
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            A costmap is a 2D grid where each cell holds a cost value representing how dangerous it is to place the robot's footprint there. Nav2 maintains two separate costmaps: a <strong>global costmap</strong> used by the planner and a <strong>local costmap</strong> used by the controller.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Costmap Layers</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                                <li>• <strong>StaticLayer:</strong> Inflates obstacles from a static map</li>
+                                <li>• <strong>ObstacleLayer:</strong> Marks/clears dynamic obstacles from sensor data</li>
+                                <li>• <strong>InflationLayer:</strong> Spreads cost outward from lethal obstacles</li>
+                                <li>• <strong>VoxelLayer:</strong> 3D-aware obstacle marking using depth cameras</li>
+                                <li>• <strong>SpeedLimitLayer:</strong> Annotates regions with maximum speed constraints</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">global_costmap params (nav2_params.yaml)</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>global_costmap:
+  global_costmap:
+    ros__parameters:
+      update_frequency: 1.0
+      publish_frequency: 1.0
+      global_frame: map
+      robot_base_frame: base_link
+      use_sim_time: True
+      robot_radius: 0.22
+      resolution: 0.05
+      track_unknown_space: true
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.55</code></pre>
+                        </div>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            The local costmap is typically smaller (3–5 m rolling window) and updates much faster (5–10 Hz) so the controller can react to dynamic obstacles in real time. Increase <code class="text-cyan-400">inflation_radius</code> for wider robots and reduce <code class="text-cyan-400">cost_scaling_factor</code> when corridors are narrow.
+                        </p>
+                    </div>
+
+                    <!-- Section 3: Planners and Controllers -->
+                    <div id="planners" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Path Planners and Controllers
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Nav2 separates path planning from path following. The planner computes a feasible global route; the controller drives the robot along that route while avoiding local obstacles.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Global Planners</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• <strong>NavFn (Dijkstra/A*):</strong> Classic grid-based planner</li>
+                                    <li>• <strong>Smac Hybrid-A*:</strong> Kinematically feasible paths</li>
+                                    <li>• <strong>Smac Lattice:</strong> For Ackermann-steered robots</li>
+                                    <li>• <strong>Theta*:</strong> Any-angle path planning</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Local Controllers</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• <strong>DWB (Dynamic Window):</strong> Samples velocity space</li>
+                                    <li>• <strong>TEB (Timed Elastic Band):</strong> Trajectory optimization</li>
+                                    <li>• <strong>MPPI:</strong> Model Predictive Path Integral</li>
+                                    <li>• <strong>RPP (Regulated Pure Pursuit):</strong> Simple and robust</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Configuring Smac Hybrid-A* Planner</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>planner_server:
+  ros__parameters:
+    expected_planner_frequency: 20.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_smac_planner/SmacPlannerHybrid"
+      downsample_costmap: false
+      downsampling_factor: 1
+      tolerance: 0.25
+      allow_unknown: true
+      max_iterations: 1000000
+      max_on_approach_iterations: 1000
+      max_planning_time: 5.0
+      motion_model_for_search: "REEDS_SHEPP"
+      angle_quantization_bins: 72
+      analytic_expansion_ratio: 3.5
+      minimum_turning_radius: 0.40
+      reverse_penalty: 2.0
+      change_penalty: 0.05
+      non_straight_penalty: 1.20
+      cost_penalty: 2.0
+      lookup_table_size: 20.0
+      cache_obstacle_heuristic: false
+      smooth_path: True</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: AMCL Localization -->
+                    <div id="amcl-localization" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> AMCL Localization
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Adaptive Monte Carlo Localization (AMCL) estimates the robot's pose within a known map by maintaining a particle filter. Each particle is a hypothesis about where the robot might be; particles that match sensor observations survive while inconsistent ones are pruned.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Key AMCL Parameters</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>amcl:
+  ros__parameters:
+    use_sim_time: True
+    alpha1: 0.2   # rotation noise from rotation
+    alpha2: 0.2   # rotation noise from translation
+    alpha3: 0.2   # translation noise from translation
+    alpha4: 0.2   # translation noise from rotation
+    alpha5: 0.2   # strafe noise (holonomic only)
+    base_frame_id: "base_footprint"
+    beam_skip_distance: 0.5
+    beam_skip_error_threshold: 0.9
+    beam_skip_threshold: 0.3
+    do_beamskip: false
+    global_frame_id: "map"
+    lambda_short: 0.1
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 100.0
+    laser_min_range: -1.0
+    laser_model_type: "likelihood_field"
+    max_beams: 60
+    max_particles: 2000
+    min_particles: 500
+    odom_frame_id: "odom"
+    pf_err: 0.05
+    pf_z: 0.99
+    recovery_alpha_fast: 0.0
+    recovery_alpha_slow: 0.0
+    resample_interval: 1
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
+    save_pose_rate: 0.5
+    sigma_hit: 0.2
+    tf_broadcast: true
+    transform_tolerance: 1.0
+    update_min_a: 0.2
+    update_min_d: 0.25
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+    scan_topic: scan</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Initial Pose Estimation</h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] text-sm mb-3">
+                                AMCL requires a rough initial pose. Publish it programmatically or via RViz2:
+                            </p>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>import rclpy
+from geometry_msgs.msg import PoseWithCovarianceStamped
+
+rclpy.init()
+node = rclpy.create_node('pose_publisher')
+pub = node.create_publisher(
+    PoseWithCovarianceStamped, '/initialpose', 10)
+
+msg = PoseWithCovarianceStamped()
+msg.header.frame_id = 'map'
+msg.pose.pose.position.x = 0.0
+msg.pose.pose.position.y = 0.0
+msg.pose.pose.orientation.w = 1.0
+# Covariance: [xx, xy, xθ, yx, yy, yθ, θx, θy, θθ ...]
+msg.pose.covariance[0]  = 0.25   # x variance
+msg.pose.covariance[7]  = 0.25   # y variance
+msg.pose.covariance[35] = 0.0685 # yaw variance
+
+pub.publish(msg)
+node.destroy_node()
+rclpy.shutdown()</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Lifecycle Nodes -->
+                    <div id="lifecycle-nodes" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Lifecycle Nodes and the Nav2 Bringup
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            ROS2 lifecycle nodes introduce a managed node state machine with well-defined transitions: <em>Unconfigured → Inactive → Active → Finalized</em>. Nav2 uses lifecycle nodes throughout so the system can be brought up and torn down deterministically, which is critical for safety-critical applications.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Lifecycle State Machine</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                                <li>• <strong>configure():</strong> Allocate resources, load parameters, set up publishers/subscribers</li>
+                                <li>• <strong>activate():</strong> Start processing data, publish transforms</li>
+                                <li>• <strong>deactivate():</strong> Stop processing but keep resources allocated</li>
+                                <li>• <strong>cleanup():</strong> Release all resources, return to Unconfigured</li>
+                                <li>• <strong>shutdown():</strong> Terminate the node entirely</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Nav2 Lifecycle Manager Configuration</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>lifecycle_manager:
+  ros__parameters:
+    use_sim_time: True
+    autostart: True
+    bond_timeout: 4.0
+    attempt_respawn_reconnection: true
+    bond_respawn_max_duration: 10.0
+    node_names:
+      - map_server
+      - amcl
+      - planner_server
+      - smoother_server
+      - controller_server
+      - behavior_server
+      - bt_navigator
+      - waypoint_follower
+      - velocity_smoother</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Behavior Trees -->
+                    <div id="behavior-trees" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Behavior Trees for Navigation
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Nav2's bt_navigator executes behavior trees (BTs) defined as XML files. BTs give you a modular, readable way to encode navigation logic including retries, recovery behaviors, and goal checking — all without tangled state-machine code.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Default Navigate-to-Pose BT (simplified)</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>&lt;root main_tree_to_execute="MainTree"&gt;
+  &lt;BehaviorTree ID="MainTree"&gt;
+    &lt;RecoveryNode number_of_retries="6" name="NavigateRecovery"&gt;
+      &lt;PipelineSequence name="NavigateWithReplanning"&gt;
+        &lt;RateController hz="1.0"&gt;
+          &lt;RecoveryNode number_of_retries="1" name="ComputePathRecovery"&gt;
+            &lt;ComputePathToPose goal="{goal}"
+                              path="{path}"
+                              planner_id="GridBased"/&gt;
+            &lt;ClearEntireCostmap service_name="global_costmap/clear_entirely_global_costmap"/&gt;
+          &lt;/RecoveryNode&gt;
+        &lt;/RateController&gt;
+        &lt;RecoveryNode number_of_retries="1" name="FollowPathRecovery"&gt;
+          &lt;FollowPath path="{path}"
+                      controller_id="FollowPath"/&gt;
+          &lt;ClearEntireCostmap service_name="local_costmap/clear_entirely_local_costmap"/&gt;
+        &lt;/RecoveryNode&gt;
+      &lt;/PipelineSequence&gt;
+      &lt;Sequence name="RecoverySequence"&gt;
+        &lt;ClearEntireCostmap service_name="local_costmap/clear_entirely_local_costmap"/&gt;
+        &lt;ClearEntireCostmap service_name="global_costmap/clear_entirely_global_costmap"/&gt;
+        &lt;Spin spin_dist="1.57"/&gt;
+        &lt;Wait wait_duration="5"/&gt;
+        &lt;BackUp backup_dist="0.30" backup_speed="0.05"/&gt;
+      &lt;/Sequence&gt;
+    &lt;/RecoveryNode&gt;
+  &lt;/BehaviorTree&gt;
+&lt;/root&gt;</code></pre>
+                        </div>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            The tree above first tries to compute a path and follow it. If following fails it clears costmaps. If planning fails it spins in place or backs up. This entire behavior is hot-swappable — just point <code class="text-cyan-400">bt_navigator</code> at a different XML file.
+                        </p>
+                    </div>
+
+                    <!-- Section 7: Real-World Examples and Tuning -->
+                    <div id="real-examples" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Real-World Examples and Tuning
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Configuration is half the battle. Here are concrete tuning tips gathered from deploying Nav2 on actual hardware.
+                        </p>
+                        <div class="space-y-4 mb-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Sending Goals Programmatically</h4>
+                                <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from nav2_simple_commander.robot_navigator import BasicNavigator
+from geometry_msgs.msg import PoseStamped
+import rclpy
+
+rclpy.init()
+navigator = BasicNavigator()
+navigator.waitUntilNav2Active()
+
+goal = PoseStamped()
+goal.header.frame_id = 'map'
+goal.header.stamp = navigator.get_clock().now().to_msg()
+goal.pose.position.x = 3.0
+goal.pose.position.y = 1.5
+goal.pose.orientation.w = 1.0
+
+navigator.goToPose(goal)
+
+while not navigator.isTaskComplete():
+    feedback = navigator.getFeedback()
+    print(f'Distance remaining: {feedback.distance_remaining:.2f} m')
+
+result = navigator.getResult()
+print(f'Navigation result: {result}')</code></pre>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Common Tuning Issues</h4>
+                                <ul class="space-y-2 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• <strong>Robot oscillates:</strong> Reduce DWB <code class="text-cyan-400">max_vel_theta</code> or increase <code class="text-cyan-400">goal_dist_tol</code></li>
+                                    <li>• <strong>Planner times out:</strong> Increase <code class="text-cyan-400">max_planning_time</code> or reduce inflation radius</li>
+                                    <li>• <strong>Ghost obstacles:</strong> Tune <code class="text-cyan-400">obstacle_layer.track_unknown_space</code> and sensor clearing params</li>
+                                    <li>• <strong>AMCL drifts:</strong> Increase <code class="text-cyan-400">max_particles</code> and verify odometry covariance</li>
+                                    <li>• <strong>Costmap lag:</strong> Synchronize sensor timestamps with <code class="text-cyan-400">transform_tolerance</code></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Waypoint Following with Intermediate Tasks</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
+from geometry_msgs.msg import PoseStamped
+
+waypoints = []
+for (x, y, yaw) in [(1.0, 0.0, 0.0), (2.0, 1.0, 1.57), (0.0, 2.0, 3.14)]:
+    p = PoseStamped()
+    p.header.frame_id = 'map'
+    p.header.stamp = navigator.get_clock().now().to_msg()
+    p.pose.position.x = x
+    p.pose.position.y = y
+    import math
+    p.pose.orientation.z = math.sin(yaw / 2)
+    p.pose.orientation.w = math.cos(yaw / 2)
+    waypoints.append(p)
+
+navigator.followWaypoints(waypoints)
+while not navigator.isTaskComplete():
+    pass
+
+if navigator.getResult() == TaskResult.SUCCEEDED:
+    print('All waypoints reached!')</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Conclusion
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Nav2 is a mature, extensible stack that handles the hard problems of autonomous navigation — costmapping, path planning, trajectory control, localization, and recovery — so you can focus on your application. The key to success is understanding which component to tune when things go wrong.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Start with the default parameters, profile your robot in simulation, and iterate. The behavior tree abstraction makes it easy to add custom logic without touching the core navigation code.
+                        </p>
+                        <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                <i class="fas fa-rocket mr-2"></i>Ready to Navigate?
+                            </h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] mb-4">
+                                Clone the nav2_bringup repository, launch the Turtlebot3 simulation, and start sending goals via the simple commander API. The community Discord and GitHub Discussions are great resources when you get stuck.
+                            </p>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/promit7473" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fab fa-github mr-1"></i> GitHub Repository
+                                </a>
+                                <a href="../contact.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fas fa-envelope mr-1"></i> Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tags and Share -->
+                <div class="border-t border-gray-700 pt-8 mt-12">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Nav2</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">SLAM</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Robotics</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Autonomous Navigation</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Behavior Trees</span>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <a href="../blog.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+                        </a>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-reddit text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
+                <span class="text-cyan-400">// </span>Related Articles
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
+                         alt="Deep RL ROS2"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Deep RL in ROS2</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            A complete guide to integrating Deep Reinforcement Learning with ROS2.
+                        </p>
+                        <a href="deep-rl-ros2-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif"
+                         alt="SLAM RL"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">SLAM with Reinforcement Learning</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Combining SLAM and RL for curiosity-driven autonomous exploration.
+                        </p>
+                        <a href="slam-reinforcement-learning.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif"
+                         alt="YOLO Object Detection"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Real-time Object Detection</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Deploying YOLOv8 on a robot with ROS2 for real-time perception.
+                        </p>
+                        <a href="yolo-object-detection-robotics.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (injected by components.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

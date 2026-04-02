@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Object Detection for Robotics | Meraj Hossain Promit</title>
+    <meta name="description" content="A practical guide to deploying YOLOv8 for real-time object detection on robots with ROS2, OpenCV integration, and optimized inference pipelines.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
+    <!-- Navigation (injected by components.js) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Blog Post Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <span class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-['Roboto_Mono']">Computer Vision</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Orbitron'] text-white">
+                    Real-time Object Detection for Robotics
+                </h1>
+                <div class="flex items-center justify-center text-gray-300 font-['Roboto_Mono'] mb-8">
+                    <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
+                    <span>August 22, 2024</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-clock text-cyan-400 mr-2"></i>
+                    <span>10 min read</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-user text-cyan-400 mr-2"></i>
+                    <span>Meraj Hossain Promit</span>
+                </div>
+                <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif"
+                     alt="YOLO Object Detection"
+                     class="w-full rounded-lg border-2 border-cyan-600">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <article class="prose prose-invert max-w-none">
+                    <!-- Introduction -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Introduction
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Giving a robot the ability to recognize objects in real time is one of the most impactful things you can do to its autonomy. Whether the robot needs to pick up a specific item, avoid pedestrians, or follow a person, object detection is the perceptual foundation.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            YOLO (You Only Look Once) has become the go-to family of models for robotics applications because it delivers excellent accuracy at speeds that matter on embedded hardware. In this guide we will set up YOLOv8 inside a ROS2 node, integrate it with a robot camera topic, add depth-based 3D localization via OpenCV, and optimize inference for deployment on a Jetson or similar edge device.
+                        </p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="mb-12 bg-gray-900 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">//</span> Table of Contents
+                        </h3>
+                        <ol class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                            <li><a href="#yolo-overview" class="text-cyan-400 hover:text-cyan-300">1. YOLOv8 Model Overview</a></li>
+                            <li><a href="#environment-setup" class="text-cyan-400 hover:text-cyan-300">2. Environment Setup</a></li>
+                            <li><a href="#ros2-node" class="text-cyan-400 hover:text-cyan-300">3. Writing the ROS2 Detection Node</a></li>
+                            <li><a href="#opencv-integration" class="text-cyan-400 hover:text-cyan-300">4. OpenCV Integration and Visualization</a></li>
+                            <li><a href="#depth-3d" class="text-cyan-400 hover:text-cyan-300">5. 3D Object Localization with Depth Camera</a></li>
+                            <li><a href="#edge-optimization" class="text-cyan-400 hover:text-cyan-300">6. Edge Optimization: TensorRT and ONNX</a></li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 1: YOLOv8 Overview -->
+                    <div id="yolo-overview" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> YOLOv8 Model Overview
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Ultralytics YOLOv8 is an anchor-free, single-stage detector that unifies detection, segmentation, pose estimation, and classification under one API. It comes in five size variants: nano (n), small (s), medium (m), large (l), and extra-large (x).
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Model Size vs. Speed on Jetson Orin</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                                <li>• <strong>YOLOv8n:</strong> ~120 FPS — suitable for high-frequency control loops</li>
+                                <li>• <strong>YOLOv8s:</strong> ~85 FPS — good balance for mobile robots</li>
+                                <li>• <strong>YOLOv8m:</strong> ~45 FPS — preferred for manipulation arms with slower cycles</li>
+                                <li>• <strong>YOLOv8l/x:</strong> &lt;25 FPS — use only when accuracy is paramount and latency is acceptable</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Task Variants Available</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from ultralytics import YOLO
+
+# Detection
+model = YOLO('yolov8n.pt')
+
+# Instance Segmentation
+model = YOLO('yolov8n-seg.pt')
+
+# Pose Estimation (human keypoints)
+model = YOLO('yolov8n-pose.pt')
+
+# OBB (Oriented Bounding Box)
+model = YOLO('yolov8n-obb.pt')</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Environment Setup -->
+                    <div id="environment-setup" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Environment Setup
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            We need ROS2 Humble, Ultralytics, OpenCV with Python bindings, and the cv_bridge package that converts between ROS image messages and NumPy arrays.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># System dependencies
+sudo apt update
+sudo apt install ros-humble-cv-bridge
+sudo apt install ros-humble-image-transport
+sudo apt install ros-humble-vision-msgs
+sudo apt install python3-pip
+
+# Python packages
+pip install ultralytics
+pip install opencv-python-headless
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+
+# Verify GPU is visible
+python3 -c "import torch; print(torch.cuda.is_available())"</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">ROS2 Package Setup</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>cd ~/ros2_ws/src
+ros2 pkg create --build-type ament_python yolo_detector \
+    --dependencies rclpy sensor_msgs vision_msgs cv_bridge
+
+cd ~/ros2_ws
+colcon build --packages-select yolo_detector
+source install/setup.bash</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: ROS2 Node -->
+                    <div id="ros2-node" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Writing the ROS2 Detection Node
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            The core idea is simple: subscribe to a camera image topic, run YOLO inference, publish detection results as <code class="text-cyan-400">vision_msgs/Detection2DArray</code>, and re-publish an annotated image for visualization.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">yolo_node.py</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from vision_msgs.msg import Detection2DArray, Detection2D, ObjectHypothesisWithPose
+from cv_bridge import CvBridge
+from ultralytics import YOLO
+import cv2
+
+class YoloDetectorNode(Node):
+    def __init__(self):
+        super().__init__('yolo_detector')
+
+        # Parameters
+        self.declare_parameter('model', 'yolov8n.pt')
+        self.declare_parameter('confidence', 0.5)
+        self.declare_parameter('device', 'cuda:0')
+        model_path = self.get_parameter('model').value
+        self.conf  = self.get_parameter('confidence').value
+        device     = self.get_parameter('device').value
+
+        # Load model
+        self.model  = YOLO(model_path)
+        self.model.to(device)
+        self.bridge = CvBridge()
+
+        # I/O
+        self.sub = self.create_subscription(
+            Image, '/camera/image_raw', self.image_callback, 10)
+        self.det_pub = self.create_publisher(
+            Detection2DArray, '/detections', 10)
+        self.img_pub = self.create_publisher(
+            Image, '/detections/image', 10)
+
+        self.get_logger().info('YoloDetectorNode ready.')
+
+    def image_callback(self, msg: Image):
+        frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+        results = self.model(frame, conf=self.conf, verbose=False)[0]
+
+        det_array = Detection2DArray()
+        det_array.header = msg.header
+
+        for box in results.boxes:
+            det = Detection2D()
+            det.header = msg.header
+            hyp = ObjectHypothesisWithPose()
+            hyp.hypothesis.class_id = str(int(box.cls[0]))
+            hyp.hypothesis.score    = float(box.conf[0])
+            det.results.append(hyp)
+            x1, y1, x2, y2 = box.xyxy[0].tolist()
+            det.bbox.center.position.x = (x1 + x2) / 2
+            det.bbox.center.position.y = (y1 + y2) / 2
+            det.bbox.size_x = x2 - x1
+            det.bbox.size_y = y2 - y1
+            det_array.detections.append(det)
+
+        self.det_pub.publish(det_array)
+
+        # Annotated image
+        annotated = results.plot()
+        self.img_pub.publish(
+            self.bridge.cv2_to_imgmsg(annotated, 'bgr8'))
+
+
+def main():
+    rclpy.init()
+    node = YoloDetectorNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: OpenCV Integration -->
+                    <div id="opencv-integration" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> OpenCV Integration and Visualization
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Beyond the raw bounding boxes, OpenCV lets us compute tracking IDs, draw trajectory trails, and measure object distances from the camera's intrinsic parameters.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">YOLO Tracking with ByteTrack</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># Persistent tracking across frames
+results = self.model.track(
+    frame,
+    conf=self.conf,
+    tracker='bytetrack.yaml',  # or 'botsort.yaml'
+    persist=True,
+    verbose=False
+)[0]
+
+if results.boxes.id is not None:
+    track_ids = results.boxes.id.int().tolist()
+    for tid, box in zip(track_ids, results.boxes.xyxy):
+        x1, y1, x2, y2 = map(int, box.tolist())
+        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
+
+        # Draw trail
+        if tid not in self.trails:
+            self.trails[tid] = []
+        self.trails[tid].append((cx, cy))
+        self.trails[tid] = self.trails[tid][-30:]  # keep last 30 pts
+
+        for i in range(1, len(self.trails[tid])):
+            cv2.line(frame, self.trails[tid][i-1],
+                     self.trails[tid][i], (0,255,255), 2)</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Monocular Distance Estimation</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># Known real-world width W of the object (meters)
+# Camera focal length fx (pixels) from calibration
+# Measured pixel width pw of bounding box
+
+def estimate_distance(fw_pixels, real_width_m, focal_length_px):
+    """Thin-lens formula: D = (W * f) / pw"""
+    return (real_width_m * focal_length_px) / fw_pixels
+
+# Example: person ~0.5 m wide, fx=600
+dist = estimate_distance(
+    fw_pixels=bbox_size_x,
+    real_width_m=0.5,
+    focal_length_px=600.0
+)
+print(f'Estimated distance: {dist:.2f} m')</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: 3D Localization -->
+                    <div id="depth-3d" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> 3D Object Localization with Depth Camera
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            With an RGB-D camera (RealSense D435, ZED 2, etc.) we can project detected bounding box centers into 3D using the aligned depth stream and camera intrinsics.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from sensor_msgs.msg import CameraInfo
+import numpy as np
+
+class YoloDepthNode(Node):
+    def __init__(self):
+        super().__init__('yolo_depth')
+        self.K = None  # camera intrinsic matrix
+
+        self.info_sub = self.create_subscription(
+            CameraInfo, '/camera/depth/camera_info',
+            self.info_callback, 1)
+        self.depth_sub = self.create_subscription(
+            Image, '/camera/aligned_depth_to_color/image_raw',
+            self.depth_callback, 10)
+
+    def info_callback(self, msg):
+        self.K = np.array(msg.k).reshape(3, 3)
+
+    def depth_callback(self, msg):
+        depth_image = self.bridge.imgmsg_to_cv2(msg, '16UC1')
+        depth_m = depth_image.astype(np.float32) / 1000.0  # mm -> m
+        # For each detection center (cx, cy):
+        self.project_to_3d(cx=320, cy=240, depth_m=depth_m)
+
+    def project_to_3d(self, cx, cy, depth_m):
+        z = float(depth_m[int(cy), int(cx)])
+        if z == 0 or np.isnan(z):
+            return None
+        fx = self.K[0, 0]; fy = self.K[1, 1]
+        ppx = self.K[0, 2]; ppy = self.K[1, 2]
+        x = (cx - ppx) * z / fx
+        y = (cy - ppy) * z / fy
+        return np.array([x, y, z])  # in camera frame</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Edge Optimization -->
+                    <div id="edge-optimization" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Edge Optimization: TensorRT and ONNX
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            On a Jetson Orin, exporting to TensorRT can double or triple inference throughput compared to vanilla PyTorch, and is essential for running multiple perception pipelines in parallel.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Export and Run with TensorRT</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">from ultralytics import YOLO
+
+# Step 1: Export to TensorRT engine (run once on target hardware)
+model = YOLO('yolov8n.pt')
+model.export(
+    format='engine',
+    device=0,
+    half=True,        # FP16 for Jetson
+    imgsz=640,
+    workspace=4       # GB of GPU memory for TRT optimization
+)
+
+# Step 2: Load the engine for inference
+trt_model = YOLO('yolov8n.engine')
+results = trt_model('image.jpg')  # now runs via TensorRT</code></pre>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Throughput Benchmarks (640px)</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• PyTorch FP32: ~35 ms/frame</li>
+                                    <li>• ONNX Runtime: ~22 ms/frame</li>
+                                    <li>• TensorRT FP16: ~8 ms/frame</li>
+                                    <li>• TensorRT INT8: ~5 ms/frame</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Key Optimization Tips</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• Use <code class="text-cyan-400">half=True</code> for FP16 on all Jetson platforms</li>
+                                    <li>• Pin image memory with <code class="text-cyan-400">torch.cuda.HostMemory</code></li>
+                                    <li>• Batch multiple camera feeds when possible</li>
+                                    <li>• Reduce input resolution for far-field scenes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Conclusion
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Deploying YOLOv8 in a ROS2 node gives your robot a powerful, real-time perception backbone. With depth integration and TensorRT optimization you can run multiple detection pipelines on a single edge board while still publishing results fast enough for reactive behaviors.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            The next step is fine-tuning on domain-specific data — industrial parts, household objects, or outdoor pedestrians — so the model's class vocabulary matches exactly what your robot needs to recognize.
+                        </p>
+                        <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                <i class="fas fa-rocket mr-2"></i>Ready to See?
+                            </h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] mb-4">
+                                Grab the full node code from the repository, connect it to your robot's camera topic, and watch detections stream in RViz2. Feel free to open an issue if you run into hardware-specific quirks.
+                            </p>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/promit7473" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fab fa-github mr-1"></i> GitHub Repository
+                                </a>
+                                <a href="../contact.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fas fa-envelope mr-1"></i> Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tags and Share -->
+                <div class="border-t border-gray-700 pt-8 mt-12">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">YOLO</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">OpenCV</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Python</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Computer Vision</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">TensorRT</span>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <a href="../blog.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+                        </a>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-reddit text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
+                <span class="text-cyan-400">// </span>Related Articles
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                         alt="ROS2 Navigation"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Mastering ROS2 Navigation</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Deep dive into Nav2 costmaps, planners, and behavior trees.
+                        </p>
+                        <a href="ros2-navigation-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281"
+                         alt="Human Robot Interaction"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Safe Human-Robot Interaction</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Building safety-aware collaborative robot systems in ROS2.
+                        </p>
+                        <a href="safe-human-robot-interaction.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif"
+                         alt="Isaac Sim"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Getting Started with Isaac Sim</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Set up NVIDIA Isaac Sim and connect it to ROS2 for photorealistic simulation.
+                        </p>
+                        <a href="isaac-sim-getting-started.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (injected by components.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

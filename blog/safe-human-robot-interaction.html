@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Safe Human-Robot Interaction Systems | Meraj Hossain Promit</title>
+    <meta name="description" content="A comprehensive guide to building safety-aware human-robot interaction systems using depth sensing, safety zones, collaborative robot programming, and ROS2 safety nodes.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
+    <!-- Navigation (injected by components.js) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Blog Post Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <span class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-['Roboto_Mono']">Tutorial</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Orbitron'] text-white">
+                    Building Safe Human-Robot Interaction Systems
+                </h1>
+                <div class="flex items-center justify-center text-gray-300 font-['Roboto_Mono'] mb-8">
+                    <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
+                    <span>January 20, 2025</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-clock text-cyan-400 mr-2"></i>
+                    <span>11 min read</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-user text-cyan-400 mr-2"></i>
+                    <span>Meraj Hossain Promit</span>
+                </div>
+                <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281"
+                     alt="Human-Robot Collaboration"
+                     class="w-full rounded-lg border-2 border-cyan-600">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <article class="prose prose-invert max-w-none">
+                    <!-- Introduction -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Introduction
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            As robots move out of caged factory cells and into shared workspaces alongside humans, safety transitions from a hardware feature into a software discipline. A collaborative robot (cobot) must perceive human presence, reason about proximity risks in real time, and degrade its behavior gracefully — slowing, stopping, or re-routing — before any potential contact occurs.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            In this guide we build a complete ROS2-based safety layer: detecting humans with a depth camera, defining configurable safety zones, enforcing speed limits through a ROS2 safety node, and validating the system against ISO/TS 15066 speed-and-separation monitoring guidelines.
+                        </p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="mb-12 bg-gray-900 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">//</span> Table of Contents
+                        </h3>
+                        <ol class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                            <li><a href="#hri-standards" class="text-cyan-400 hover:text-cyan-300">1. HRI Safety Standards Overview</a></li>
+                            <li><a href="#human-detection" class="text-cyan-400 hover:text-cyan-300">2. Human Detection with Depth Sensing</a></li>
+                            <li><a href="#safety-zones" class="text-cyan-400 hover:text-cyan-300">3. Safety Zone Architecture</a></li>
+                            <li><a href="#safety-node" class="text-cyan-400 hover:text-cyan-300">4. ROS2 Safety Node Implementation</a></li>
+                            <li><a href="#cobot-programming" class="text-cyan-400 hover:text-cyan-300">5. Collaborative Robot Programming</a></li>
+                            <li><a href="#testing-validation" class="text-cyan-400 hover:text-cyan-300">6. Testing and Validation</a></li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 1: Standards -->
+                    <div id="hri-standards" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> HRI Safety Standards Overview
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Before writing a line of code, understand the regulatory landscape. Non-compliance can invalidate insurance and create legal liability. The two most relevant standards for collaborative robots are:
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Key Standards</h4>
+                            <ul class="space-y-3 text-gray-300 font-['Roboto_Mono']">
+                                <li>
+                                    <strong class="text-cyan-400">ISO 10218-1/2 (2011):</strong> Safety requirements for industrial robots. Defines four collaborative modes: Safety Rated Monitored Stop, Hand Guiding, Speed and Separation Monitoring (SSM), and Power and Force Limiting (PFL).
+                                </li>
+                                <li>
+                                    <strong class="text-cyan-400">ISO/TS 15066 (2016):</strong> Technical specification for collaborative robots. Provides formulas for minimum protective distance in SSM mode and maximum biomechanical limits for PFL.
+                                </li>
+                                <li>
+                                    <strong class="text-cyan-400">IEC 61508 / IEC 62061:</strong> Functional safety standards for safety-related control systems. Software implementing safety functions must achieve at least SIL 2 if it is the sole safety measure.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">SSM Minimum Protective Distance Formula</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code"># ISO/TS 15066 Equation 3 — Minimum Protective Distance
+# S_p = (v_h + v_r) * (t_r + t_b) + C + Z_d + Z_r
+#
+# where:
+#   v_h = max human approach speed (typically 1.6 m/s per ISO)
+#   v_r = current robot TCP speed
+#   t_r = reaction time (sensor + processor latency)
+#   t_b = robot brake stopping time
+#   C   = intrusion depth before detection (sensor uncertainty)
+#   Z_d = position uncertainty of detection system
+#   Z_r = robot positional uncertainty
+
+def minimum_separation(v_robot_mps,
+                        t_reaction_s=0.1,
+                        t_brake_s=0.15,
+                        C=0.1,
+                        Z_d=0.05,
+                        Z_r=0.02,
+                        v_human=1.6):
+    S_p = (v_human + v_robot_mps) * (t_reaction_s + t_brake_s)
+    S_p += C + Z_d + Z_r
+    return S_p  # meters
+
+# Example: robot moving at 0.5 m/s
+print(f"Min separation: {minimum_separation(0.5):.3f} m")
+# => ~0.87 m</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Human Detection -->
+                    <div id="human-detection" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Human Detection with Depth Sensing
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Depth cameras provide reliable range information independent of ambient lighting. We combine skeleton detection (MediaPipe or YOLOv8-pose) with depth data to track the 3D positions of human body parts in real time.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Human Tracking Node</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from geometry_msgs.msg import PointStamped, PoseArray
+from cv_bridge import CvBridge
+import mediapipe as mp
+import numpy as np
+
+class HumanTrackingNode(Node):
+    def __init__(self):
+        super().__init__('human_tracker')
+        self.bridge   = CvBridge()
+        self.mp_pose  = mp.solutions.pose
+        self.pose     = self.mp_pose.Pose(
+            min_detection_confidence=0.7,
+            min_tracking_confidence=0.5
+        )
+        self.K = None  # camera intrinsics set via CameraInfo
+
+        self.rgb_sub   = self.create_subscription(
+            Image, '/camera/color/image_raw', self.rgb_cb, 10)
+        self.depth_sub = self.create_subscription(
+            Image, '/camera/aligned_depth_to_color/image_raw',
+            self.depth_cb, 10)
+        self.human_pub = self.create_publisher(
+            PoseArray, '/humans/poses_3d', 10)
+
+        self.latest_depth = None
+
+    def depth_cb(self, msg):
+        self.latest_depth = self.bridge.imgmsg_to_cv2(msg, '16UC1')
+
+    def rgb_cb(self, msg):
+        if self.latest_depth is None or self.K is None:
+            return
+        frame = self.bridge.imgmsg_to_cv2(msg, 'rgb8')
+        results = self.pose.process(frame)
+
+        if not results.pose_landmarks:
+            return
+
+        h, w = frame.shape[:2]
+        poses = PoseArray()
+        poses.header = msg.header
+
+        for lm in results.pose_landmarks.landmark:
+            px = int(lm.x * w)
+            py = int(lm.y * h)
+            if 0 <= px < w and 0 <= py < h:
+                depth_mm = float(self.latest_depth[py, px])
+                if depth_mm > 0:
+                    z = depth_mm / 1000.0
+                    x = (px - self.K[0,2]) * z / self.K[0,0]
+                    y = (py - self.K[1,2]) * z / self.K[1,1]
+                    # Append to poses array...
+
+        self.human_pub.publish(poses)</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Safety Zones -->
+                    <div id="safety-zones" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Safety Zone Architecture
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Safety zones are concentric regions around the robot that trigger different response levels. A three-zone model is common in industrial deployments:
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Zone 1: Warning</h4>
+                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    Radius ~2.0 m. Human detected. Robot reduces speed to 50% of nominal. Visual/audio alert issued.
+                                </p>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Roboto_Mono']">Zone 2: Slow</h4>
+                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    Radius ~1.0 m. Human close. Robot reduces speed to 25% and activates joint torque monitoring.
+                                </p>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Roboto_Mono']">Zone 3: Stop</h4>
+                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    Radius ~0.5 m. Human in immediate proximity. Robot executes safety-rated monitored stop.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Zone Check Implementation</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">from enum import Enum
+import numpy as np
+
+class SafetyZone(Enum):
+    CLEAR   = 0
+    WARNING = 1
+    SLOW    = 2
+    STOP    = 3
+
+ZONE_RADII = {
+    SafetyZone.STOP:    0.5,
+    SafetyZone.SLOW:    1.0,
+    SafetyZone.WARNING: 2.0,
+}
+
+SPEED_FACTORS = {
+    SafetyZone.CLEAR:   1.00,
+    SafetyZone.WARNING: 0.50,
+    SafetyZone.SLOW:    0.25,
+    SafetyZone.STOP:    0.00,
+}
+
+def classify_zone(human_positions_3d, robot_pos_3d=np.zeros(3)):
+    """Return the most restrictive safety zone given human positions."""
+    if len(human_positions_3d) == 0:
+        return SafetyZone.CLEAR
+
+    min_dist = min(
+        np.linalg.norm(h - robot_pos_3d)
+        for h in human_positions_3d
+    )
+
+    for zone in [SafetyZone.STOP, SafetyZone.SLOW, SafetyZone.WARNING]:
+        if min_dist <= ZONE_RADII[zone]:
+            return zone
+    return SafetyZone.CLEAR</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Safety Node -->
+                    <div id="safety-node" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> ROS2 Safety Node Implementation
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            The safety node sits between the navigation stack (or teleoperation) and the robot hardware. It intercepts velocity commands, scales them based on the current safety zone, and publishes a safety status topic that the rest of the system can monitor.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">safety_filter_node.py</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
+from geometry_msgs.msg import PoseArray
+from std_msgs.msg import String
+import numpy as np
+
+class SafetyFilterNode(Node):
+    def __init__(self):
+        super().__init__('safety_filter')
+
+        self.current_zone   = SafetyZone.CLEAR
+        self.human_positions = []
+
+        # Subscribe to upstream velocity commands and human poses
+        self.vel_sub = self.create_subscription(
+            Twist, '/cmd_vel_raw', self.vel_callback, 10)
+        self.human_sub = self.create_subscription(
+            PoseArray, '/humans/poses_3d', self.human_callback, 10)
+
+        # Publish filtered velocity and safety status
+        self.vel_pub    = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.status_pub = self.create_publisher(String, '/safety/status', 10)
+
+        # Watchdog: stop if human pose topic goes silent
+        self.last_human_msg_time = self.get_clock().now()
+        self.create_timer(0.1, self.watchdog_check)
+
+    def human_callback(self, msg: PoseArray):
+        self.last_human_msg_time = self.get_clock().now()
+        pts = [np.array([p.position.x, p.position.y, p.position.z])
+               for p in msg.poses]
+        self.human_positions = pts
+        self.current_zone    = classify_zone(pts)
+        status_msg           = String()
+        status_msg.data      = self.current_zone.name
+        self.status_pub.publish(status_msg)
+
+    def vel_callback(self, msg: Twist):
+        factor = SPEED_FACTORS[self.current_zone]
+        filtered = Twist()
+        filtered.linear.x  = msg.linear.x  * factor
+        filtered.linear.y  = msg.linear.y  * factor
+        filtered.angular.z = msg.angular.z * factor
+        self.vel_pub.publish(filtered)
+
+    def watchdog_check(self):
+        elapsed = (self.get_clock().now() -
+                   self.last_human_msg_time).nanoseconds * 1e-9
+        if elapsed > 0.5:
+            # Sensor timeout: treat as STOP
+            self.current_zone = SafetyZone.STOP
+            self.get_logger().warn(
+                f'Human sensor timeout ({elapsed:.2f}s) — forcing STOP')
+
+def main():
+    rclpy.init()
+    node = SafetyFilterNode()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Cobot Programming -->
+                    <div id="cobot-programming" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Collaborative Robot Programming
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Beyond reactive safety, good cobot programming designs workflows where human and robot tasks are interleaved in a way that minimises risk from the start — rather than bolting safety on afterwards.
+                        </p>
+                        <div class="space-y-4 mb-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">MoveIt2 with Collision-Aware Planning</h4>
+                                <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">from moveit.planning import MoveItPy
+from moveit.core.robot_state import RobotState
+
+moveit = MoveItPy(node_name="moveit_py_safety")
+arm    = moveit.get_planning_component("arm")
+
+# Add human bounding box as collision object
+from moveit_msgs.msg import CollisionObject
+from shape_msgs.msg import SolidPrimitive
+from geometry_msgs.msg import Pose
+
+def add_human_collision_box(planning_scene, pos_x, pos_y, pos_z):
+    co = CollisionObject()
+    co.id = "human_zone"
+    co.header.frame_id = "base_link"
+    box = SolidPrimitive(type=SolidPrimitive.BOX,
+                         dimensions=[0.6, 0.6, 2.0])  # 60x60x200cm
+    pose = Pose()
+    pose.position.x = pos_x
+    pose.position.y = pos_y
+    pose.position.z = pos_z + 1.0  # center at hip height
+    co.primitives      = [box]
+    co.primitive_poses = [pose]
+    co.operation       = CollisionObject.ADD
+    planning_scene.apply_collision_object(co)</code></pre>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Handover Task Pattern</h4>
+                                <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">class HandoverStateMachine:
+    """
+    Safe object handover sequence:
+    IDLE → APPROACH_HANDOVER_POSE → WAIT_HUMAN_GRASP → RELEASE → RETREAT
+    """
+    def on_enter_WAIT_HUMAN_GRASP(self):
+        # Enable compliant mode: low stiffness at wrist
+        self.set_joint_compliance(stiffness=50.0)
+        # Publish token that safety node enters hand-guiding mode
+        self.publish_mode("HANDGUIDE")
+        # Wait for force threshold to indicate human has grasped
+        self.wait_for_force_event(threshold_N=5.0, timeout_s=10.0)
+
+    def on_enter_RELEASE(self):
+        self.open_gripper()
+        self.publish_mode("NORMAL")
+
+    def on_enter_RETREAT(self):
+        # Move back to home while staying in SSM mode
+        self.plan_and_execute_cartesian_retreat(distance_m=0.3)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Testing and Validation -->
+                    <div id="testing-validation" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Testing and Validation
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Safety systems require deterministic validation. Unit tests catch logic errors; integration tests with a dummy human (mannequin or staff wearing a retroreflective vest) verify the full pipeline end-to-end. Hardware-in-the-loop testing should cover edge cases like partial occlusion, rapid approach, and sensor dropouts.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Unit Tests for Zone Classification</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">import pytest
+import numpy as np
+
+def test_clear_zone():
+    positions = [np.array([5.0, 0.0, 0.0])]
+    assert classify_zone(positions) == SafetyZone.CLEAR
+
+def test_warning_zone():
+    positions = [np.array([1.8, 0.0, 0.0])]
+    assert classify_zone(positions) == SafetyZone.WARNING
+
+def test_stop_zone():
+    positions = [np.array([0.3, 0.0, 0.0])]
+    assert classify_zone(positions) == SafetyZone.STOP
+
+def test_multiple_humans_most_restrictive():
+    # One person at 3 m (CLEAR), one at 0.4 m (STOP)
+    positions = [np.array([3.0, 0.0, 0.0]),
+                 np.array([0.4, 0.0, 0.0])]
+    assert classify_zone(positions) == SafetyZone.STOP
+
+def test_speed_factor_stop():
+    assert SPEED_FACTORS[SafetyZone.STOP] == 0.0
+
+@pytest.mark.parametrize("zone,factor", [
+    (SafetyZone.CLEAR,   1.00),
+    (SafetyZone.WARNING, 0.50),
+    (SafetyZone.SLOW,    0.25),
+    (SafetyZone.STOP,    0.00),
+])
+def test_speed_factors(zone, factor):
+    assert SPEED_FACTORS[zone] == factor</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Validation Checklist</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                <li>• [ ] Sensor latency measured and within t_r budget for all lighting conditions</li>
+                                <li>• [ ] Robot braking distance measured at maximum operating speed</li>
+                                <li>• [ ] Watchdog triggers STOP within 100 ms of sensor topic silence</li>
+                                <li>• [ ] Speed factor 0.00 results in exactly zero velocity commands at hardware level</li>
+                                <li>• [ ] False-positive rate of human detector &lt; 0.1% in production environment</li>
+                                <li>• [ ] Safety node CPU usage &lt; 5% so it cannot be starved by other processes</li>
+                                <li>• [ ] Documented risk assessment filed with site safety officer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Conclusion
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Safe human-robot interaction is not a checkbox — it is an ongoing engineering discipline. The stack described here (depth-based human tracking → zone classification → velocity filtering → watchdog) provides a solid, testable foundation that can be audited against ISO/TS 15066 requirements.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            As robot capabilities grow, safety systems must grow with them. Invest in thorough testing, maintain detailed failure mode analyses, and keep human operators informed of the robot's internal state — trust is built through transparency.
+                        </p>
+                        <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                <i class="fas fa-rocket mr-2"></i>Build Responsibly!
+                            </h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] mb-4">
+                                The full ROS2 package with the safety filter node, zone classifier, test suite, and a sample Gazebo world with a moving human actor is available on GitHub. Always have a qualified safety engineer review your risk assessment before deploying alongside real humans.
+                            </p>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/promit7473" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fab fa-github mr-1"></i> GitHub Repository
+                                </a>
+                                <a href="../contact.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fas fa-envelope mr-1"></i> Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tags and Share -->
+                <div class="border-t border-gray-700 pt-8 mt-12">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">HRI</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Safety</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Cobot</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ISO 15066</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Depth Sensing</span>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <a href="../blog.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+                        </a>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-reddit text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
+                <span class="text-cyan-400">// </span>Related Articles
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif"
+                         alt="YOLO Detection"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Real-time Object Detection</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Deploy YOLOv8 on a ROS2 robot for fast, accurate perception.
+                        </p>
+                        <a href="yolo-object-detection-robotics.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                         alt="ROS2 Navigation"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Mastering ROS2 Navigation</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Nav2 costmaps, planners, AMCL, and behavior trees explained.
+                        </p>
+                        <a href="ros2-navigation-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
+                         alt="Deep RL ROS2"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Deep RL in ROS2</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Train intelligent robot behaviors with Deep Reinforcement Learning.
+                        </p>
+                        <a href="deep-rl-ros2-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (injected by components.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

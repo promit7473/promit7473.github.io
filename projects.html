@@ -4,323 +4,285 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Meraj Hossain Promit</title>
-    <meta name="description" content="Explore Meraj Hossain Promit's robotics projects including ROS2 navigation, Deep RL agents, and autonomous systems.">
+    <meta name="description" content="Robotics projects by Meraj Hossain Promit — Deep RL, LiDAR SLAM, Quadruped Locomotion, Path Planning, Autonomous Navigation.">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Academicons for academic icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .project-video {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: #0a0e27;
+        }
+        .project-hero-card {
+            background: rgba(10,14,39,0.85);
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .project-hero-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0,212,255,0.6);
+            box-shadow: 0 12px 40px rgba(0,212,255,0.15);
+        }
+        .project-hero-card video {
+            transition: opacity 0.3s ease;
+        }
+        .tag-cyan {
+            background: rgba(0,212,255,0.12);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: #00d4ff;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .stat-badge {
+            background: rgba(0,255,136,0.08);
+            border: 1px solid rgba(0,255,136,0.25);
+            color: #00ff88;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .filter-btn-new {
+            background: rgba(30,42,74,0.8);
+            border: 1px solid rgba(0,212,255,0.2);
+            color: #9ca3af;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn-new:hover,
+        .filter-btn-new.active {
+            background: rgba(0,212,255,0.15);
+            border-color: rgba(0,212,255,0.6);
+            color: #00d4ff;
+        }
+    </style>
 </head>
 
 <body class="antialiased bg-gray-900">
-    <!-- Mesh Gradient Background -->
     <div class="mesh-gradient"></div>
-
-    <!-- Navigation (injected by components.js) -->
     <div id="nav-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
+    <!-- Hero -->
+    <section class="relative pt-32 pb-16 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
             <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
-        
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="text-center">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                     <span class="gradient-text code-prefix glowing-bg">> </span>Projects Archive
-                </h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
-                    A collection of my robotics projects, from autonomous navigation systems to Deep Reinforcement Learning agents.
-                </p>
-            </div>
+        <div class="relative z-10 container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 font-['Orbitron'] text-white">
+                <span class="gradient-text code-prefix glowing-bg">> </span>Mission Log
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
+                Autonomous systems, deep reinforcement learning, and robotics simulations —
+                each project a step toward intelligent machines.
+            </p>
         </div>
     </section>
 
-    <!-- Filter Section -->
-    <section class="py-12">
+    <!-- Filter -->
+    <section class="py-8 bg-gray-900 border-b border-gray-800">
         <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4">
-                <button class="filter-btn active" data-filter="all">
-                    All Projects
-                </button>
-                <button class="filter-btn" data-filter="ros">
-                    ROS/ROS2
-                </button>
-                <button class="filter-btn" data-filter="ml">
-                    Machine Learning
-                </button>
-                <button class="filter-btn" data-filter="simulation">
-                    Simulation
-                </button>
-                <button class="filter-btn" data-filter="cv">
-                    Computer Vision
-                </button>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn-new active" data-filter="all">All</button>
+                <button class="filter-btn-new" data-filter="rl">Deep RL</button>
+                <button class="filter-btn-new" data-filter="nav">Navigation</button>
+                <button class="filter-btn-new" data-filter="slam">SLAM</button>
+                <button class="filter-btn-new" data-filter="locomotion">Locomotion</button>
             </div>
         </div>
     </section>
 
-    <!-- Projects Grid -->
+    <!-- Projects -->
     <section class="py-20">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1: ROS2 Navigation -->
-                <div class="project-card" data-category="ros">
-                    <div class="img-overlay">
-                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
-                             alt="ROS2 Navigation"
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ROS2</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+                <!-- 1 · Warehouse Navigation -->
+                <div class="project-hero-card lg:col-span-2" data-category="rl nav">
+                    <div class="relative">
+                        <video class="project-video" style="height:260px;" autoplay loop muted playsinline>
+                            <source src="assets/gifs/warehouse_nav.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="tag-cyan">SAC+HER</span>
+                            <span class="tag-cyan">IsaacLab</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="stat-badge">✓ 100% Success</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">ROS2 Navigation Stack</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Autonomous navigation using Nav2, including mapping, AMCL, and path planning algorithms for mobile robots.
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            Warehouse Autonomous Navigation
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Clearpath Jackal robot trained to navigate a warehouse using Soft Actor-Critic with
+                            Hindsight Experience Replay. 89-ray LiDAR sensing, 1M timestep training on NVIDIA
+                            Isaac Lab. Achieved 100% goal-reach rate with zero collisions.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">ROS2</span>
-                            <span class="tag">Nav2</span>
-                            <span class="tag">SLAM</span>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">SAC</span>
+                            <span class="tag-cyan">HER</span>
+                            <span class="tag-cyan">LiDAR</span>
+                            <span class="tag-cyan">Isaac Lab</span>
+                            <span class="tag-cyan">PyTorch</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473/ros2-navigation-project" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
+                        <div class="flex gap-4">
+                            <a href="https://github.com/promit7473" target="_blank"
+                               class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                                <i class="fab fa-github mr-1"></i>GitHub
                             </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
+                            <span class="text-gray-600 font-['Roboto_Mono'] text-sm">
+                                Reward: 71.8 ± 0.7 &nbsp;|&nbsp; Steps: 596 avg
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Deep RL Agent -->
-                <div class="project-card" data-category="ml">
-                    <div class="img-overlay">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
-                             alt="Deep RL Agent"
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ML</span>
+                <!-- 2 · LiDAR SLAM -->
+                <div class="project-hero-card" data-category="slam nav">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/lidar_slam.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3">
+                            <span class="tag-cyan">SLAM</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Deep RL Agent</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Training reinforcement learning agents to perform complex tasks in simulated environments using advanced algorithms.
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            LiDAR SLAM & Mapping
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Real-time 2D LiDAR-based simultaneous localization and mapping. 72-beam scanner
+                            builds an occupancy map while the robot explores an unknown environment.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Deep RL</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">PyTorch</span>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">SLAM</span>
+                            <span class="tag-cyan">LiDAR</span>
+                            <span class="tag-cyan">ROS2</span>
+                            <span class="tag-cyan">Python</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
                     </div>
                 </div>
 
-                <!-- Project 3: Robotic Arm Simulation -->
-                <div class="project-card" data-category="simulation">
-                    <div class="img-overlay">
-                        <img src="https://us1.discourse-cdn.com/flexerasoftware/uploads/universal_robots/original/2X/4/4a82f942524f57624e55f04e144e2057593dbdd9.gif" 
-                             alt="Robotic Arm Simulation" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Simulation</span>
+                <!-- 3 · A* Path Planning -->
+                <div class="project-hero-card" data-category="nav">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/path_planning.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3">
+                            <span class="tag-cyan">A*</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Robotic Arm Simulation</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            URDF model of a 6-DOF arm in Gazebo with MoveIt for motion planning and trajectory optimization.
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            A* Path Planning
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Heuristic-based optimal path planning on grid maps with diagonal movement.
+                            Visualizes the full search frontier, shortest path extraction,
+                            and robot traversal in real-time.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Gazebo</span>
-                            <span class="tag">MoveIt</span>
-                            <span class="tag">URDF</span>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">A*</span>
+                            <span class="tag-cyan">RRT</span>
+                            <span class="tag-cyan">Nav2</span>
+                            <span class="tag-cyan">Python</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
                     </div>
                 </div>
 
-                <!-- Project 4: Object Detection -->
-                <div class="project-card" data-category="cv">
-                    <div class="img-overlay">
-                        <img src="https://i.pinimg.com/originals/c6/e1/97/c6e197ed838395b75a75365810526323.gif" 
-                             alt="Object Detection" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">CV</span>
+                <!-- 4 · ANYmal Locomotion -->
+                <div class="project-hero-card" data-category="rl locomotion">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/anymal_gait.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="tag-cyan">PPO</span>
+                            <span class="tag-cyan">ANYmal-D</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Object Detection System</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Real-time object detection and tracking system implemented with OpenCV and deep learning models.
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            ANYmal-D Quadruped Locomotion
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            PPO-trained locomotion policy for ANYmal-D legged robot using NVIDIA Isaac Lab.
+                            12-DOF trot gait learned from scratch — flat and rough terrain traversal.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">YOLO</span>
-                            <span class="tag">Python</span>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">PPO</span>
+                            <span class="tag-cyan">Isaac Lab</span>
+                            <span class="tag-cyan">Legged Robotics</span>
+                            <span class="tag-cyan">RSL-RL</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
                     </div>
                 </div>
 
-                <!-- Project 5: Visual SLAM -->
-                <div class="project-card" data-category="cv">
-                    <div class="img-overlay">
-                        <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" 
-                             alt="Visual SLAM" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">CV</span>
+                <!-- 5 · Lunar Lander RL -->
+                <div class="project-hero-card" data-category="rl">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/lunar_lander.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3">
+                            <span class="tag-cyan">PPO</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="stat-badge">✓ Solved</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Visual SLAM</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Implementation of a feature-based Visual SLAM algorithm for 3D reconstruction and localization.
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            Lunar Lander Deep RL
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Proximal Policy Optimization agent learning soft-landing on a lunar surface.
+                            Trained with stable-baselines3 — reward curve shows convergence from
+                            random exploration to precision control.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">SLAM</span>
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">C++</span>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">PPO</span>
+                            <span class="tag-cyan">Gymnasium</span>
+                            <span class="tag-cyan">SB3</span>
+                            <span class="tag-cyan">PyTorch</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Isaac Sim Task -->
-                <div class="project-card" data-category="simulation">
-                    <div class="img-overlay">
-                        <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
-                             alt="Isaac Sim Task" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Simulation</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Isaac Sim Task</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Developing a pick-and-place task using NVIDIA's Isaac Sim robotics platform with RL integration.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Isaac Sim</span>
-                            <span class="tag">RL</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 7: Path Planning -->
-                <div class="project-card" data-category="ros">
-                    <div class="img-overlay">
-                        <img src="https://miro.medium.com/v2/resize:fit:800/1*eYy062N2275fM1yY--remw.gif" 
-                             alt="Path Planning" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ROS</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Path Planning Algorithms</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            Implementing and comparing A* and RRT* path planning algorithms for mobile robots in complex environments.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">A*</span>
-                            <span class="tag">RRT*</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 8: HRI System -->
-                <div class="project-card" data-category="ml">
-                    <div class="img-overlay">
-                        <img src="https://www.assemblymag.com/ext/resources/AR/2020/April/cobots/asb0420-cobot-1.gif?1585848281" 
-                             alt="HRI System" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ML</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">HRI Safety System</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">
-                            A safety system for human-robot collaboration using depth sensors and predictive models for collision avoidance.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">HRI</span>
-                            <span class="tag">Safety</span>
-                            <span class="tag">ROS2</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/promit7473" target="_blank" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
-                            <a href="#" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                                Details <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
                     </div>
                 </div>
 
@@ -328,37 +290,22 @@
         </div>
     </section>
 
-    <!-- Footer (injected by components.js) -->
     <div id="footer-placeholder"></div>
-
     <script src="components.js"></script>
     <script src="script.js"></script>
     <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
+        document.addEventListener('DOMContentLoaded', function () {
+            const btns  = document.querySelectorAll('.filter-btn-new');
+            const cards = document.querySelectorAll('.project-hero-card');
 
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-red-600', 'text-white');
-                        b.classList.add('bg-gray-700', 'text-gray-300');
-                    });
-
-                    // Add active class to clicked button
-                    this.classList.remove('bg-gray-700', 'text-gray-300');
-                    this.classList.add('bg-red-600', 'text-white');
-
-                    const filter = this.getAttribute('data-filter');
-
-                    projectCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+            btns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    btns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const f = this.getAttribute('data-filter');
+                    cards.forEach(card => {
+                        const cats = card.getAttribute('data-category') || '';
+                        card.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
                     });
                 });
             });

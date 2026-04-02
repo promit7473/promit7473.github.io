@@ -67,7 +67,7 @@
             </div>
         </nav>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95">
+        <div id="mobile-menu" class="md:hidden">
             <div class="px-6 py-4 space-y-4">
                 ${mobileLinks}
             </div>
@@ -133,14 +133,13 @@
         const icon = btn.querySelector('i');
 
         btn.addEventListener('click', function () {
-            menu.classList.toggle('hidden');
-            const hidden = menu.classList.contains('hidden');
-            if (icon) icon.className = hidden ? 'fas fa-bars text-xl' : 'fas fa-times text-xl';
+            const isOpen = menu.classList.toggle('open');
+            if (icon) icon.className = isOpen ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
         });
 
         menu.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
-                menu.classList.add('hidden');
+                menu.classList.remove('open');
                 if (icon) icon.className = 'fas fa-bars text-xl';
             });
         });

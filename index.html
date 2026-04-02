@@ -99,14 +99,18 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="project-card">
                     <div class="img-overlay">
-                        <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
-                             alt="ROS2 Navigation"
-                             class="w-full h-48 object-cover">
+                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                            <source src="assets/gifs/warehouse_nav.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">ROS2 Navigation Stack</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Autonomous navigation using Nav2, including mapping, AMCL, and path planning algorithms.</p>
-                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">SAC+HER</span>
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">Isaac Lab</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Warehouse Autonomous Navigation</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">Clearpath Jackal trained with SAC+HER — 100% goal-reach rate, zero collisions over 1M timesteps.</p>
+                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
@@ -114,14 +118,18 @@
 
                 <div class="project-card">
                     <div class="img-overlay">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
-                             alt="Deep RL Agent"
-                             class="w-full h-48 object-cover">
+                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                            <source src="assets/gifs/anymal_gait.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Deep RL Agent</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Training reinforcement learning agents to perform complex tasks in simulated environments.</p>
-                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">PPO</span>
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">ANYmal-D</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">ANYmal-D Quadruped Locomotion</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">PPO-trained 12-DOF trot gait on NVIDIA Isaac Lab — flat and rough terrain traversal from scratch.</p>
+                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
@@ -129,14 +137,18 @@
 
                 <div class="project-card">
                     <div class="img-overlay">
-                        <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif"
-                             alt="Isaac Sim"
-                             class="w-full h-48 object-cover">
+                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                            <source src="assets/gifs/lidar_slam.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Isaac Sim Tasks</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono']">Developing pick-and-place tasks using NVIDIA's Isaac Sim robotics platform.</p>
-                        <a href="projects.html" class="gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">SLAM</span>
+                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">ROS2</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">LiDAR SLAM & Mapping</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">Real-time 2D occupancy map built with a 72-beam LiDAR while exploring an unknown environment.</p>
+                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
                             View Details <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>

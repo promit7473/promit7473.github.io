@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Isaac Sim for Robotics | Meraj Hossain Promit</title>
+    <meta name="description" content="A step-by-step tutorial for setting up NVIDIA Isaac Sim on Omniverse, importing robots, configuring the ROS2 bridge, and running your first simulation.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-gradient"></div>
+
+    <!-- Navigation (injected by components.js) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Blog Post Hero -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <span class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-['Roboto_Mono']">Tutorial</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Orbitron'] text-white">
+                    Getting Started with Isaac Sim for Robotics
+                </h1>
+                <div class="flex items-center justify-center text-gray-300 font-['Roboto_Mono'] mb-8">
+                    <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
+                    <span>October 5, 2024</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-clock text-cyan-400 mr-2"></i>
+                    <span>12 min read</span>
+                    <span class="mx-3">•</span>
+                    <i class="fas fa-user text-cyan-400 mr-2"></i>
+                    <span>Meraj Hossain Promit</span>
+                </div>
+                <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif"
+                     alt="Isaac Sim Robotics Simulation"
+                     class="w-full rounded-lg border-2 border-cyan-600">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <article class="prose prose-invert max-w-none">
+                    <!-- Introduction -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Introduction
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            NVIDIA Isaac Sim is a physically accurate, photorealistic robotics simulation platform built on top of the Omniverse platform. Unlike Gazebo or PyBullet, Isaac Sim leverages real-time ray tracing and NVIDIA PhysX 5 to produce sensor data — cameras, LiDAR, IMU — that is indistinguishable from real hardware in many scenarios. This dramatically narrows the sim-to-real gap.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            In this tutorial we will walk through the complete workflow: installing Isaac Sim via the Omniverse Launcher, importing a URDF robot, configuring articulation controllers, wiring up the ROS2 bridge, and running a first sensor-publish simulation that streams data to your ROS2 stack.
+                        </p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="mb-12 bg-gray-900 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">//</span> Table of Contents
+                        </h3>
+                        <ol class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                            <li><a href="#prerequisites" class="text-cyan-400 hover:text-cyan-300">1. Prerequisites and Hardware Requirements</a></li>
+                            <li><a href="#omniverse-install" class="text-cyan-400 hover:text-cyan-300">2. Installing via Omniverse Launcher</a></li>
+                            <li><a href="#importing-robots" class="text-cyan-400 hover:text-cyan-300">3. Importing Robots from URDF</a></li>
+                            <li><a href="#ros2-bridge" class="text-cyan-400 hover:text-cyan-300">4. Configuring the ROS2 Bridge</a></li>
+                            <li><a href="#first-simulation" class="text-cyan-400 hover:text-cyan-300">5. Running Your First Simulation</a></li>
+                            <li><a href="#python-scripting" class="text-cyan-400 hover:text-cyan-300">6. Python Scripting in Isaac Sim</a></li>
+                            <li><a href="#domain-randomization" class="text-cyan-400 hover:text-cyan-300">7. Domain Randomization for Sim-to-Real</a></li>
+                        </ol>
+                    </div>
+
+                    <!-- Section 1: Prerequisites -->
+                    <div id="prerequisites" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Prerequisites and Hardware Requirements
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Isaac Sim is GPU-heavy. Before installing, verify your machine meets the minimum requirements for a productive experience.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Minimum Specs</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• NVIDIA RTX 3070 (8 GB VRAM)</li>
+                                    <li>• 32 GB system RAM</li>
+                                    <li>• Intel/AMD 8-core CPU</li>
+                                    <li>• 50 GB NVMe SSD free</li>
+                                    <li>• Ubuntu 22.04 LTS</li>
+                                    <li>• NVIDIA Driver ≥ 525.85</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Recommended Specs</h4>
+                                <ul class="space-y-1 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                    <li>• NVIDIA RTX 4090 (24 GB VRAM)</li>
+                                    <li>• 64 GB system RAM</li>
+                                    <li>• AMD Ryzen 9 / Intel i9</li>
+                                    <li>• 200 GB NVMe SSD free</li>
+                                    <li>• Ubuntu 22.04 LTS</li>
+                                    <li>• NVIDIA Driver ≥ 535.54</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Verify Driver and CUDA</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>nvidia-smi
+# Expected: Driver Version >= 525, CUDA Version >= 12.0
+
+nvcc --version
+# If nvcc missing: sudo apt install nvidia-cuda-toolkit
+
+# Verify Vulkan support (required by Omniverse)
+vulkaninfo --summary | grep "GPU id"</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Installation -->
+                    <div id="omniverse-install" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Installing via Omniverse Launcher
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            NVIDIA distributes Isaac Sim through the Omniverse platform. The Launcher manages installations, updates, and nucleus server connections.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Installation Steps</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># 1. Download Omniverse Launcher AppImage
+wget https://install.launcher.omniverse.nvidia.com/installers/omniverse-launcher-linux.AppImage
+chmod +x omniverse-launcher-linux.AppImage
+
+# 2. Run the launcher (installs to ~/.local/share/ov/)
+./omniverse-launcher-linux.AppImage --appimage-extract-and-run
+
+# 3. In the GUI: Exchange tab → search "Isaac Sim" → Install
+#    This downloads ~20 GB of assets
+
+# 4. Also install "Isaac Sim ROS2 Bridge" from the Exchange
+
+# 5. (Optional) Headless workstation install
+# ~/.local/share/ov/pkg/isaac_sim-*/python.sh \
+#   isaac-sim/standalone_examples/api/omni.isaac.core/hello_world.py</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Nucleus Server (Local)</h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] text-sm mb-3">
+                                Nucleus is the asset/collaboration server. For local use, install <strong>Nucleus Navigator</strong> from the Launcher. It hosts NVIDIA's robot asset library at <code class="text-cyan-400">omniverse://localhost/NVIDIA/Assets/Isaac/</code>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Importing Robots -->
+                    <div id="importing-robots" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Importing Robots from URDF
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Isaac Sim works natively with USD (Universal Scene Description). The URDF importer extension converts your robot's URDF/XACRO into a USD asset with full articulation, collision, and visual geometry.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">GUI Import Process</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono'] text-sm">
+                                <li>1. Open Isaac Sim → <strong>Isaac Utils → Workflows → URDF Importer</strong></li>
+                                <li>2. Browse to your <code class="text-cyan-400">.urdf</code> file</li>
+                                <li>3. Set <strong>Fix Base Link</strong> = False for mobile robots</li>
+                                <li>4. Set <strong>Self Collision</strong> = False for initial testing</li>
+                                <li>5. Set <strong>Joint Drive Type</strong> = Velocity (for ROS2 cmd_vel) or Position</li>
+                                <li>6. Click <strong>Import</strong> — the robot appears in the stage</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Scripted Import</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">import omni.kit.commands
+from omni.isaac.urdf import _urdf
+
+# Get URDF interface
+urdf_interface = _urdf.acquire_urdf_interface()
+
+# Import config
+import_config = _urdf.ImportConfig()
+import_config.merge_fixed_joints    = False
+import_config.convex_decomp         = False
+import_config.import_inertia_tensor = True
+import_config.fix_base              = False
+import_config.make_default_prim     = True
+import_config.self_collision        = False
+import_config.create_physics_scene  = True
+import_config.default_drive_type    = _urdf.UrdfJointTargetType.JOINT_DRIVE_VELOCITY
+import_config.default_drive_strength = 1e4
+
+# Run import
+result, prim_path = omni.kit.commands.execute(
+    "URDFParseAndImportFile",
+    urdf_path="/path/to/robot.urdf",
+    import_config=import_config
+)
+print(f"Robot imported at: {prim_path}")</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: ROS2 Bridge -->
+                    <div id="ros2-bridge" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Configuring the ROS2 Bridge
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            The Isaac Sim ROS2 Bridge publishes sensor data (camera, LiDAR, IMU, odometry) as standard ROS2 messages and subscribes to control commands. It uses an OmniGraph action graph to wire simulation prims to ROS2 topics.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Enable ROS2 Bridge Extension</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>import omni.graph.core as og
+import omni.isaac.ros2_bridge
+
+# Source ROS2 environment first (in terminal):
+# source /opt/ros/humble/setup.bash
+
+# Enable the extension programmatically
+import carb
+import omni.ext
+manager = omni.kit.app.get_app().get_extension_manager()
+manager.set_extension_enabled_immediate(
+    "omni.isaac.ros2_bridge", True)</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Publishing RGB Camera via OmniGraph</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code">import omni.graph.core as og
+
+og.Controller.edit(
+    {"graph_path": "/World/ROS2_Camera_Graph", "evaluator_name": "execution"},
+    {
+        og.Controller.Keys.CREATE_NODES: [
+            ("OnPlaybackTick",  "omni.graph.action.OnPlaybackTick"),
+            ("CameraHelper",    "omni.isaac.ros2_bridge.ROS2CameraHelper"),
+        ],
+        og.Controller.Keys.CONNECT: [
+            ("OnPlaybackTick.outputs:tick", "CameraHelper.inputs:execIn"),
+        ],
+        og.Controller.Keys.SET_VALUES: [
+            ("CameraHelper.inputs:topicName",    "/camera/image_raw"),
+            ("CameraHelper.inputs:frameId",      "camera_link"),
+            ("CameraHelper.inputs:renderProductPath",
+             "/World/Carter/chassis_link/camera_mount/Camera/RenderProduct"),
+            ("CameraHelper.inputs:type",         "rgb"),
+        ],
+    }
+)</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: First Simulation -->
+                    <div id="first-simulation" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Running Your First Simulation
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            With the robot imported and the ROS2 bridge configured, press Play in Isaac Sim and verify that topics are being published.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code"># In a terminal with ROS2 sourced:
+source /opt/ros/humble/setup.bash
+
+# Check available topics
+ros2 topic list
+
+# Expected output includes:
+# /camera/image_raw
+# /scan  (if LiDAR OmniGraph node is configured)
+# /odom
+# /tf
+# /tf_static
+
+# Verify camera images arrive
+ros2 topic hz /camera/image_raw
+# Should report ~30 Hz
+
+# Send a drive command
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.5}, angular: {z: 0.3}}" --once</code></pre>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Visualize in RViz2</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>rviz2 &
+
+# Add displays:
+# - Image: topic /camera/image_raw
+# - LaserScan: topic /scan
+# - Odometry: topic /odom
+# - TF: to see coordinate frames
+
+# Fixed Frame: odom</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Python Scripting -->
+                    <div id="python-scripting" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Python Scripting in Isaac Sim
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            Isaac Sim exposes a comprehensive Python API via <code class="text-cyan-400">omni.isaac.core</code> that lets you programmatically control the simulation, add objects, read sensor values, and orchestrate episodes for RL training.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Standalone Script Example</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from omni.isaac.kit import SimulationApp
+app = SimulationApp({"headless": False})
+
+import omni.isaac.core as isaac_core
+from omni.isaac.core import World
+from omni.isaac.core.robots import Robot
+from omni.isaac.core.utils.stage import add_reference_to_stage
+
+world = World(stage_units_in_meters=1.0)
+world.scene.add_default_ground_plane()
+
+# Add robot from USD
+add_reference_to_stage(
+    usd_path="omniverse://localhost/NVIDIA/Assets/Isaac/4.0/Isaac/Robots/Carter/nova_carter_description.usd",
+    prim_path="/World/Carter"
+)
+robot = world.scene.add(
+    Robot(prim_path="/World/Carter", name="carter"))
+
+world.reset()
+
+for i in range(500):
+    world.step(render=True)
+    pos, rot = robot.get_world_pose()
+    if i % 50 == 0:
+        print(f"Step {i}: pos={pos}")
+
+app.close()</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Section 7: Domain Randomization -->
+                    <div id="domain-randomization" class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Domain Randomization for Sim-to-Real
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+                            A policy trained in a perfectly clean simulation often fails on real hardware. Domain randomization (DR) injects controlled variability — lighting, texture, mass, friction — so the agent learns a robust policy that generalizes.
+                        </p>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Randomization Categories</h4>
+                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
+                                <li>• <strong>Visual DR:</strong> Random textures, albedo colors, skybox, shadow intensity</li>
+                                <li>• <strong>Physical DR:</strong> Object mass ±30%, friction coefficient, joint damping</li>
+                                <li>• <strong>Sensor DR:</strong> Gaussian noise on IMU, LiDAR dropout, camera exposure jitter</li>
+                                <li>• <strong>Structural DR:</strong> Randomize obstacle count, size, and placement per episode</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Adding Physics Randomization</h4>
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>import numpy as np
+from omni.isaac.core.utils.prims import get_prim_at_path
+from pxr import UsdPhysics
+
+def randomize_mass(prim_path, base_mass=5.0, variance=0.3):
+    """Randomize rigid body mass each episode."""
+    prim = get_prim_at_path(prim_path)
+    mass_api = UsdPhysics.MassAPI(prim)
+    new_mass = base_mass * (1.0 + np.random.uniform(-variance, variance))
+    mass_api.GetMassAttr().Set(new_mass)
+
+def randomize_friction(prim_path, mu_range=(0.3, 0.9)):
+    """Randomize surface friction."""
+    prim = get_prim_at_path(prim_path)
+    physics_material = UsdPhysics.MaterialAPI(prim)
+    mu = np.random.uniform(*mu_range)
+    physics_material.GetStaticFrictionAttr().Set(mu)
+    physics_material.GetDynamicFrictionAttr().Set(mu * 0.9)
+
+# Call before each training episode
+def reset_episode():
+    randomize_mass("/World/TargetBox", base_mass=2.0, variance=0.4)
+    randomize_friction("/World/Floor")</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
+                            <span class="text-cyan-400">></span> Conclusion
+                        </h2>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            Isaac Sim is a significant step up in simulation fidelity compared to classical tools. The physically accurate rendering and native ROS2 integration make it an excellent platform for developing and validating robot perception, navigation, and manipulation policies before touching real hardware.
+                        </p>
+                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+                            The initial setup investment pays off quickly once you need to generate large training datasets or run overnight reinforcement learning experiments in parallel.
+                        </p>
+                        <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
+                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
+                                <i class="fas fa-rocket mr-2"></i>Start Simulating!
+                            </h4>
+                            <p class="text-gray-300 font-['Roboto_Mono'] mb-4">
+                                The NVIDIA Developer Forum and the Isaac Sim GitHub repository have extensive example scripts. Start with the Carter AMR sample scene — it has the ROS2 bridge pre-configured with LiDAR, cameras, and differential drive.
+                            </p>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/promit7473" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fab fa-github mr-1"></i> GitHub Repository
+                                </a>
+                                <a href="../contact.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                                    <i class="fas fa-envelope mr-1"></i> Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tags and Share -->
+                <div class="border-t border-gray-700 pt-8 mt-12">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Isaac Sim</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Simulation</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Tutorial</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">NVIDIA</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Omniverse</span>
+                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <a href="../blog.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+                        </a>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                <i class="fab fa-reddit text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
+                <span class="text-cyan-400">// </span>Related Articles
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif"
+                         alt="Deep RL ROS2"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Deep RL in ROS2</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Integrate Deep Reinforcement Learning into ROS2 for intelligent robot control.
+                        </p>
+                        <a href="deep-rl-ros2-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif"
+                         alt="SLAM RL"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">SLAM with Reinforcement Learning</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Curiosity-driven exploration combining SLAM and RL.
+                        </p>
+                        <a href="slam-reinforcement-learning.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
+                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif"
+                         alt="ROS2 Navigation"
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Mastering ROS2 Navigation</h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
+                            Complete guide to Nav2, costmaps, planners, and AMCL.
+                        </p>
+                        <a href="ros2-navigation-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (injected by components.js) -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

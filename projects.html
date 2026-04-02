@@ -113,6 +113,8 @@
                 <button class="filter-btn-new" data-filter="nav">Navigation</button>
                 <button class="filter-btn-new" data-filter="slam">SLAM</button>
                 <button class="filter-btn-new" data-filter="locomotion">Locomotion</button>
+                <button class="filter-btn-new" data-filter="manipulation">Manipulation</button>
+                <button class="filter-btn-new" data-filter="swarm">Swarm</button>
             </div>
         </div>
     </section>
@@ -259,6 +261,40 @@
                     </div>
                 </div>
 
+                <!-- 6 · Multi-Robot SLAM -->
+                <div class="project-hero-card" data-category="slam nav">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/multi_robot_slam.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="tag-cyan">Multi-Robot</span>
+                            <span class="tag-cyan">SLAM</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            Multi-Robot Collaborative SLAM
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Two-robot team performing collaborative map merging in ROS2. Each robot independently
+                            builds a local occupancy grid; a merge node fuses them into a unified global map using
+                            pose-graph optimization and occupancy grid alignment.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">ROS2</span>
+                            <span class="tag-cyan">SLAM</span>
+                            <span class="tag-cyan">Map Merging</span>
+                            <span class="tag-cyan">Gazebo</span>
+                            <span class="tag-cyan">Python</span>
+                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+
                 <!-- 5 · Lunar Lander RL -->
                 <div class="project-hero-card" data-category="rl">
                     <div class="relative">
@@ -286,6 +322,136 @@
                             <span class="tag-cyan">Gymnasium</span>
                             <span class="tag-cyan">SB3</span>
                             <span class="tag-cyan">PyTorch</span>
+                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7 · Robot Arm IK -->
+                <div class="project-hero-card" data-category="manipulation">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/robot_arm_ik.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="tag-cyan">6-DOF</span>
+                            <span class="tag-cyan">IK</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            6-DOF Arm Inverse Kinematics
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Analytical inverse kinematics solver for a 6-DOF robotic arm. Visualizes
+                            joint angles, workspace reachability, and end-effector trajectory tracking
+                            for pick-and-place operations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">IK</span>
+                            <span class="tag-cyan">MoveIt2</span>
+                            <span class="tag-cyan">Python</span>
+                            <span class="tag-cyan">NumPy</span>
+                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8 · Swarm Robotics -->
+                <div class="project-hero-card" data-category="swarm">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/swarm_robotics.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3">
+                            <span class="tag-cyan">Flocking</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            Swarm Robotics — Reynolds Flocking
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            50-agent swarm implementing Reynolds' three rules: separation, alignment, and
+                            cohesion. Emergent collective behavior navigates around obstacles while
+                            maintaining formation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">Swarm</span>
+                            <span class="tag-cyan">Multi-Agent</span>
+                            <span class="tag-cyan">Python</span>
+                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9 · PID Trajectory -->
+                <div class="project-hero-card" data-category="nav">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/pid_trajectory.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3">
+                            <span class="tag-cyan">PID</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            PID Controller — Trajectory Tracking
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Differential drive robot following a figure-eight reference trajectory using
+                            a tuned PID controller. Shows real-time error plots and heading correction
+                            alongside the path.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">PID</span>
+                            <span class="tag-cyan">Control</span>
+                            <span class="tag-cyan">Python</span>
+                        </div>
+                        <a href="https://github.com/promit7473" target="_blank"
+                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
+                            <i class="fab fa-github mr-1"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 10 · RRT* -->
+                <div class="project-hero-card" data-category="nav">
+                    <div class="relative">
+                        <video class="project-video" autoplay loop muted playsinline>
+                            <source src="assets/gifs/rrt_star.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="tag-cyan">RRT*</span>
+                            <span class="tag-cyan">A*</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="stat-badge">Optimal</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
+                            RRT* vs A* — Optimal Planning
+                        </h3>
+                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
+                            Side-by-side comparison of RRT* (asymptotically optimal sampling-based planner)
+                            vs A* on identical maps. Shows path cost convergence and rewiring behavior
+                            as tree nodes increase.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag-cyan">RRT*</span>
+                            <span class="tag-cyan">A*</span>
+                            <span class="tag-cyan">Python</span>
                         </div>
                         <a href="https://github.com/promit7473" target="_blank"
                            class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">

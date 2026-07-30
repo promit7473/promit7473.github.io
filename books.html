@@ -1,369 +1,123 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books | Meraj Hossain Promit</title>
-    <meta name="description" content="Explore the books that have shaped Meraj Hossain Promit's journey in robotics, AI, and autonomous systems.">
+    <title>Reading — Meraj Hossain Promit</title>
+    <meta name="description" content="Books that have shaped Meraj Hossain Promit's work in robotics, reinforcement learning, and control.">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Academicons for academic icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="antialiased bg-gray-900">
-    <!-- Mesh Gradient Background -->
-    <div class="mesh-gradient"></div>
-
-    <!-- Navigation (injected by components.js) -->
+<body>
     <div id="nav-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
+    <main class="wrap-wide">
+
+        <div class="page-head">
+            <h1>Reading</h1>
+            <p class="lead">
+                Textbooks and references that have shaped how I think about robotics, learning, and control.
+            </p>
         </div>
-        
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="text-center">
-                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                      <span class="gradient-text code-prefix glowing-bg">> </span>Books Read
-                 </h1>
-                 <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
-                     A curated collection of books that have inspired and shaped my journey in robotics, AI, and autonomous systems.
-                 </p>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ai">AI</button>
+            <button class="filter-btn" data-filter="robotics">Robotics</button>
+            <button class="filter-btn" data-filter="ml">Machine learning</button>
+            <button class="filter-btn" data-filter="control">Control / ROS</button>
+        </div>
+
+        <div class="book-grid">
+
+            <div class="book" data-category="ai" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780262035613-L.jpg" alt="Deep Learning">
+                <h3>Deep Learning</h3>
+                <div class="author">Goodfellow, Bengio &amp; Courville</div>
             </div>
-        </div>
-    </section>
 
-    <!-- Filter Section -->
-    <section class="py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4">
-                 <button class="filter-btn active" data-filter="all">
-                     All Books
-                 </button>
-                 <button class="filter-btn" data-filter="ai">
-                     Artificial Intelligence
-                 </button>
-                 <button class="filter-btn" data-filter="robotics">
-                     Robotics
-                 </button>
-                 <button class="filter-btn" data-filter="ml">
-                     Machine Learning
-                 </button>
-                 <button class="filter-btn" data-filter="control">
-                     Control Systems
-                 </button>
+            <div class="book" data-category="ml" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780262039246-L.jpg" alt="Reinforcement Learning: An Introduction">
+                <h3>Reinforcement Learning</h3>
+                <div class="author">Sutton &amp; Barto</div>
             </div>
-        </div>
-    </section>
 
-    <!-- Books Grid -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                <!-- Book 1: Deep Learning -->
-                <div class="project-card" data-category="ai">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780262035613-L.jpg"
-                             alt="Deep Learning by Goodfellow"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">AI</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Deep Learning</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Goodfellow, Bengio & Courville</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            The definitive textbook on neural networks — from basics to advanced architectures like CNNs, RNNs, and autoencoders.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Deep Learning</span>
-                            <span class="tag">Neural Networks</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 2: Reinforcement Learning -->
-                <div class="project-card" data-category="ml">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780262039246-L.jpg"
-                             alt="Reinforcement Learning by Sutton and Barto"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ML</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Reinforcement Learning</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Sutton & Barto</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            The essential RL bible. Covers MDPs, Q-learning, policy gradients, and temporal-difference methods from first principles.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Reinforcement Learning</span>
-                            <span class="tag">MDP</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 3: Probabilistic Robotics -->
-                <div class="project-card" data-category="robotics">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780262201629-L.jpg"
-                             alt="Probabilistic Robotics by Thrun"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Robotics</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Probabilistic Robotics</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Thrun, Burgard & Fox</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Foundational algorithms for robot localization, mapping, and SLAM using Bayesian state estimation.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">SLAM</span>
-                            <span class="tag">Localization</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 4: AI: A Modern Approach -->
-                <div class="project-card" data-category="ai">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780134610993-L.jpg"
-                             alt="Artificial Intelligence: A Modern Approach"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">AI</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">AI: A Modern Approach</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Russell & Norvig</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            The most widely used AI textbook. Covers search, logic, planning, learning, perception, and robotics in one volume.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">AI</span>
-                            <span class="tag">Planning</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 5: Modern Robotics -->
-                <div class="project-card" data-category="robotics">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9781107156302-L.jpg"
-                             alt="Modern Robotics by Lynch and Park"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Robotics</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Modern Robotics</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Lynch & Park</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Rigorous treatment of robot kinematics, dynamics, and motion planning using modern screw theory and geometry.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Kinematics</span>
-                            <span class="tag">Motion Planning</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 6: Pattern Recognition and ML -->
-                <div class="project-card" data-category="ml">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780387310732-L.jpg"
-                             alt="Pattern Recognition and Machine Learning by Bishop"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ML</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Pattern Recognition & ML</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Christopher Bishop</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Comprehensive Bayesian approach to machine learning — Gaussian processes, graphical models, and variational inference.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Bayesian ML</span>
-                            <span class="tag">Statistics</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 7: Intro to Autonomous Mobile Robots -->
-                <div class="project-card" data-category="robotics">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9780262015356-L.jpg"
-                             alt="Introduction to Autonomous Mobile Robots"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Robotics</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Autonomous Mobile Robots</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Siegwart, Nourbakhsh & Scaramuzza</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Covers locomotion, sensing, perception, and navigation for autonomous mobile robots with real-world examples.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Navigation</span>
-                            <span class="tag">Sensing</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 8: Programming Robots with ROS -->
-                <div class="project-card" data-category="control">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://covers.openlibrary.org/b/isbn/9781449323899-L.jpg"
-                             alt="Programming Robots with ROS"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Control</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Programming Robots with ROS</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Quigley, Gerkey & Smart</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Hands-on guide to building real robot applications with ROS — navigation, manipulation, perception, and simulation.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">ROS</span>
-                            <span class="tag">Practical</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 9: ROS Robot Programming (ROBOTIS) -->
-                <div class="project-card" data-category="robotics">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://books.google.com/books/content?vid=ISBN9791196340049&printsec=frontcover&img=1&zoom=1"
-                             alt="ROS Robot Programming by ROBOTIS"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Robotics</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">ROS Robot Programming</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">YoonSeok Pyo et al. (ROBOTIS)</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            The legendary ROBOTIS guide — covers ROS fundamentals, TurtleBot3, SLAM, navigation, and manipulation. Used worldwide.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">ROS</span>
-                            <span class="tag">TurtleBot</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 10: Grokking Deep Reinforcement Learning -->
-                <div class="project-card" data-category="ml">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://books.google.com/books/content?vid=ISBN9781617295454&printsec=frontcover&img=1&zoom=1"
-                             alt="Grokking Deep Reinforcement Learning by Miguel Morales"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">ML</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Grokking Deep RL</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Miguel Morales</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Intuitive deep dive into deep RL — DQN, PPO, SAC, and more, built from scratch with clear code and visualizations.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">Deep RL</span>
-                            <span class="tag">PyTorch</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book 11: A Concise Introduction to Robot Programming with ROS2 -->
-                <div class="project-card" data-category="robotics">
-                    <div class="relative overflow-hidden" style="height: 280px;">
-                        <img src="https://books.google.com/books/content?vid=ISBN9781032264479&printsec=frontcover&img=1&zoom=1"
-                             alt="A Concise Introduction to Robot Programming with ROS2"
-                             class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="tag">Robotics</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 text-white font-['Orbitron']">Robot Programming with ROS2</h3>
-                        <p class="text-cyan-400 text-sm mb-3 font-['Roboto_Mono']">Francisco Martín Rico</p>
-                        <p class="text-gray-400 text-sm mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Concise, hands-on ROS2 guide covering nodes, topics, services, actions, navigation, and manipulation with real examples.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag">ROS2</span>
-                            <span class="tag">Navigation</span>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="book" data-category="robotics" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780262201629-L.jpg" alt="Probabilistic Robotics">
+                <h3>Probabilistic Robotics</h3>
+                <div class="author">Thrun, Burgard &amp; Fox</div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer (injected by components.js) -->
+            <div class="book" data-category="ai" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780134610993-L.jpg" alt="Artificial Intelligence: A Modern Approach">
+                <h3>AI: A Modern Approach</h3>
+                <div class="author">Russell &amp; Norvig</div>
+            </div>
+
+            <div class="book" data-category="robotics" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781107156302-L.jpg" alt="Modern Robotics">
+                <h3>Modern Robotics</h3>
+                <div class="author">Lynch &amp; Park</div>
+            </div>
+
+            <div class="book" data-category="ml" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780387310732-L.jpg" alt="Pattern Recognition and Machine Learning">
+                <h3>Pattern Recognition &amp; ML</h3>
+                <div class="author">Christopher Bishop</div>
+            </div>
+
+            <div class="book" data-category="robotics" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780262015356-L.jpg" alt="Introduction to Autonomous Mobile Robots">
+                <h3>Autonomous Mobile Robots</h3>
+                <div class="author">Siegwart, Nourbakhsh &amp; Scaramuzza</div>
+            </div>
+
+            <div class="book" data-category="control" data-reveal>
+                <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9781449323899-L.jpg" alt="Programming Robots with ROS">
+                <h3>Programming Robots with ROS</h3>
+                <div class="author">Quigley, Gerkey &amp; Smart</div>
+            </div>
+
+            <div class="book" data-category="robotics" data-reveal>
+                <img class="book-cover" src="https://books.google.com/books/content?vid=ISBN9791196340049&printsec=frontcover&img=1&zoom=1" alt="ROS Robot Programming">
+                <h3>ROS Robot Programming</h3>
+                <div class="author">YoonSeok Pyo et al. (ROBOTIS)</div>
+            </div>
+
+            <div class="book" data-category="ml" data-reveal>
+                <img class="book-cover" src="https://books.google.com/books/content?vid=ISBN9781617295454&printsec=frontcover&img=1&zoom=1" alt="Grokking Deep Reinforcement Learning">
+                <h3>Grokking Deep RL</h3>
+                <div class="author">Miguel Morales</div>
+            </div>
+
+            <div class="book" data-category="control" data-reveal>
+                <img class="book-cover" src="https://books.google.com/books/content?vid=ISBN9781032264479&printsec=frontcover&img=1&zoom=1" alt="A Concise Introduction to Robot Programming with ROS2">
+                <h3>Robot Programming with ROS2</h3>
+                <div class="author">Francisco Martín Rico</div>
+            </div>
+
+        </div>
+    </main>
+
     <div id="footer-placeholder"></div>
-
     <script src="components.js"></script>
     <script src="script.js"></script>
     <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-cyan-500', 'text-white');
-                        b.classList.add('bg-gray-700', 'text-gray-300');
-                    });
-
-                    // Add active class to clicked button
-                    this.classList.remove('bg-gray-700', 'text-gray-300');
-                    this.classList.add('bg-cyan-500', 'text-white');
-
-                    const filter = this.getAttribute('data-filter');
-
-                    projectCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const btns  = document.querySelectorAll('.filter-btn');
+            const books = document.querySelectorAll('.book[data-category]');
+            btns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    btns.forEach(function (b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    const f = this.getAttribute('data-filter');
+                    books.forEach(function (bk) {
+                        const cat = bk.getAttribute('data-category') || '';
+                        bk.style.display = (f === 'all' || cat === f) ? '' : 'none';
                     });
                 });
             });

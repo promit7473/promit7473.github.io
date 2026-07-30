@@ -522,12 +522,10 @@ section { padding: 0; }
 /* Prose helper */
 .prose { max-width: 68ch; }   /* comfortable reading measure -> natural right margin */
 .prose p { margin-bottom: 16px; }
-.prose p,
-.pub p,
-.entry .what p,
-.card-body p,
-.post-item p,
-.page-head .lead { text-align: justify; hyphens: auto; }
+/* Justify body text across every section; keep headings/labels left */
+main { text-align: justify; hyphens: auto; }
+main h1, main h2, main h3, main h4,
+.pub-title, .section-title, .nav-links, .card-foot { text-align: left; }
 .prose h2 { font-size: 1.35rem; margin: 32px 0 14px; }
 .prose ul { margin: 0 0 16px 1.2em; }
 .prose li { margin-bottom: 6px; }

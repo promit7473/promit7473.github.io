@@ -1,165 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>(function(){try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Reinforcement Learning in ROS2: A Complete Guide | Meraj Hossain Promit</title>
+    <title>Deep Reinforcement Learning in ROS2: A Complete Guide · Meraj Hossain Promit</title>
     <meta name="description" content="A comprehensive guide to integrating Deep Reinforcement Learning with ROS2 for intelligent robotic systems.">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Academicons for academic icons -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
     <link rel="stylesheet" href="../styles.css?v=20260731b">
 </head>
-
-<body class="antialiased bg-gray-900">
-    <!-- Mesh Gradient Background -->
-    <div class="mesh-gradient"></div>
-
-    <!-- Navigation (injected by components.js) -->
+<body>
     <div id="nav-placeholder"></div>
 
-    <!-- Blog Post Hero -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-        </div>
-        
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="mb-6">
-                    <span class="bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-['Roboto_Mono']">Featured Article</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 font-['Orbitron'] text-white">
-                    Deep Reinforcement Learning in ROS2: A Complete Guide
-                </h1>
-                <div class="flex items-center justify-center text-gray-300 font-['Roboto_Mono'] mb-8">
-                    <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
-                    <span>March 15, 2024</span>
-                    <span class="mx-3">•</span>
-                    <i class="fas fa-clock text-cyan-400 mr-2"></i>
-                    <span>12 min read</span>
-                    <span class="mx-3">•</span>
-                    <i class="fas fa-user text-cyan-400 mr-2"></i>
-                    <span>Meraj Hossain Promit</span>
-                </div>
-                <img src="https://miro.medium.com/v2/resize:fit:1400/1*D_cQ1GqYd20p_T22t0j0qA.gif" 
-                     alt="Deep RL in ROS2" 
-                     class="w-full rounded-lg border-2 border-red-600">
-            </div>
-        </div>
-    </section>
+    <main class="wrap">
 
-    <!-- Blog Content -->
-    <section class="py-20 bg-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <article class="prose prose-invert max-w-none">
-                    <!-- Introduction -->
-                    <div class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Introduction
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+        <div class="page-head post-head">
+            <span class="post-cat">Deep RL</span>
+            <h1>Deep Reinforcement Learning in ROS2: A Complete Guide</h1>
+            <div class="post-meta">March 15, 2024 <span class="sep">·</span> 12 min read <span class="sep">·</span> Meraj Hossain Promit</div>
+        </div>
+
+        <article class="article">
+
+<!-- Introduction -->
+<div>
+<h2>Introduction</h2>
+<p>
                             Reinforcement Learning (RL) has emerged as a powerful paradigm for creating intelligent robotic systems that can learn complex behaviors through interaction with their environment. When combined with ROS2 (Robot Operating System 2), we get a robust framework for developing and deploying RL agents in real-world robotic applications.
                         </p>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+<p>
                             This comprehensive guide will walk you through the process of integrating Deep Reinforcement Learning algorithms with ROS2, from basic concepts to advanced implementations. We'll explore practical examples, best practices, and real-world applications that demonstrate the potential of this powerful combination.
                         </p>
-                    </div>
-
-                    <!-- Table of Contents -->
-                    <div class="mb-12 bg-gray-900 rounded-lg p-6 border border-gray-700">
-                        <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">//</span> Table of Contents
-                        </h3>
-                        <ol class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                            <li><a href="#understanding-rl-basics" class="text-cyan-400 hover:text-cyan-300">1. Understanding RL Basics</a></li>
-                            <li><a href="#ros2-architecture-for-rl" class="text-cyan-400 hover:text-cyan-300">2. ROS2 Architecture for RL</a></li>
-                            <li><a href="#setting-up-environment" class="text-cyan-400 hover:text-cyan-300">3. Setting Up the Environment</a></li>
-                            <li><a href="#implementing-rl-agents" class="text-cyan-400 hover:text-cyan-300">4. Implementing RL Agents</a></li>
-                            <li><a href="#training-optimization" class="text-cyan-400 hover:text-cyan-300">5. Training and Optimization</a></li>
-                            <li><a href="#real-world-applications" class="text-cyan-400 hover:text-cyan-300">6. Real-World Applications</a></li>
-                            <li><a href="#best-practices" class="text-cyan-400 hover:text-cyan-300">7. Best Practices and Tips</a></li>
-                        </ol>
-                    </div>
-
-                    <!-- Section 1: Understanding RL Basics -->
-                    <div id="understanding-rl-basics" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Understanding RL Basics
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+</div>
+<!-- Table of Contents -->
+<div class="toc">
+<h3>Table of Contents</h3>
+<ol>
+<li><a href="#understanding-rl-basics">1. Understanding RL Basics</a></li>
+<li><a href="#ros2-architecture-for-rl">2. ROS2 Architecture for RL</a></li>
+<li><a href="#setting-up-environment">3. Setting Up the Environment</a></li>
+<li><a href="#implementing-rl-agents">4. Implementing RL Agents</a></li>
+<li><a href="#training-optimization">5. Training and Optimization</a></li>
+<li><a href="#real-world-applications">6. Real-World Applications</a></li>
+<li><a href="#best-practices">7. Best Practices and Tips</a></li>
+</ol>
+</div>
+<!-- Section 1: Understanding RL Basics -->
+<div id="understanding-rl-basics">
+<h2>Understanding RL Basics</h2>
+<p>
                             Reinforcement Learning is a type of machine learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative reward. The key components include:
                         </p>
-                        <ul class="list-disc list-inside text-gray-300 font-['Roboto_Mono'] space-y-2 mb-6">
-                            <li><strong>Agent:</strong> The learner or decision-maker (our robot)</li>
-                            <li><strong>Environment:</strong> The world the agent interacts with</li>
-                            <li><strong>State:</strong> The current situation or configuration</li>
-                            <li><strong>Action:</strong> What the agent can do</li>
-                            <li><strong>Reward:</strong> Feedback from the environment</li>
-                            <li><strong>Policy:</strong> The agent's strategy for choosing actions</li>
-                        </ul>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Key RL Algorithms for Robotics</h4>
-                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                                <li>• <strong>Deep Q-Networks (DQN):</strong> For discrete action spaces</li>
-                                <li>• <strong>Proximal Policy Optimization (PPO):</strong> Stable and efficient</li>
-                                <li>• <strong>SAC (Soft Actor-Critic):</strong> For continuous control</li>
-                                <li>• <strong>TD3 (Twin Delayed DDPG):</strong> Robust continuous control</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Section 2: ROS2 Architecture -->
-                    <div id="ros2-architecture-for-rl" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> ROS2 Architecture for RL
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+<ul>
+<li><strong>Agent:</strong> The learner or decision-maker (our robot)</li>
+<li><strong>Environment:</strong> The world the agent interacts with</li>
+<li><strong>State:</strong> The current situation or configuration</li>
+<li><strong>Action:</strong> What the agent can do</li>
+<li><strong>Reward:</strong> Feedback from the environment</li>
+<li><strong>Policy:</strong> The agent's strategy for choosing actions</li>
+</ul>
+<div>
+<h4>Key RL Algorithms for Robotics</h4>
+<ul>
+<li><strong>Deep Q-Networks (DQN):</strong> For discrete action spaces</li>
+<li><strong>Proximal Policy Optimization (PPO):</strong> Stable and efficient</li>
+<li><strong>SAC (Soft Actor-Critic):</strong> For continuous control</li>
+<li><strong>TD3 (Twin Delayed DDPG):</strong> Robust continuous control</li>
+</ul>
+</div>
+</div>
+<!-- Section 2: ROS2 Architecture -->
+<div id="ros2-architecture-for-rl">
+<h2>ROS2 Architecture for RL</h2>
+<p>
                             ROS2 provides an excellent foundation for implementing RL systems due to its distributed architecture, real-time capabilities, and extensive tooling. Here's how we structure our RL system in ROS2:
                         </p>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">ROS2 Node Architecture</h4>
-                            <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                                <li>• <strong>Environment Node:</strong> Manages the simulation/real robot</li>
-                                <li>• <strong>Agent Node:</strong> Runs the RL algorithm</li>
-                                <li>• <strong>Trainer Node:</strong> Handles training process</li>
-                                <li>• <strong>Bridge Node:</strong> Connects RL framework with ROS2</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># Example ROS2 Topic Structure
+<div>
+<h4>ROS2 Node Architecture</h4>
+<ul>
+<li><strong>Environment Node:</strong> Manages the simulation/real robot</li>
+<li><strong>Agent Node:</strong> Runs the RL algorithm</li>
+<li><strong>Trainer Node:</strong> Handles training process</li>
+<li><strong>Bridge Node:</strong> Connects RL framework with ROS2</li>
+</ul>
+</div>
+<div>
+<pre><code># Example ROS2 Topic Structure
 /robot/observations      # Sensor data and state
 /robot/actions          # Control commands
 /robot/rewards          # Reward signals
 /robot/reset            # Environment reset
 /robot/done             # Episode completion</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Section 3: Setting Up Environment -->
-                    <div id="setting-up-environment" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Setting Up the Environment
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+</div>
+</div>
+<!-- Section 3: Setting Up Environment -->
+<div id="setting-up-environment">
+<h2>Setting Up the Environment</h2>
+<p>
                             Let's set up a complete RL environment using ROS2 and popular RL frameworks. We'll use Gazebo for simulation and Stable Baselines3 for our RL algorithms.
                         </p>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Installation Requirements</h4>
-                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code># Install ROS2 and dependencies
+<div>
+<h4>Installation Requirements</h4>
+<pre><code># Install ROS2 and dependencies
 sudo apt update
 sudo apt install ros-humble-desktop
 sudo apt install ros-humble-gazebo-ros-pkgs
@@ -173,20 +120,17 @@ pip install torch
 # Install additional ROS2 packages
 sudo apt install ros-humble-ros2-control
 sudo apt install ros-humble-controllers</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Section 4: Implementing RL Agents -->
-                    <div id="implementing-rl-agents" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Implementing RL Agents
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+</div>
+</div>
+<!-- Section 4: Implementing RL Agents -->
+<div id="implementing-rl-agents">
+<h2>Implementing RL Agents</h2>
+<p>
                             Now let's implement a complete RL agent that can control a robot in simulation. We'll create a custom environment wrapper and train our agent using PPO.
                         </p>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Custom Environment Wrapper</h4>
-                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>import gymnasium as gym
+<div>
+<h4>Custom Environment Wrapper</h4>
+<pre><code>import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
 import rclpy
@@ -230,20 +174,17 @@ class ROS2Environment(gym.Env):
         self.reset_simulation()
         observation = self.get_observation()
         return observation, {}</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Section 5: Training and Optimization -->
-                    <div id="training-optimization" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Training and Optimization
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+</div>
+</div>
+<!-- Section 5: Training and Optimization -->
+<div id="training-optimization">
+<h2>Training and Optimization</h2>
+<p>
                             Training RL agents for robotics requires careful consideration of various factors including reward shaping, curriculum learning, and hyperparameter tuning.
                         </p>
-                        <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Training Script</h4>
-                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code>from stable_baselines3 import PPO
+<div>
+<h4>Training Script</h4>
+<pre><code>from stable_baselines3 import PPO
 from stable_baselines3.common.env_checker import check_env
 
 # Create and check environment
@@ -271,199 +212,106 @@ model.learn(
 
 # Save the trained model
 model.save("ppo_robot_navigation")</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- Section 6: Real-World Applications -->
-                    <div id="real-world-applications" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Real-World Applications
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
+</div>
+</div>
+<!-- Section 6: Real-World Applications -->
+<div id="real-world-applications">
+<h2>Real-World Applications</h2>
+<p>
                             Deep RL in ROS2 has numerous applications across different domains of robotics. Here are some exciting use cases:
                         </p>
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Autonomous Navigation</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+<div>
+<div>
+<h4>Autonomous Navigation</h4>
+<p>
                                     RL agents can learn to navigate complex environments, avoiding obstacles and reaching goals efficiently.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Manipulation Tasks</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+</div>
+<div>
+<h4>Manipulation Tasks</h4>
+<p>
                                     Robotic arms can learn grasping, placing, and assembly tasks through trial and error.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Multi-Robot Coordination</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+</div>
+<div>
+<h4>Multi-Robot Coordination</h4>
+<p>
                                     Multiple robots can learn to collaborate on complex tasks requiring coordination.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Adaptive Control</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono'] text-sm">
+</div>
+<div>
+<h4>Adaptive Control</h4>
+<p>
                                     Robots can adapt to changing environments and unexpected situations.
                                 </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section 7: Best Practices -->
-                    <div id="best-practices" class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Best Practices and Tips
-                        </h2>
-                        <div class="space-y-4">
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">1. Start Simple</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono']">
+</div>
+</div>
+</div>
+<!-- Section 7: Best Practices -->
+<div id="best-practices">
+<h2>Best Practices and Tips</h2>
+<div>
+<div>
+<h4>1. Start Simple</h4>
+<p>
                                     Begin with basic environments and gradually increase complexity. This helps in debugging and understanding the learning process.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">2. Reward Shaping</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono']">
+</div>
+<div>
+<h4>2. Reward Shaping</h4>
+<p>
                                     Design rewards carefully to encourage desired behaviors while avoiding reward hacking.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">3. Simulation to Real Transfer</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono']">
+</div>
+<div>
+<h4>3. Simulation to Real Transfer</h4>
+<p>
                                     Use domain randomization and system identification to bridge the sim-to-real gap.
                                 </p>
-                            </div>
-                            <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                                <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">4. Monitoring and Logging</h4>
-                                <p class="text-gray-300 font-['Roboto_Mono']">
+</div>
+<div>
+<h4>4. Monitoring and Logging</h4>
+<p>
                                     Implement comprehensive logging to track training progress and identify issues early.
                                 </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Conclusion -->
-                    <div class="mb-12">
-                        <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                            <span class="text-cyan-400">></span> Conclusion
-                        </h2>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+</div>
+</div>
+</div>
+<!-- Conclusion -->
+<div>
+<h2>Conclusion</h2>
+<p>
                             Deep Reinforcement Learning combined with ROS2 opens up incredible possibilities for creating intelligent, adaptive robotic systems. While the learning curve can be steep, the results are truly remarkable. As we continue to advance in this field, we're seeing more sophisticated applications that were once thought impossible.
                         </p>
-                        <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
+<p>
                             Remember that successful RL implementation requires patience, experimentation, and a deep understanding of both the algorithms and the robotic systems you're working with. Start small, iterate often, and don't be afraid to try different approaches.
                         </p>
-                        <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
-                            <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">
-                                <i class="fas fa-rocket mr-2"></i>Ready to Start?
-                            </h4>
-                            <p class="text-gray-300 font-['Roboto_Mono'] mb-4">
+<div class="callout">
+<h4>Ready to Start?</h4>
+<p>
                                 Get started with the code examples from this guide and experiment with different algorithms and environments. The robotics community is vibrant and supportive - don't hesitate to reach out with questions or share your projects!
                             </p>
-                            <div class="flex gap-4">
-                                <a href="https://github.com/promit7473" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
-                                    <i class="fab fa-github mr-1"></i> GitHub Repository
+<div>
+<a href="https://github.com/promit7473" target="_blank">
+ GitHub Repository
                                 </a>
-                                <a href="../contact.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
-                                    <i class="fas fa-envelope mr-1"></i> Get in Touch
+<a href="../contact.html">
+ Get in Touch
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+</div>
+</div>
+</div>
 
-                <!-- Tags and Share -->
-                <div class="border-t border-gray-700 pt-8 mt-12">
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">ROS2</span>
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Deep RL</span>
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Python</span>
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">PyTorch</span>
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Robotics</span>
-                        <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm font-['Roboto_Mono']">Machine Learning</span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between">
-                        <a href="../blog.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono']">
-                            <i class="fas fa-arrow-left mr-2"></i> Back to Blog
-                        </a>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                                <i class="fab fa-twitter text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                                <i class="fab fa-linkedin text-xl"></i>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                                <i class="fab fa-reddit text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </article>
+
+        <div class="post-foot">
+            <div class="tags"><span class="tag">ROS2</span><span class="tag">Deep RL</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Robotics</span><span class="tag">Machine Learning</span></div>
+            <a class="back" href="../blog.html"><i class="fas fa-arrow-left"></i> Back to Notes</a>
         </div>
-    </section>
 
-    <!-- Related Posts -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center text-white font-['Orbitron']">
-                <span class="text-cyan-400">// </span>Related Articles
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
-                    <img src="https://towardsdatascience.com/wp-content/uploads/2021/01/0*ib5nK3TdQi-h-ucI.gif" 
-                         alt="ROS2 Navigation" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Mastering ROS2 Navigation</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
-                            A comprehensive guide to implementing autonomous navigation using ROS2 Nav2 stack.
-                        </p>
-                        <a href="ros2-navigation-guide.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
-                            Read More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </div>
+    </main>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
-                    <img src="https://www.mdpi.com/remotesensing/remotesensing-12-02328/article_deploy/html/images/remotesensing-12-02328-g010.gif" 
-                         alt="SLAM and RL" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">SLAM with Reinforcement Learning</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
-                            Exploring innovative approaches to integrate SLAM with reinforcement learning.
-                        </p>
-                        <a href="slam-rl-integration.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
-                            Read More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all">
-                    <img src="https://assets-global.website-files.com/600fe6e1ff56023533493776/6034177044a67b73c71c1837_6019651558955a00010ab52c_Isaac_Sim_release_on_Omniverse_main.gif" 
-                         alt="Isaac Sim Tutorial" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2 text-white font-['Orbitron']">Getting Started with Isaac Sim</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">
-                            A step-by-step tutorial for setting up NVIDIA Isaac Sim for robotics simulation.
-                        </p>
-                        <a href="isaac-sim-tutorial.html" class="text-cyan-400 hover:text-cyan-300 font-['Roboto_Mono'] text-sm">
-                            Read More <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (injected by components.js) -->
     <div id="footer-placeholder"></div>
-
     <script src="../components.js"></script>
     <script src="../script.js"></script>
 </body>

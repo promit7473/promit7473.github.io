@@ -1,485 +1,161 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Meraj Hossain Promit</title>
-    <meta name="description" content="Robotics projects by Meraj Hossain Promit — Deep RL, LiDAR SLAM, Quadruped Locomotion, Path Planning, Autonomous Navigation.">
+    <title>Projects — Meraj Hossain Promit</title>
+    <meta name="description" content="Robotics and robot-learning projects by Meraj Hossain Promit — Deep RL navigation, Sim2Real manipulation, SLAM, locomotion, and control.">
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Masonry layout */
-        .masonry-grid {
-            column-count: 3;
-            column-gap: 1.5rem;
-        }
-        @media (max-width: 1024px) { .masonry-grid { column-count: 2; } }
-        @media (max-width: 640px)  { .masonry-grid { column-count: 1; } }
-
-        .project-hero-card {
-            break-inside: avoid;
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5rem;
-            background: rgba(10,14,39,0.85);
-            border: 1px solid rgba(0,212,255,0.18);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        .project-hero-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0,212,255,0.55);
-            box-shadow: 0 16px 48px rgba(0,212,255,0.12);
-        }
-        .project-video {
-            width: 100%;
-            object-fit: cover;
-            display: block;
-            background: #0a0e27;
-        }
-        .tag-cyan {
-            background: rgba(0,212,255,0.1);
-            border: 1px solid rgba(0,212,255,0.28);
-            color: #00d4ff;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            font-family: 'Roboto Mono', monospace;
-        }
-        .stat-badge {
-            background: rgba(0,255,136,0.08);
-            border: 1px solid rgba(0,255,136,0.25);
-            color: #00ff88;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.65rem;
-            font-family: 'Roboto Mono', monospace;
-        }
-        .filter-btn-new {
-            background: rgba(30,42,74,0.8);
-            border: 1px solid rgba(0,212,255,0.2);
-            color: #9ca3af;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-btn-new:hover,
-        .filter-btn-new.active {
-            background: rgba(0,212,255,0.15);
-            border-color: rgba(0,212,255,0.6);
-            color: #00d4ff;
-        }
-    </style>
 </head>
-
-<body class="antialiased bg-gray-900">
-    <div class="mesh-gradient"></div>
+<body>
     <div id="nav-placeholder"></div>
 
-    <!-- Hero -->
-    <section class="relative pt-32 pb-16 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-        </div>
-        <div class="relative z-10 container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 font-['Orbitron'] text-white">
-                <span class="gradient-text code-prefix glowing-bg">> </span>Mission Log
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
-                Autonomous systems, deep reinforcement learning, and robotics simulations —
-                each project a step toward intelligent machines.
+    <main class="wrap-wide">
+
+        <div class="page-head">
+            <h1>Projects</h1>
+            <p class="lead">
+                Research systems and simulation studies in robot learning, navigation, and control. Most include
+                open code on <a href="https://github.com/promit7473" target="_blank" rel="noopener">GitHub</a>.
             </p>
         </div>
-    </section>
 
-    <!-- Filter -->
-    <section class="py-8 bg-gray-900 border-b border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-3">
-                <button class="filter-btn-new active" data-filter="all">All</button>
-                <button class="filter-btn-new" data-filter="rl">Deep RL</button>
-                <button class="filter-btn-new" data-filter="nav">Navigation</button>
-                <button class="filter-btn-new" data-filter="slam">SLAM</button>
-                <button class="filter-btn-new" data-filter="locomotion">Locomotion</button>
-                <button class="filter-btn-new" data-filter="manipulation">Manipulation</button>
-                <button class="filter-btn-new" data-filter="swarm">Swarm</button>
-            </div>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="rl">Robot learning</button>
+            <button class="filter-btn" data-filter="nav">Navigation</button>
+            <button class="filter-btn" data-filter="slam">SLAM</button>
+            <button class="filter-btn" data-filter="locomotion">Locomotion</button>
+            <button class="filter-btn" data-filter="manipulation">Manipulation</button>
+            <button class="filter-btn" data-filter="control">Control</button>
+            <button class="filter-btn" data-filter="swarm">Swarm</button>
         </div>
-    </section>
 
-    <!-- Projects -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="masonry-grid max-w-7xl mx-auto">
+        <div class="card-grid card-grid-3">
 
-                <!-- 1 · Warehouse Navigation -->
-                <div class="project-hero-card" data-category="rl nav">
-                    <div class="relative">
-                        <video class="project-video" style="height:240px;" autoplay loop muted playsinline>
-                            <source src="assets/gifs/warehouse_nav.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3 flex gap-2">
-                            <span class="tag-cyan">SAC+HER</span>
-                            <span class="tag-cyan">IsaacLab</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="stat-badge">✓ 100% Success</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            Warehouse Autonomous Navigation
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Clearpath Jackal robot trained to navigate a warehouse using Soft Actor-Critic with
-                            Hindsight Experience Replay. 89-ray LiDAR sensing, 1M timestep training on NVIDIA
-                            Isaac Lab. Achieved 100% goal-reach rate with zero collisions.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">SAC</span>
-                            <span class="tag-cyan">HER</span>
-                            <span class="tag-cyan">LiDAR</span>
-                            <span class="tag-cyan">Isaac Lab</span>
-                            <span class="tag-cyan">PyTorch</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="https://github.com/promit7473" target="_blank"
-                               class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                                <i class="fab fa-github mr-1"></i>GitHub
-                            </a>
-                            <span class="text-gray-600 font-['Roboto_Mono'] text-sm">
-                                Reward: 71.8 ± 0.7 &nbsp;|&nbsp; Steps: 596 avg
-                            </span>
-                        </div>
-                    </div>
+            <article class="card" data-category="rl nav" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/warehouse_nav.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>WarehouseBenchmark</h3>
+                    <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal with realistic LiDAR perception and localization noise. Curriculum learning and domain randomization close the sim-to-real gap.</p>
+                    <div class="tags"><span class="tag">Deep RL</span><span class="tag">Isaac Lab</span><span class="tag">ROS2</span><span class="tag">PPO/SAC/TD3</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 2 · LiDAR SLAM -->
-                <div class="project-hero-card" data-category="slam nav">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/lidar_slam.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3">
-                            <span class="tag-cyan">SLAM</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            LiDAR SLAM & Mapping
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Real-time 2D LiDAR-based simultaneous localization and mapping. 72-beam scanner
-                            builds an occupancy map while the robot explores an unknown environment.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">SLAM</span>
-                            <span class="tag-cyan">LiDAR</span>
-                            <span class="tag-cyan">ROS2</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="manipulation" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/robot_arm_ik.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>6-DOF Arm — Sim2Real Manipulation</h3>
+                    <p>A vision-guided pick-and-place pipeline transferred from simulation to physical hardware. Color and shape recognition drive grasp selection; IK solvers and collision-aware trajectory optimization enable real-time, closed-loop control.</p>
+                    <div class="tags"><span class="tag">ROS2</span><span class="tag">MoveIt</span><span class="tag">Gazebo</span><span class="tag">OpenCV</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 3 · A* Path Planning -->
-                <div class="project-hero-card" data-category="nav">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/path_planning.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3">
-                            <span class="tag-cyan">A*</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            A* Path Planning
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Heuristic-based optimal path planning on grid maps with diagonal movement.
-                            Visualizes the full search frontier, shortest path extraction,
-                            and robot traversal in real-time.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">A*</span>
-                            <span class="tag-cyan">RRT</span>
-                            <span class="tag-cyan">Nav2</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="control" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/pid_trajectory.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Custom Quadcopter Flight Controller</h3>
+                    <p>A from-scratch STM32 flight controller with cascaded PID attitude and rate loops and IMU sensor fusion, achieving stable autonomous flight. Low-level firmware handles motor mixing, failsafes, and real-time telemetry.</p>
+                    <div class="tags"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">PID</span><span class="tag">Control</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 4 · ANYmal Locomotion -->
-                <div class="project-hero-card" data-category="rl locomotion">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/anymal_gait.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3 flex gap-2">
-                            <span class="tag-cyan">PPO</span>
-                            <span class="tag-cyan">ANYmal-D</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            ANYmal-D Quadruped Locomotion
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            PPO-trained locomotion policy for ANYmal-D legged robot using NVIDIA Isaac Lab.
-                            12-DOF trot gait learned from scratch — flat and rough terrain traversal.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">PPO</span>
-                            <span class="tag-cyan">Isaac Lab</span>
-                            <span class="tag-cyan">Legged Robotics</span>
-                            <span class="tag-cyan">RSL-RL</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="nav slam" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/lidar_slam.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Autonomous Navigation Stack</h3>
+                    <p>SLAM mapping, AMCL localization, and hybrid A*/DWA planning for dynamic obstacle avoidance, deployed on a real differential-drive robot. Real-time 2D occupancy mapping while exploring an unknown environment.</p>
+                    <div class="tags"><span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">SLAM</span><span class="tag">AMCL</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 6 · Multi-Robot SLAM -->
-                <div class="project-hero-card" data-category="slam nav">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/multi_robot_slam.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3 flex gap-2">
-                            <span class="tag-cyan">Multi-Robot</span>
-                            <span class="tag-cyan">SLAM</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            Multi-Robot Collaborative SLAM
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Two-robot team performing collaborative map merging in ROS2. Each robot independently
-                            builds a local occupancy grid; a merge node fuses them into a unified global map using
-                            pose-graph optimization and occupancy grid alignment.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">ROS2</span>
-                            <span class="tag-cyan">SLAM</span>
-                            <span class="tag-cyan">Map Merging</span>
-                            <span class="tag-cyan">Gazebo</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="rl locomotion" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/anymal_gait.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>ANYmal-D Quadruped Locomotion</h3>
+                    <p>A PPO-trained locomotion policy for the ANYmal-D legged robot in NVIDIA Isaac Lab. A 12-DOF trot gait learned from scratch, traversing flat and rough terrain.</p>
+                    <div class="tags"><span class="tag">PPO</span><span class="tag">Isaac Lab</span><span class="tag">Legged</span><span class="tag">RSL-RL</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 5 · Lunar Lander RL -->
-                <div class="project-hero-card" data-category="rl">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/lunar_lander.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3">
-                            <span class="tag-cyan">PPO</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="stat-badge">✓ Solved</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            Lunar Lander Deep RL
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Proximal Policy Optimization agent learning soft-landing on a lunar surface.
-                            Trained with stable-baselines3 — reward curve shows convergence from
-                            random exploration to precision control.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">PPO</span>
-                            <span class="tag-cyan">Gymnasium</span>
-                            <span class="tag-cyan">SB3</span>
-                            <span class="tag-cyan">PyTorch</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="slam nav" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/multi_robot_slam.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Multi-Robot Collaborative SLAM</h3>
+                    <p>A two-robot team performing collaborative map merging in ROS2. Each robot builds a local occupancy grid; a merge node fuses them into a unified global map via pose-graph optimization and grid alignment.</p>
+                    <div class="tags"><span class="tag">ROS2</span><span class="tag">SLAM</span><span class="tag">Map merging</span><span class="tag">Gazebo</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 7 · Robot Arm IK -->
-                <div class="project-hero-card" data-category="manipulation">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/robot_arm_ik.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3 flex gap-2">
-                            <span class="tag-cyan">6-DOF</span>
-                            <span class="tag-cyan">IK</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            6-DOF Arm Inverse Kinematics
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Analytical inverse kinematics solver for a 6-DOF robotic arm. Visualizes
-                            joint angles, workspace reachability, and end-effector trajectory tracking
-                            for pick-and-place operations.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">IK</span>
-                            <span class="tag-cyan">MoveIt2</span>
-                            <span class="tag-cyan">Python</span>
-                            <span class="tag-cyan">NumPy</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="rl" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/lunar_lander.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Lunar Lander — Deep RL</h3>
+                    <p>A PPO agent learning soft-landing control, trained with Stable-Baselines3. The reward curve traces convergence from random exploration to precise, fuel-efficient landings.</p>
+                    <div class="tags"><span class="tag">PPO</span><span class="tag">Gymnasium</span><span class="tag">SB3</span><span class="tag">PyTorch</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 8 · Swarm Robotics -->
-                <div class="project-hero-card" data-category="swarm">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/swarm_robotics.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3">
-                            <span class="tag-cyan">Flocking</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            Swarm Robotics — Reynolds Flocking
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            50-agent swarm implementing Reynolds' three rules: separation, alignment, and
-                            cohesion. Emergent collective behavior navigates around obstacles while
-                            maintaining formation.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">Swarm</span>
-                            <span class="tag-cyan">Multi-Agent</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="nav" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/path_planning.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>A* Path Planning</h3>
+                    <p>Heuristic optimal path planning on grid maps with diagonal movement — visualizing the search frontier, shortest-path extraction, and robot traversal in real time.</p>
+                    <div class="tags"><span class="tag">A*</span><span class="tag">Planning</span><span class="tag">Python</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 9 · PID Trajectory -->
-                <div class="project-hero-card" data-category="nav">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/pid_trajectory.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3">
-                            <span class="tag-cyan">PID</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            PID Controller — Trajectory Tracking
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Differential drive robot following a figure-eight reference trajectory using
-                            a tuned PID controller. Shows real-time error plots and heading correction
-                            alongside the path.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">PID</span>
-                            <span class="tag-cyan">Control</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="nav" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/rrt_star.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>RRT* vs A* — Optimal Planning</h3>
+                    <p>A side-by-side comparison of RRT* (asymptotically optimal sampling-based planning) against A* on identical maps, showing path-cost convergence and rewiring as the tree grows.</p>
+                    <div class="tags"><span class="tag">RRT*</span><span class="tag">A*</span><span class="tag">Python</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-                <!-- 10 · RRT* -->
-                <div class="project-hero-card" data-category="nav">
-                    <div class="relative">
-                        <video class="project-video" autoplay loop muted playsinline>
-                            <source src="assets/gifs/rrt_star.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-3 left-3 flex gap-2">
-                            <span class="tag-cyan">RRT*</span>
-                            <span class="tag-cyan">A*</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="stat-badge">Optimal</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">
-                            RRT* vs A* — Optimal Planning
-                        </h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm leading-relaxed">
-                            Side-by-side comparison of RRT* (asymptotically optimal sampling-based planner)
-                            vs A* on identical maps. Shows path cost convergence and rewiring behavior
-                            as tree nodes increase.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="tag-cyan">RRT*</span>
-                            <span class="tag-cyan">A*</span>
-                            <span class="tag-cyan">Python</span>
-                        </div>
-                        <a href="https://github.com/promit7473" target="_blank"
-                           class="gradient-text font-['Roboto_Mono'] font-bold text-sm hover:opacity-80">
-                            <i class="fab fa-github mr-1"></i>GitHub
-                        </a>
-                    </div>
+            <article class="card" data-category="swarm" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/swarm_robotics.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Swarm Robotics — Reynolds Flocking</h3>
+                    <p>A 50-agent swarm implementing Reynolds' three rules — separation, alignment, cohesion. Emergent collective behavior navigates around obstacles while holding formation.</p>
+                    <div class="tags"><span class="tag">Swarm</span><span class="tag">Multi-agent</span><span class="tag">Python</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
+            </article>
 
-            </div>
         </div>
-    </section>
+    </main>
 
     <div id="footer-placeholder"></div>
     <script src="components.js"></script>
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const btns  = document.querySelectorAll('.filter-btn-new');
-            const cards = document.querySelectorAll('.project-hero-card');
-
-            btns.forEach(btn => {
+            const btns  = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card[data-category]');
+            btns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    btns.forEach(b => b.classList.remove('active'));
+                    btns.forEach(function (b) { b.classList.remove('active'); });
                     this.classList.add('active');
                     const f = this.getAttribute('data-filter');
-                    cards.forEach(card => {
+                    cards.forEach(function (card) {
                         const cats = card.getAttribute('data-category') || '';
-                        card.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+                        card.style.display = (f === 'all' || cats.split(' ').indexOf(f) !== -1) ? '' : 'none';
                     });
                 });
             });

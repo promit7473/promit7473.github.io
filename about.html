@@ -1,241 +1,207 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Meraj Hossain Promit</title>
-    <meta name="description" content="Learn more about Meraj Hossain Promit - Robotics Engineer, researcher, and developer passionate about autonomous systems.">
+    <title>About — Meraj Hossain Promit</title>
+    <meta name="description" content="Background, research experience, and education of Meraj Hossain Promit — robotics researcher in reinforcement learning and Sim2Real robot learning.">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Academicons for academic icons -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="antialiased bg-gray-900">
-    <!-- Mesh Gradient Background -->
-    <div class="mesh-gradient"></div>
-
-    <!-- Navigation (injected by components.js) -->
+<body>
     <div id="nav-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
+    <main class="wrap">
+
+        <div class="page-head">
+            <h1>About</h1>
+            <p class="lead">
+                A summary of my background, research, and training. For the full record, see my
+                <a href="cv/Meraj_Hossain_Promit_CV.pdf" target="_blank" rel="noopener">CV&nbsp;(PDF)</a>.
+            </p>
         </div>
-        
-        <div class="relative z-10 container mx-auto px-6">
-            <div class="text-center">
-                 <h1 class="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron'] text-white">
-                     <span class="gradient-text code-prefix glowing-bg">> </span>Mission Profile
-                 </h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto font-['Roboto_Mono']">
-                    Discover the journey, expertise, and vision behind my work in robotics and autonomous systems.
+
+        <!-- Bio -->
+        <section class="section" style="border-top:none;padding-top:8px">
+            <div class="prose">
+                <p>
+                    I am a final-year B.Sc. student in Robotics &amp; Mechatronics Engineering at the University of Dhaka,
+                    working on reinforcement learning for locomotion, optimization-based control of dynamical systems, and
+                    Sim2Real robot learning. As an undergraduate researcher in the MARVEL Lab, I am the lead author on deep
+                    RL controllers that recover rover mobility in deformable Mars regolith — learning locomotion policies
+                    where classical control fails under granular slip.
+                </p>
+                <p>
+                    My interests sit at the meeting point of <strong>safe and preference-driven reinforcement learning</strong>,
+                    <strong>learning-based control</strong>, and <strong>neuro-robotics for movement</strong>. Alongside research,
+                    I build real systems — from STM32 flight controllers to ROS2 navigation stacks — and I care about closing
+                    the gap between what a policy learns in simulation and how it behaves on hardware.
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Content -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto">
-
-                <!-- Photo -->
-                <div class="profile-img flex-shrink-0">
-                    <img src="assets/images/promit23.jpg"
-                         alt="Meraj Hossain Promit"
-                         class="w-64 h-64 object-cover rounded-full border-2 border-cyan-400 shadow-2xl relative z-10">
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="entry">
+                <div class="when">2022 — 2026</div>
+                <div class="what">
+                    <h3>B.Sc. in Robotics &amp; Mechatronics Engineering</h3>
+                    <div class="org">University of Dhaka</div>
+                    <p>Fourth year (8th of 8 semesters), ongoing. CGPA 3.50 / 4.00. Expected August 2026.</p>
                 </div>
-
-                <!-- Bio -->
-                <div>
-                    <h2 class="text-3xl font-bold mb-6 text-white font-['Orbitron']">
-                        <span class="gradient-text code-prefix glowing-bg">> </span>Who I Am
-                    </h2>
-                    <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
-                        A passionate Robotics and Mechatronics Engineering student at the University of Dhaka, driven by the intersection of hardware and intelligent software — building autonomous systems that interact with the physical world.
-                    </p>
-                    <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
-                        My focus is mobile robotics: ROS2, Gazebo, navigation, perception, and control. I also actively research Deep Reinforcement Learning within ROS2, using platforms like Isaac Sim.
-                    </p>
-                    <p class="text-gray-300 mb-6 font-['Roboto_Mono'] leading-relaxed">
-                        Strong advocate for open-source contributions and collaborative learning.
-                    </p>
-                    <!-- Quick stats -->
-                    <div class="flex flex-wrap gap-4">
-                        <div class="bg-gray-800 border border-cyan-800 rounded-lg px-4 py-3 text-center">
-                            <div class="text-2xl font-bold gradient-text font-['Orbitron']">3+</div>
-                            <div class="text-gray-400 text-xs font-['Roboto_Mono']">Years in Robotics</div>
-                        </div>
-                        <div class="bg-gray-800 border border-cyan-800 rounded-lg px-4 py-3 text-center">
-                            <div class="text-2xl font-bold gradient-text font-['Orbitron']">10+</div>
-                            <div class="text-gray-400 text-xs font-['Roboto_Mono']">Projects</div>
-                        </div>
-                        <div class="bg-gray-800 border border-cyan-800 rounded-lg px-4 py-3 text-center">
-                            <div class="text-2xl font-bold gradient-text font-['Orbitron']">ROS2</div>
-                            <div class="text-gray-400 text-xs font-['Roboto_Mono']">Primary Stack</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
+            <div class="entry">
+                <div class="when">2019 — 2021</div>
+                <div class="what">
+                    <h3>Higher Secondary Certificate</h3>
+                    <div class="org">Sylhet MC College</div>
+                    <p>Sylhet, Bangladesh. Board rank 62 (Sylhet Board, 2021).</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Skills Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                 <span class="gradient-text code-prefix glowing-bg">> </span>Technical Arsenal
-             </h2>
+        <!-- Research experience -->
+        <section class="section">
+            <h2 class="section-title">Research experience</h2>
+            <div class="entry">
+                <div class="when">Apr 2025 — Present</div>
+                <div class="what">
+                    <h3>Undergraduate Researcher — MARVEL Lab</h3>
+                    <div class="org">University of Dhaka &middot; Supervisor: Dr. Sejuti Rahman</div>
+                    <p>
+                        Lead author on DRL controllers that recover rover mobility in deformable Mars regolith. Designed
+                        yaw-projected reward shaping with entrapment-gated slip penalties (a safety-style constraint) and
+                        built large-scale, multi-GPU training and evaluation pipelines.
+                    </p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Aug 2025 — Present</div>
+                <div class="what">
+                    <h3>Research Assistant (Remote)</h3>
+                    <div class="org">University of Texas Rio Grande Valley</div>
+                    <p>
+                        Building a digital-twin warehouse benchmark to evaluate Deep RL navigation policies (PPO, SAC, TD3)
+                        under realistic perception and localization noise.
+                    </p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Jan — Dec 2024</div>
+                <div class="what">
+                    <h3>Undergraduate Research Student</h3>
+                    <div class="org">North South University &middot; Supervisor: Dr. Mahdy Rahman Chowdhury</div>
+                    <p>
+                        Studied melanoma segmentation from pseudo-annotations under limited labels
+                        (weakly-supervised computer vision).
+                    </p>
+                </div>
+            </div>
+        </section>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="skill-card p-6">
-                    <div class="gradient-text text-3xl mb-4">
-                        <i class="fas fa-code icon-glow"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">Programming</h3>
-                    <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Python (Advanced)</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>C++ (Intermediate)</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Bash/Shell</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>JavaScript</li>
+        <!-- Leadership & engineering -->
+        <section class="section">
+            <h2 class="section-title">Leadership &amp; engineering</h2>
+            <div class="entry">
+                <div class="when">Jul 2026 — Present</div>
+                <div class="what">
+                    <h3>Embedded Engineer (Part-time)</h3>
+                    <div class="org">Intelis Solution Ltd.</div>
+                    <p>STM32-based autonomous drone platforms for maritime monitoring — robust firmware, hardened telemetry, weather-resistant sensing.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Jun 2025 — Present</div>
+                <div class="what">
+                    <h3>ROS Development Intern</h3>
+                    <div class="org">Karthikesh Robotics Pvt. Ltd. — Chennai (Remote)</div>
+                    <p>Developing autonomous robots for industrial and educational use with ROS2 navigation and perception stacks.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">May 2025 — Present</div>
+                <div class="what">
+                    <h3>Project Lead — Mohakashchari Rover Team</h3>
+                    <div class="org">Dhaka University</div>
+                    <p>Proposed the concept at IEEE SB DU; leading design, frame integration, and fundraising for a competition-ready rover platform.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">2023 — Present</div>
+                <div class="what">
+                    <h3>Chair, IEEE Robotics &amp; Automation Society</h3>
+                    <div class="org">University of Dhaka (Chair 2025–present; Student Activity Secretary 2023–2024)</div>
+                    <p>Lead chapter activities, events, and research collaborations promoting robotics and automation among students.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical skills</h2>
+            <div class="skills-grid">
+                <div class="skill-col">
+                    <h3>Reinforcement &amp; robot learning</h3>
+                    <ul>
+                        <li>PyTorch, NVIDIA Isaac Lab</li>
+                        <li>PPO · SAC · TD3</li>
+                        <li>Reward shaping, domain randomization</li>
+                        <li>Curriculum learning, Sim2Real</li>
                     </ul>
                 </div>
-
-                <div class="skill-card p-6">
-                    <div class="gradient-text text-3xl mb-4">
-                        <i class="fas fa-robot icon-glow"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">Robotics</h3>
-                    <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>ROS2</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Gazebo</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>MoveIt</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>SLAM</li>
+                <div class="skill-col">
+                    <h3>Robotics &amp; simulation</h3>
+                    <ul>
+                        <li>ROS2, Gazebo</li>
+                        <li>Nav2, MoveIt</li>
+                        <li>SLAM, OpenCV</li>
                     </ul>
                 </div>
-
-                <div class="skill-card p-6">
-                    <div class="gradient-text text-3xl mb-4">
-                        <i class="fas fa-brain icon-glow"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white font-['Orbitron']">AI/ML</h3>
-                    <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Machine Learning</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Deep Learning</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Deep RL</li>
-                        <li><i class="fas fa-check text-cyan-400 mr-2"></i>Computer Vision</li>
+                <div class="skill-col">
+                    <h3>Programming &amp; systems</h3>
+                    <ul>
+                        <li>Python, C / C++ (learning CUDA)</li>
+                        <li>Bash, Git</li>
+                        <li>Linux — Ubuntu, Arch, Kali</li>
+                    </ul>
+                </div>
+                <div class="skill-col">
+                    <h3>Hardware &amp; CAD</h3>
+                    <ul>
+                        <li>STM32, Raspberry Pi</li>
+                        <li>Fusion 360, ANSYS</li>
+                        <li>PCB design</li>
+                    </ul>
+                </div>
+                <div class="skill-col">
+                    <h3>Awards</h3>
+                    <ul>
+                        <li>8th place, DU AI Challenge (2025)</li>
+                        <li>4th, BD Astronomy &amp; Astrophysics Olympiad (2021)</li>
+                        <li>Rank 62, HSC 2021 (Sylhet Board)</li>
+                    </ul>
+                </div>
+                <div class="skill-col">
+                    <h3>Selected coursework</h3>
+                    <ul>
+                        <li>Artificial Intelligence; Intelligent Systems &amp; Robotics</li>
+                        <li>Advanced Robotics; Control Systems Design</li>
+                        <li>Robot Vision &amp; Image Processing; DSP</li>
+                        <li>Linear Algebra; Probability &amp; Statistics</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Education Timeline -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                 <span class="gradient-text code-prefix glowing-bg">> </span>Education Timeline
-             </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="relative">
-                    <!-- Timeline line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-cyan-400"></div>
-                    
-                    <!-- Timeline items -->
-                    <div class="relative mb-12">
-                        <div class="flex items-center">
-                            <div class="w-1/2 text-right pr-8">
-                                <div class="education-card p-6">
-                                    <h3 class="text-xl font-bold text-white font-['Orbitron']">BSc. Robotics & Mechatronics</h3>
-                                    <p class="gradient-text font-['Roboto_Mono']">University of Dhaka</p>
-                                    <p class="text-gray-400 font-['Roboto_Mono']">2022 - Present</p>
-                                </div>
-                            </div>
-                            <div class="timeline-dot"></div>
-                            <div class="w-1/2"></div>
-                        </div>
-                    </div>
+    </main>
 
-                    <div class="relative mb-12">
-                        <div class="flex items-center">
-                            <div class="w-1/2"></div>
-                            <div class="timeline-dot"></div>
-                            <div class="w-1/2 pl-8">
-                                <div class="education-card p-6">
-                                    <h3 class="text-xl font-bold text-white font-['Orbitron']">Higher Secondary Certificate</h3>
-                                    <p class="gradient-text font-['Roboto_Mono']">Murari Chand College</p>
-                                    <p class="text-gray-400 font-['Roboto_Mono']">2019 - 2022</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Interests -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                 <span class="gradient-text code-prefix glowing-bg">> </span>Research Focus Areas
-             </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="skill-card p-6 text-center">
-                    <div class="text-4xl gradient-text mb-4">
-                        <i class="fas fa-route icon-glow"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Autonomous Navigation</h3>
-                    <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Path planning and obstacle avoidance algorithms</p>
-                </div>
-
-                <div class="skill-card p-6 text-center">
-                    <div class="text-4xl gradient-text mb-4">
-                        <i class="fas fa-infinity icon-glow"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Deep Reinforcement Learning</h3>
-                    <p class="text-gray-400 font-['Roboto_Mono'] text-sm">RL agents for robotic control and decision making</p>
-                </div>
-
-                <div class="skill-card p-6 text-center">
-                    <div class="text-4xl gradient-text mb-4">
-                        <i class="fas fa-eye icon-glow"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Computer Vision</h3>
-                    <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Object detection and tracking for robotics</p>
-                </div>
-
-                <div class="skill-card p-6 text-center">
-                    <div class="text-4xl gradient-text mb-4">
-                        <i class="fas fa-handshake icon-glow"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white font-['Orbitron'] mb-2">Human-Robot Interaction</h3>
-                    <p class="text-gray-400 font-['Roboto_Mono'] text-sm">Safe and intuitive HRI systems</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (injected by components.js) -->
     <div id="footer-placeholder"></div>
-
     <script src="components.js"></script>
     <script src="script.js"></script>
 </body>

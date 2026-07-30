@@ -1,191 +1,177 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meraj Hossain Promit | Robotics Engineer</title>
-    <meta name="description" content="Meraj Hossain Promit - A portfolio blending a NASA-inspired tech aesthetic with robotics engineering projects.">
-    <meta name="keywords" content="Robotics, NASA, Aerospace, Software Engineering, ROS2, Machine Learning, Deep Learning, Isaac Sim, Autonomous Systems, Portfolio, Developer">
+    <title>Meraj Hossain Promit</title>
+    <meta name="description" content="Meraj Hossain Promit — robotics and mechatronics researcher working on reinforcement learning for locomotion, learning-based control, and Sim2Real robot learning. Prospective PhD student.">
+    <meta name="keywords" content="reinforcement learning, robot learning, Sim2Real, locomotion, safe RL, ROS2, Isaac Lab, PhD applicant, University of Dhaka, MARVEL Lab">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Academicons for academic icons -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="antialiased">
-    <!-- Mesh Gradient Background -->
-    <div class="mesh-gradient"></div>
-
-    <!-- Navigation (injected by components.js) -->
+<body>
     <div id="nav-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <!-- Animated particles -->
-            <div class="particles absolute inset-0">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+    <main class="wrap-wide">
+      <div class="home-shell">
+
+        <!-- Sticky identity rail -->
+        <aside class="rail">
+            <img src="assets/images/promit.jpg" alt="Meraj Hossain Promit" class="rail-photo">
+            <h1>Meraj Hossain Promit</h1>
+            <div class="role">Robot learning · RL · Sim2Real</div>
+            <div class="affil">Undergraduate Researcher<br>MARVEL Lab, University of Dhaka</div>
+            <div class="seeking">Applying for PhD / MS positions in robot learning and physically grounded RL.</div>
+            <div class="links-row">
+                <a class="link-chip" href="mailto:merajhossainpromit@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a class="link-chip" href="cv/Meraj_Hossain_Promit_CV.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i> CV</a>
+                <a class="link-chip" href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a class="link-chip" href="https://linkedin.com/in/mhpromit7473" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <!-- Add when available:
+                <a class="link-chip" href="GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener"><i class="ai ai-google-scholar"></i> Scholar</a>
+                <a class="link-chip" href="ORCID_URL" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
+                -->
             </div>
-        </div>
+        </aside>
 
-        <!-- Hero Content -->
-        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24 md:pt-24">
-             <div class="mb-8 profile-img">
-                 <img src="assets/images/promit.jpg"
-                      alt="Meraj Hossain Promit"
-                      class="w-40 h-40 mx-auto rounded-full shadow-2xl relative z-10">
-             </div>
-            
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-['Orbitron'] text-white">
-                Meraj Hossain Promit
-            </h1>
-            
-             <div class="text-xl md:text-2xl mb-6 font-['Roboto_Mono']">
-                 <span class="text-cyan-400 icon-glow">> </span>
-                 <span id="dynamic-text" class="text-white">Robotics System Researcher</span>
-             </div>
-            
-            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto font-['Roboto_Mono']">
-                Building intelligent autonomous systems that bridge the gap between code and the physical world. 
-                Specializing in ROS2, Deep Reinforcement Learning, and Next-Gen Robotics.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="projects.html" class="btn-primary relative z-10">
-                    <i class="fas fa-rocket mr-2"></i> View Projects
-                </a>
-                <a href="blog.html" class="btn-secondary relative z-10">
-                    <i class="fas fa-blog mr-2"></i> Read Blog
-                </a>
+        <!-- Main content column -->
+        <div class="home-main">
+
+        <!-- Bio / research -->
+        <section class="section">
+            <h2 class="section-title">Research</h2>
+            <div class="prose">
+                <p>
+                    I am a final-year Robotics &amp; Mechatronics Engineering student at the University of Dhaka. My
+                    research builds adaptive neural controllers that let robots keep moving under uncertain, deformable
+                    contact — currently, learning policies that recover a Mars rover's mobility when its wheels become
+                    entrapped in granular terrain, where classical control fails under slip.
+                </p>
+                <p>
+                    Methodologically I focus on reward shaping with safety-gated constraints — for instance, yaw-projected
+                    rewards with entrapment-gated slip penalties — and on Sim2Real transfer through domain randomization
+                    and curriculum learning. More broadly, I am drawn to <strong>safe and preference-driven reinforcement
+                    learning</strong>, <strong>learning-based control</strong>, and <strong>neuro-robotics for movement</strong>:
+                    robots that move robustly in the physical world and learn from interaction in safe, sample-efficient,
+                    human-aligned ways.
+                </p>
             </div>
-        </div>
+        </section>
 
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down text-white text-2xl icon-glow"></i>
-        </div>
-    </section>
+        <!-- News -->
+        <section class="section">
+            <h2 class="section-title">News</h2>
+            <ul class="news">
+                <li><span class="date">Jul 2026</span><span class="item">Joined <strong>Intelis Solution Ltd.</strong> (part-time) as an Embedded Engineer, building STM32-based autonomous drone platforms for maritime monitoring.</span></li>
+                <li><span class="date">2026</span><span class="item">Manuscript <em>“Adaptive Neural Control for Mars Rover Wheel Entrapment Recovery in Granular Terrain”</em> in preparation (lead author).</span></li>
+                <li><span class="date">Aug 2025</span><span class="item">Started as a remote <strong>Research Assistant</strong> at the University of Texas Rio Grande Valley, building a digital-twin warehouse benchmark for Deep RL navigation.</span></li>
+                <li><span class="date">Jun 2025</span><span class="item">Began a ROS development internship at <strong>Karthikesh Robotics</strong> (Chennai, remote).</span></li>
+                <li><span class="date">May 2025</span><span class="item">Proposed and now lead the <strong>Mohakashchari</strong> Dhaka University Rover Team.</span></li>
+                <li><span class="date">Apr 2025</span><span class="item">Joined the <strong>MARVEL Lab</strong> (Dr. Sejuti Rahman) as an Undergraduate Researcher on RL for Mars rover mobility.</span></li>
+                <li><span class="date">2025</span><span class="item">Elected <strong>Chair</strong> of the IEEE Robotics &amp; Automation Society, University of Dhaka.</span></li>
+            </ul>
+        </section>
 
-    <!-- Featured Projects Preview -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                 <span class="gradient-text code-prefix glowing-bg">> </span>Featured Missions
-             </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="project-card">
-                    <div class="img-overlay">
-                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+        <!-- Publications -->
+        <section class="section">
+            <h2 class="section-title">Publications</h2>
+            <div class="pub" data-reveal>
+                <div class="pub-thumb pub-thumb--ph"><i class="fas fa-mountain-sun"></i><span>2026 · in&nbsp;prep</span></div>
+                <div>
+                    <div class="pub-title">Adaptive Neural Control for Mars Rover Wheel Entrapment Recovery in Granular Terrain</div>
+                    <div class="pub-authors"><span class="me">Meraj Hossain Promit</span>, Chandak Chakma, Sejuti Rahman, and Md. Jubair Ahmed Sourov</div>
+                    <div class="pub-venue">Manuscript in preparation, 2026</div>
+                    <p class="small muted" style="margin-bottom:8px">
+                        Wheel entrapment in loose regolith has crippled real planetary missions (e.g., NASA's Spirit rover).
+                        We cast recovery as a reinforcement-learning control problem in deformable granular dynamics, learning
+                        policies that exploit terrain feedback to regain mobility — bridging RL, locomotion, and safe control
+                        under uncertainty.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected projects -->
+        <section class="section">
+            <h2 class="section-title">Selected projects</h2>
+            <div class="card-grid">
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
                             <source src="assets/gifs/warehouse_nav.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">SAC+HER</span>
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">Isaac Lab</span>
+                    <div class="card-body">
+                        <h3>WarehouseBenchmark</h3>
+                        <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal under realistic LiDAR and localization noise.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">Deep RL · Isaac Lab · ROS2</span>
+                            <a href="projects.html">Details →</a>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">Warehouse Autonomous Navigation</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">Clearpath Jackal trained with SAC+HER — 100% goal-reach rate, zero collisions over 1M timesteps.</p>
-                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
-                            View Details <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="img-overlay">
-                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
-                            <source src="assets/gifs/anymal_gait.mp4" type="video/mp4">
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/robot_arm_ik.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">PPO</span>
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">ANYmal-D</span>
+                    <div class="card-body">
+                        <h3>6-DOF Arm — Sim2Real Manipulation</h3>
+                        <p>A vision-guided pick-and-place pipeline transferred from simulation to physical hardware, with IK solvers and collision-aware trajectory optimization for closed-loop grasping.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">ROS2 · MoveIt · OpenCV</span>
+                            <a href="projects.html">Details →</a>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">ANYmal-D Quadruped Locomotion</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">PPO-trained 12-DOF trot gait on NVIDIA Isaac Lab — flat and rough terrain traversal from scratch.</p>
-                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
-                            View Details <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="img-overlay">
-                        <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
                             <source src="assets/gifs/lidar_slam.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">SLAM</span>
-                            <span class="bg-cyan-900 bg-opacity-50 text-cyan-400 px-2 py-1 rounded text-xs font-['Roboto_Mono'] border border-cyan-800">ROS2</span>
+                    <div class="card-body">
+                        <h3>Autonomous Navigation Stack</h3>
+                        <p>SLAM mapping, AMCL localization, and hybrid A*/DWA planning for dynamic obstacle avoidance, deployed on a real differential-drive robot.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">ROS2 · Nav2 · SLAM</span>
+                            <a href="projects.html">Details →</a>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-white font-['Orbitron']">LiDAR SLAM & Mapping</h3>
-                        <p class="text-gray-400 mb-4 font-['Roboto_Mono'] text-sm">Real-time 2D occupancy map built with a 72-beam LiDAR while exploring an unknown environment.</p>
-                        <a href="projects.html" class="gradient-text font-['Roboto_Mono'] font-bold text-sm">
-                            View Details <i class="fas fa-arrow-right ml-1"></i>
-                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                </article>
 
-     <!-- Latest Blog Preview -->
-     <section class="py-20">
-         <div class="container mx-auto px-6">
-             <h2 class="text-4xl font-bold text-center mb-12 font-['Orbitron'] text-white">
-                 <span class="gradient-text code-prefix glowing-bg">> </span>Latest Transmission
-             </h2>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="blog-post p-8">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-calendar-alt gradient-text mr-2"></i>
-                        <span class="text-gray-400 font-['Roboto_Mono']">March 15, 2024</span>
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/pid_trajectory.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-white font-['Orbitron']">Deep Reinforcement Learning in ROS2: A Complete Guide</h3>
-                    <p class="text-gray-300 mb-6 font-['Roboto_Mono']">
-                        Exploring the integration of Deep Reinforcement Learning algorithms with ROS2 for creating intelligent robotic systems.
-                        This comprehensive guide covers everything from basic concepts to advanced implementations...
-                    </p>
-                    <a href="blog/deep-rl-ros2-guide.html" class="inline-flex items-center gradient-text hover:text-red-300 font-['Roboto_Mono'] font-bold">
-                        Read Full Article <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
+                    <div class="card-body">
+                        <h3>Custom Quadcopter Flight Controller</h3>
+                        <p>A from-scratch STM32 flight controller with cascaded PID attitude/rate loops and IMU sensor fusion, achieving stable autonomous flight.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">STM32 · Embedded C · Control</span>
+                            <a href="projects.html">Details →</a>
+                        </div>
+                    </div>
+                </article>
             </div>
-        </div>
-     </section>
+            <p style="margin-top:22px"><a href="projects.html">See all projects →</a></p>
+        </section>
 
-    <!-- Footer (injected by components.js) -->
+        </div><!-- /home-main -->
+      </div><!-- /home-shell -->
+    </main>
+
     <div id="footer-placeholder"></div>
-
     <script src="components.js"></script>
     <script src="script.js"></script>
 </body>

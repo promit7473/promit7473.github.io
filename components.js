@@ -53,6 +53,7 @@
                 ${desktop}
                 <a href="${sub}${CV_PATH}" target="_blank" rel="noopener" class="link-chip"><i class="fas fa-file-lines"></i> CV</a>
             </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
             <button class="nav-toggle" id="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
         </div>
         <div id="mobile-menu">
@@ -63,6 +64,25 @@
 
         placeholder.outerHTML = nav;
         initMobileMenu();
+        initThemeToggle();
+    }
+
+    function initThemeToggle() {
+        const root = document.documentElement;
+        const btn  = document.getElementById('theme-toggle');
+        if (!btn) return;
+        const icon = btn.querySelector('i');
+
+        function current() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+        function syncIcon() { if (icon) icon.className = current() === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+
+        syncIcon();
+        btn.addEventListener('click', function () {
+            const next = current() === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            syncIcon();
+        });
     }
 
     function injectFooter() {

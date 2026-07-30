@@ -105,10 +105,10 @@
                         <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 mb-6">
                             <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">Model Size vs. Speed on Jetson Orin</h4>
                             <ul class="space-y-2 text-gray-300 font-['Roboto_Mono']">
-                                <li>• <strong>YOLOv8n:</strong> ~120 FPS — suitable for high-frequency control loops</li>
-                                <li>• <strong>YOLOv8s:</strong> ~85 FPS — good balance for mobile robots</li>
-                                <li>• <strong>YOLOv8m:</strong> ~45 FPS — preferred for manipulation arms with slower cycles</li>
-                                <li>• <strong>YOLOv8l/x:</strong> &lt;25 FPS — use only when accuracy is paramount and latency is acceptable</li>
+                                <li>• <strong>YOLOv8n:</strong> ~120 FPS, suitable for high-frequency control loops</li>
+                                <li>• <strong>YOLOv8s:</strong> ~85 FPS, good balance for mobile robots</li>
+                                <li>• <strong>YOLOv8m:</strong> ~45 FPS, preferred for manipulation arms with slower cycles</li>
+                                <li>• <strong>YOLOv8l/x:</strong> &lt;25 FPS, use only when accuracy is paramount and latency is acceptable</li>
                             </ul>
                         </div>
                         <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
@@ -408,7 +408,7 @@ results = trt_model('image.jpg')  # now runs via TensorRT</code></pre>
                             Deploying YOLOv8 in a ROS2 node gives your robot a powerful, real-time perception backbone. With depth integration and TensorRT optimization you can run multiple detection pipelines on a single edge board while still publishing results fast enough for reactive behaviors.
                         </p>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
-                            The next step is fine-tuning on domain-specific data — industrial parts, household objects, or outdoor pedestrians — so the model's class vocabulary matches exactly what your robot needs to recognize.
+                            The next step is fine-tuning on domain-specific data, industrial parts, household objects, or outdoor pedestrians, so the model's class vocabulary matches exactly what your robot needs to recognize.
                         </p>
                         <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
                             <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">

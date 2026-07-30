@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Meraj Hossain Promit</title>
+    <title>Contact · Meraj Hossain Promit</title>
     <meta name="description" content="Get in touch with Meraj Hossain Promit regarding PhD / research positions, collaborations, and robot-learning work.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@
                         <div class="ic"><i class="fas fa-location-dot"></i></div>
                         <div>
                             <div class="label">Location</div>
-                            <div class="val muted">Dhaka, Bangladesh — open to relocation</div>
+                            <div class="val muted">Dhaka, Bangladesh, open to relocation</div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                 const message = document.getElementById('message').value.trim();
                 const body = 'From: ' + name + ' (' + email + ')\n\n' + message;
                 const mailto = 'mailto:merajhossainpromit@gmail.com'
-                    + '?subject=' + encodeURIComponent(subject + ' — ' + name)
+                    + '?subject=' + encodeURIComponent(subject + ', ' + name)
                     + '&body=' + encodeURIComponent(body);
                 window.location.href = mailto;
                 msg.textContent = "Opening your email client… if nothing happens, email merajhossainpromit@gmail.com directly.";

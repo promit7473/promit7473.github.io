@@ -478,6 +478,7 @@ section { padding: 0; }
 }
 
 /* Prose helper */
+.prose { max-width: 68ch; }   /* comfortable reading measure -> natural right margin */
 .prose p { margin-bottom: 16px; }
 .prose h2 { font-size: 1.35rem; margin: 32px 0 14px; }
 .prose ul { margin: 0 0 16px 1.2em; }

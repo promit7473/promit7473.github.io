@@ -72,7 +72,7 @@
                             <span class="text-cyan-400">></span> Introduction
                         </h2>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
-                            As robots move out of caged factory cells and into shared workspaces alongside humans, safety transitions from a hardware feature into a software discipline. A collaborative robot (cobot) must perceive human presence, reason about proximity risks in real time, and degrade its behavior gracefully — slowing, stopping, or re-routing — before any potential contact occurs.
+                            As robots move out of caged factory cells and into shared workspaces alongside humans, safety transitions from a hardware feature into a software discipline. A collaborative robot (cobot) must perceive human presence, reason about proximity risks in real time, and degrade its behavior gracefully, slowing, stopping, or re-routing, before any potential contact occurs.
                         </p>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
                             In this guide we build a complete ROS2-based safety layer: detecting humans with a depth camera, defining configurable safety zones, enforcing speed limits through a ROS2 safety node, and validating the system against ISO/TS 15066 speed-and-separation monitoring guidelines.
@@ -118,7 +118,7 @@
                         </div>
                         <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
                             <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">SSM Minimum Protective Distance Formula</h4>
-                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code"># ISO/TS 15066 Equation 3 — Minimum Protective Distance
+                            <pre class="text-green-400 font-['Roboto_Mono'] text-sm overflow-x-auto"><code"># ISO/TS 15066 Equation 3, Minimum Protective Distance
 # S_p = (v_h + v_r) * (t_r + t_b) + C + Z_d + Z_r
 #
 # where:
@@ -349,7 +349,7 @@ class SafetyFilterNode(Node):
             # Sensor timeout: treat as STOP
             self.current_zone = SafetyZone.STOP
             self.get_logger().warn(
-                f'Human sensor timeout ({elapsed:.2f}s) — forcing STOP')
+                f'Human sensor timeout ({elapsed:.2f}s), forcing STOP')
 
 def main():
     rclpy.init()
@@ -366,7 +366,7 @@ def main():
                             <span class="text-cyan-400">></span> Collaborative Robot Programming
                         </h2>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed">
-                            Beyond reactive safety, good cobot programming designs workflows where human and robot tasks are interleaved in a way that minimises risk from the start — rather than bolting safety on afterwards.
+                            Beyond reactive safety, good cobot programming designs workflows where human and robot tasks are interleaved in a way that minimises risk from the start, rather than bolting safety on afterwards.
                         </p>
                         <div class="space-y-4 mb-6">
                             <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
@@ -486,10 +486,10 @@ def test_speed_factors(zone, factor):
                             <span class="text-cyan-400">></span> Conclusion
                         </h2>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
-                            Safe human-robot interaction is not a checkbox — it is an ongoing engineering discipline. The stack described here (depth-based human tracking → zone classification → velocity filtering → watchdog) provides a solid, testable foundation that can be audited against ISO/TS 15066 requirements.
+                            Safe human-robot interaction is not a checkbox, it is an ongoing engineering discipline. The stack described here (depth-based human tracking → zone classification → velocity filtering → watchdog) provides a solid, testable foundation that can be audited against ISO/TS 15066 requirements.
                         </p>
                         <p class="text-gray-300 mb-4 font-['Roboto_Mono'] leading-relaxed text-lg">
-                            As robot capabilities grow, safety systems must grow with them. Invest in thorough testing, maintain detailed failure mode analyses, and keep human operators informed of the robot's internal state — trust is built through transparency.
+                            As robot capabilities grow, safety systems must grow with them. Invest in thorough testing, maintain detailed failure mode analyses, and keep human operators informed of the robot's internal state, trust is built through transparency.
                         </p>
                         <div class="bg-cyan-900 bg-opacity-20 border border-cyan-600 rounded-lg p-6 mt-8">
                             <h4 class="text-xl font-bold mb-3 text-white font-['Orbitron']">

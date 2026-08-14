@@ -445,7 +445,11 @@ section { padding: 0; }
     font-size: 0.92rem;
     line-height: 1.6;
     margin-bottom: 14px;
-    text-align: left;
+    /* Match the site-wide justified body text. Hyphenation is essential at
+       this column width: justifying without it opens rivers of whitespace. */
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
     flex: 1;
 }
 .card-foot {
@@ -587,7 +591,10 @@ main h1, main h2, main h3, main h4,
 .book { text-align: left; }
 .book-cover {
     width: 100%;
-    aspect-ratio: 2 / 3;
+    /* Real book covers sit around 0.74 (w/h); the covers here range 0.694 to
+       0.795. A 2/3 box cropped up to 16% off the sides and clipped title
+       text. 3/4 holds the worst case to 7%. */
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 6px;
     border: 1px solid var(--border);

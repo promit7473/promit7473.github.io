@@ -445,11 +445,21 @@ section { padding: 0; }
     font-size: 0.92rem;
     line-height: 1.6;
     margin-bottom: 14px;
-    /* Match the site-wide justified body text. Hyphenation is essential at
-       this column width: justifying without it opens rivers of whitespace. */
+    /* Match the site-wide justified body text. At this column width (~40
+       characters) justification needs help, or a long token jumps to the next
+       line and the words left behind get stretched into a river.
+         hyphens          breaks ordinary words at syllables
+         hyphenate-limit  avoids stranding one or two letters
+         overflow-wrap    last resort for a token wider than the column
+         text-wrap:pretty lets the browser look ahead when choosing breaks */
     text-align: justify;
     hyphens: auto;
     -webkit-hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    hyphenate-limit-chars: 6 3 3;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
     flex: 1;
 }
 .card-foot {

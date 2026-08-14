@@ -17,6 +17,7 @@ Every page head must include: the inline theme script (sets `data-theme` from lo
 - Light academic PhD-applicant theme; dark mode via the `data-theme` attribute.
 - Body text is justified with hyphenation (`main { text-align: justify; hyphens: auto; }`) and constrained to ~68ch via `.prose`.
 - No em-dashes (—) in copy anywhere, site-wide rule.
+- **Card copy is justified in a ~40 character column, so avoid unbreakable tokens.** `hyphens: auto` only breaks dictionary words; an identifier like `SpaceInvadersNoFrameskip-v4` has no syllables, jumps to the next line whole, and leaves the words before it stretched into a visible river. Write the readable form in the sentence and put the exact identifier in parentheses, a tag, or the link: `Space Invaders (NoFrameskip-v4)`. Run `python tools/check-copy.py` after editing card text; it flags identifier-shaped tokens over 16 characters and is the only check in this repo.
 - Project demos: MP4s in `assets/gifs/`; photos in `assets/images/`; book covers in `assets/images/books/`.
 - Scripts: `components.js` (nav/footer/theme), `script.js` (scroll reveal + footer clock).
 

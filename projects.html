@@ -39,6 +39,16 @@
 
         <div class="card-grid card-grid-3">
 
+            <article class="card" data-category="rl nav" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/warehouse_benchmark.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>WarehouseBenchmark</h3>
+                    <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal with realistic LiDAR perception and localization noise. Curriculum learning and domain randomization close the sim-to-real gap.</p>
+                    <div class="tags"><span class="tag">Deep RL</span><span class="tag">Isaac Lab</span><span class="tag">ROS2</span><span class="tag">PPO/SAC/TD3</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473/WarehouseBenchmark" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                </div>
+            </article>
+
             <article class="card" data-category="manipulation control" data-reveal>
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/iiwa_kinematics.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
@@ -59,22 +69,12 @@
                 </div>
             </article>
 
-            <article class="card" data-category="rl nav" data-reveal>
-                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/warehouse_benchmark.mp4" type="video/mp4"></video></div>
+            <article class="card" data-category="rl locomotion" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/anymal_gait.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
-                    <h3>WarehouseBenchmark</h3>
-                    <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal with realistic LiDAR perception and localization noise. Curriculum learning and domain randomization close the sim-to-real gap.</p>
-                    <div class="tags"><span class="tag">Deep RL</span><span class="tag">Isaac Lab</span><span class="tag">ROS2</span><span class="tag">PPO/SAC/TD3</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473/WarehouseBenchmark" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
-                </div>
-            </article>
-
-            <article class="card" data-category="control" data-reveal>
-                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/pid_trajectory.mp4" type="video/mp4"></video></div>
-                <div class="card-body">
-                    <h3>Custom Quadcopter Flight Controller</h3>
-                    <p>A from-scratch STM32 flight controller with cascaded PID attitude and rate loops and IMU sensor fusion, achieving stable autonomous flight. Low-level firmware handles motor mixing, failsafes, and real-time telemetry.</p>
-                    <div class="tags"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">PID</span><span class="tag">Control</span></div>
+                    <h3>ANYmal-D Quadruped Locomotion</h3>
+                    <p>A PPO-trained locomotion policy for the ANYmal-D legged robot in NVIDIA Isaac Lab. A 12-DOF trot gait learned from scratch, traversing flat and rough terrain.</p>
+                    <div class="tags"><span class="tag">PPO</span><span class="tag">Isaac Lab</span><span class="tag">Legged</span><span class="tag">RSL-RL</span></div>
                     <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
@@ -89,16 +89,6 @@
                 </div>
             </article>
 
-            <article class="card" data-category="rl locomotion" data-reveal>
-                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/anymal_gait.mp4" type="video/mp4"></video></div>
-                <div class="card-body">
-                    <h3>ANYmal-D Quadruped Locomotion</h3>
-                    <p>A PPO-trained locomotion policy for the ANYmal-D legged robot in NVIDIA Isaac Lab. A 12-DOF trot gait learned from scratch, traversing flat and rough terrain.</p>
-                    <div class="tags"><span class="tag">PPO</span><span class="tag">Isaac Lab</span><span class="tag">Legged</span><span class="tag">RSL-RL</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
-                </div>
-            </article>
-
             <article class="card" data-category="slam nav" data-reveal>
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/multi_robot_slam.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
@@ -109,16 +99,13 @@
                 </div>
             </article>
 
-            <article class="card" data-category="rl" data-reveal>
-                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/lunar_lander.mp4" type="video/mp4"></video></div>
+            <article class="card" data-category="control" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/pid_trajectory.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
-                    <h3>Lunar Lander: Deep RL</h3>
-                    <p>A PPO agent learning soft-landing control, trained with Stable-Baselines3. The reward curve traces convergence from random exploration to precise, fuel-efficient landings.</p>
-                    <div class="tags"><span class="tag">PPO</span><span class="tag">Gymnasium</span><span class="tag">SB3</span><span class="tag">PyTorch</span></div>
-                    <div class="card-foot">
-                        <a href="https://huggingface.co/mhpromit7473/ppo-LunarLander-v2" target="_blank" rel="noopener"><i class="fas fa-book-open"></i> Model</a>
-                        <a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
+                    <h3>Custom Quadcopter Flight Controller</h3>
+                    <p>A from-scratch STM32 flight controller with cascaded PID attitude and rate loops and IMU sensor fusion, achieving stable autonomous flight. Low-level firmware handles motor mixing, failsafes, and real-time telemetry.</p>
+                    <div class="tags"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">PID</span><span class="tag">Control</span></div>
+                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -149,6 +136,16 @@
                     <p>A 50-agent swarm implementing Reynolds' three rules, separation, alignment, cohesion. Emergent collective behavior navigates around obstacles while holding formation.</p>
                     <div class="tags"><span class="tag">Swarm</span><span class="tag">Multi-agent</span><span class="tag">Python</span></div>
                     <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                </div>
+            </article>
+
+            <article class="card" data-category="rl" data-reveal>
+                <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/lunar_lander.mp4" type="video/mp4"></video></div>
+                <div class="card-body">
+                    <h3>Lunar Lander: Deep RL</h3>
+                    <p>A PPO agent learning soft-landing control, trained with Stable-Baselines3. The reward curve traces convergence from random exploration to precise, fuel-efficient landings.</p>
+                    <div class="tags"><span class="tag">PPO</span><span class="tag">Gymnasium</span><span class="tag">SB3</span><span class="tag">PyTorch</span></div>
+                    <div class="card-foot"><a href="https://huggingface.co/mhpromit7473/ppo-LunarLander-v2" target="_blank" rel="noopener"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:3px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#FFD21E"/><ellipse cx="11" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><ellipse cx="21" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><path d="M10 20c1.5 2.5 4 4 6 4s4.5-1.5 6-4" stroke="#111" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
                 </div>
             </article>
 

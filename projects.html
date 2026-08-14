@@ -53,7 +53,7 @@
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/iiwa_kinematics.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
                     <h3>Manipulator Kinematics and Dynamics from Scratch</h3>
-                    <p>From-scratch kinematics and dynamics in NumPy for two arms — a 6-DOF UR5e and 7-DOF KUKA iiwa — validated against official URDFs to 1.5e-7. Caught a sign error in the UR5e DH table that left the model 1.998 m off. Numerical IK with damped least squares, Cartesian paths via quintic blending and quaternion slerp. No MoveIt, KDL, or Pinocchio.</p>
+                    <p>From-scratch kinematics and dynamics in NumPy for two arms, a 6-DOF UR5e and a 7-DOF KUKA iiwa, validated against official URDFs to 1.5e-7. Caught a sign error in the UR5e DH table that left the model 1.998 m off. Numerical IK with damped least squares, Cartesian paths via quintic blending and quaternion slerp. No MoveIt, KDL, or Pinocchio.</p>
                     <div class="tags"><span class="tag">ROS2</span><span class="tag">Kinematics</span><span class="tag">Numerical IK</span><span class="tag">Redundancy</span><span class="tag">Dynamics</span><span class="tag">PyBullet</span></div>
                     <div class="card-foot"><span></span><a href="https://github.com/promit7473/manipulator_math2sim" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
@@ -63,8 +63,8 @@
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/iiwa_planning.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
                     <h3>RRT* Motion Planning in 7-DOF Configuration Space</h3>
-                    <p>Asymptotically optimal sampling-based motion planning for a KUKA iiwa, implemented from first principles in NumPy. RRT* searches the full 7-D joint space with real URDF collision checking, converging to within 0.16% of the analytic optimum in 2D validation. The scene includes a table, wall obstacle, and mesh objects (mug, Lego, Jenga). Greedy shortcutting cuts path cost by 28%.</p>
-                    <div class="tags"><span class="tag">RRT*</span><span class="tag">Motion Planning</span><span class="tag">PyBullet</span><span class="tag">7-DOF</span></div>
+                    <p>Asymptotically optimal sampling-based motion planning for a redundant KUKA iiwa, implemented from first principles in NumPy. The arm lifts a mug, carries it past a non-convex mesh obstacle, and sets it down; RRT* searches the full 7-D joint space with collision checking against VHACD-decomposed geometry rather than bounding boxes. The carried mug is treated as part of the moving geometry, so paths that clear the arm but drag the payload through the obstacle are rejected. Validated against a case with a closed-form answer, converging to within 0.16% of the analytic optimum, and every trajectory is re-verified at finer resolution than it was planned at.</p>
+                    <div class="tags"><span class="tag">RRT*</span><span class="tag">Motion Planning</span><span class="tag">Redundancy</span><span class="tag">PyBullet</span><span class="tag">7-DOF</span></div>
                     <div class="card-foot"><span></span><a href="https://github.com/promit7473/manipulator_motion_planning" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>

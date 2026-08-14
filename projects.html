@@ -43,7 +43,7 @@
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/iiwa_kinematics.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
                     <h3>Manipulator Kinematics and Dynamics from Scratch</h3>
-                    <p>A full kinematics and dynamics stack written from first principles in NumPy, with no MoveIt, KDL, or Pinocchio. Every pose in the animation is solved by damped-least-squares numerical IK on the analytic geometric Jacobian, along Cartesian paths built from quintic blending and quaternion slerp. Two arms are modelled and each is validated against its official URDF: a 6-DOF UR5e and the 7-DOF KUKA iiwa shown here, whose redundancy leaves a null space the solver has to resolve at every waypoint. Cross-checking exposed a sign error in the UR5e DH table that left the model 1.998 m off; corrected, model and URDF agree to 1.5e-7.</p>
+                    <p>From-scratch kinematics and dynamics in NumPy for two arms — a 6-DOF UR5e and 7-DOF KUKA iiwa — validated against official URDFs to 1.5e-7. Numerical IK with damped least squares, Cartesian paths via quintic blending and quaternion slerp. No MoveIt, KDL, or Pinocchio.</p>
                     <div class="tags"><span class="tag">ROS2</span><span class="tag">Kinematics</span><span class="tag">Numerical IK</span><span class="tag">Redundancy</span><span class="tag">Dynamics</span><span class="tag">PyBullet</span></div>
                     <div class="card-foot"><a href="https://github.com/promit7473/manipulator_math2sim" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>

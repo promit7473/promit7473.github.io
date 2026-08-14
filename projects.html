@@ -63,7 +63,7 @@
                 <div class="card-media"><video autoplay loop muted playsinline preload="metadata"><source src="assets/gifs/iiwa_planning.mp4" type="video/mp4"></video></div>
                 <div class="card-body">
                     <h3>RRT* Motion Planning in 7-DOF Configuration Space</h3>
-                    <p>Asymptotically optimal sampling-based motion planning for a redundant KUKA iiwa, implemented from first principles in NumPy. The arm lifts a mug, carries it past a non-convex mesh obstacle, and sets it down; RRT* searches the full 7-D joint space with collision checking against VHACD-decomposed geometry rather than bounding boxes. The carried mug is treated as part of the moving geometry, so paths that clear the arm but drag the payload through the obstacle are rejected. Validated against a case with a closed-form answer, converging to within 0.16% of the analytic optimum, and every trajectory is re-verified at finer resolution than it was planned at.</p>
+                    <p>Asymptotically optimal RRT* for a redundant KUKA iiwa, written from first principles in NumPy. The arm carries a mug past a non-convex mesh obstacle, searching the full 7-D joint space with the payload checked as moving geometry, not just the arm. Converges to within 0.16% of the analytic optimum.</p>
                     <div class="tags"><span class="tag">RRT*</span><span class="tag">Motion Planning</span><span class="tag">Redundancy</span><span class="tag">PyBullet</span><span class="tag">7-DOF</span></div>
                     <div class="card-foot"><span></span><a href="https://github.com/promit7473/manipulator_motion_planning" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>

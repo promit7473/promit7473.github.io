@@ -105,6 +105,22 @@
                 <article class="card" data-reveal>
                     <div class="card-media">
                         <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/warehouse_benchmark.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h3>WarehouseBenchmark</h3>
+                        <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal under realistic LiDAR and localization noise.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">Deep RL · Isaac Lab · ROS2</span>
+                            <a href="projects.html">Details →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
                             <source src="assets/gifs/iiwa_kinematics.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -121,30 +137,14 @@
                 <article class="card" data-reveal>
                     <div class="card-media">
                         <video autoplay loop muted playsinline preload="metadata">
-                            <source src="assets/gifs/warehouse_nav.mp4" type="video/mp4">
+                            <source src="assets/gifs/iiwa_planning.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="card-body">
-                        <h3>WarehouseBenchmark</h3>
-                        <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal under realistic LiDAR and localization noise.</p>
+                        <h3>RRT* Motion Planning in 7-DOF Configuration Space</h3>
+                        <p>Asymptotically optimal sampling-based motion planning for a KUKA iiwa, implemented from first principles in NumPy. RRT* searches the full 7-D joint space with real URDF collision checking, converging to within 0.16% of the analytic optimum.</p>
                         <div class="card-foot">
-                            <span class="tag-metric">Deep RL · Isaac Lab · ROS2</span>
-                            <a href="projects.html">Details →</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="card" data-reveal>
-                    <div class="card-media">
-                        <video autoplay loop muted playsinline preload="metadata">
-                            <source src="assets/gifs/lidar_slam.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="card-body">
-                        <h3>Autonomous Navigation Stack</h3>
-                        <p>SLAM mapping, AMCL localization, and hybrid A*/DWA planning for dynamic obstacle avoidance, deployed on a real differential-drive robot.</p>
-                        <div class="card-foot">
-                            <span class="tag-metric">ROS2 · Nav2 · SLAM</span>
+                            <span class="tag-metric">RRT* · Motion Planning · PyBullet</span>
                             <a href="projects.html">Details →</a>
                         </div>
                     </div>
@@ -161,6 +161,54 @@
                         <p>A from-scratch STM32 flight controller with cascaded PID attitude/rate loops and IMU sensor fusion, achieving stable autonomous flight.</p>
                         <div class="card-foot">
                             <span class="tag-metric">STM32 · Embedded C · Control</span>
+                            <a href="projects.html">Details →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/lunar_lander.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h3>Lunar Lander: Deep RL</h3>
+                        <p>A PPO agent learning soft-landing control, trained with Stable-Baselines3. The reward curve traces convergence from random exploration to precise, fuel-efficient landings.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">PPO · Gymnasium · SB3</span>
+                            <a href="projects.html">Details →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/vizdoom_health_gathering.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h3>ViZDoom Health Gathering: Vision-Based RL</h3>
+                        <p>An APPO agent trained with Sample-Factory to survive in a first-person 3D environment, learning to navigate and collect health packs from raw pixel input.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">APPO · ViZDoom · Sample-Factory</span>
+                            <a href="projects.html">Details →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-reveal>
+                    <div class="card-media">
+                        <video autoplay loop muted playsinline preload="metadata">
+                            <source src="assets/gifs/space_invaders_dqn.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h3>DQN Space Invaders</h3>
+                        <p>A DQN agent trained with Stable-Baselines3 on SpaceInvadersNoFrameskip-v4, achieving 527.50 mean reward with CNN policy and experience replay.</p>
+                        <div class="card-foot">
+                            <span class="tag-metric">DQN · SB3 · Atari</span>
                             <a href="projects.html">Details →</a>
                         </div>
                     </div>

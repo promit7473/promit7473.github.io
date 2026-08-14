@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260731b">
+    <link rel="stylesheet" href="styles.css?v=20260814a">
 </head>
 <body>
     <div id="nav-placeholder"></div>
@@ -45,7 +45,7 @@
                     <h3>WarehouseBenchmark</h3>
                     <p>A 31.8 × 54 m digital-twin warehouse benchmarking PPO, SAC, and TD3 for autonomous navigation on a Clearpath Jackal with realistic LiDAR perception and localization noise. Curriculum learning and domain randomization close the sim-to-real gap.</p>
                     <div class="tags"><span class="tag">Deep RL</span><span class="tag">Isaac Lab</span><span class="tag">ROS2</span><span class="tag">PPO/SAC/TD3</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473/WarehouseBenchmark" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473/WarehouseBenchmark" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -55,7 +55,7 @@
                     <h3>Manipulator Kinematics and Dynamics from Scratch</h3>
                     <p>From-scratch kinematics and dynamics in NumPy for two arms — a 6-DOF UR5e and 7-DOF KUKA iiwa — validated against official URDFs to 1.5e-7. Caught a sign error in the UR5e DH table that left the model 1.998 m off. Numerical IK with damped least squares, Cartesian paths via quintic blending and quaternion slerp. No MoveIt, KDL, or Pinocchio.</p>
                     <div class="tags"><span class="tag">ROS2</span><span class="tag">Kinematics</span><span class="tag">Numerical IK</span><span class="tag">Redundancy</span><span class="tag">Dynamics</span><span class="tag">PyBullet</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473/manipulator_math2sim" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473/manipulator_math2sim" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -65,7 +65,7 @@
                     <h3>RRT* Motion Planning in 7-DOF Configuration Space</h3>
                     <p>Asymptotically optimal sampling-based motion planning for a KUKA iiwa, implemented from first principles in NumPy. RRT* searches the full 7-D joint space with real URDF collision checking, converging to within 0.16% of the analytic optimum in 2D validation. The scene includes a table, wall obstacle, and mesh objects (mug, Lego, Jenga). Greedy shortcutting cuts path cost by 28%.</p>
                     <div class="tags"><span class="tag">RRT*</span><span class="tag">Motion Planning</span><span class="tag">PyBullet</span><span class="tag">7-DOF</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473/manipulator_motion_planning" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473/manipulator_motion_planning" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -75,7 +75,7 @@
                     <h3>Lunar Lander: Deep RL</h3>
                     <p>A PPO agent learning soft-landing control, trained with Stable-Baselines3. The reward curve traces convergence from random exploration to precise, fuel-efficient landings.</p>
                     <div class="tags"><span class="tag">PPO</span><span class="tag">Gymnasium</span><span class="tag">SB3</span><span class="tag">PyTorch</span></div>
-                    <div class="card-foot"><a href="https://huggingface.co/mhpromit7473/ppo-LunarLander-v2" target="_blank" rel="noopener"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:3px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#FFD21E"/><ellipse cx="11" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><ellipse cx="21" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><path d="M10 20c1.5 2.5 4 4 6 4s4.5-1.5 6-4" stroke="#111" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
+                    <div class="card-foot"><span></span><a href="https://huggingface.co/mhpromit7473/ppo-LunarLander-v2" target="_blank" rel="noopener"><svg class="hf-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="7" fill="#FFD21E"/><circle cx="5" cy="6" r="1.2" fill="#111"/><circle cx="9" cy="6" r="1.2" fill="#111"/><path d="M5 9.5c.7 1 1.5 1.3 2 1.3s1.3-.3 2-1.3" stroke="#111" stroke-width="1" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
                 </div>
             </article>
 
@@ -85,7 +85,7 @@
                     <h3>ViZDoom Health Gathering: Vision-Based RL</h3>
                     <p>An APPO agent trained with Sample-Factory to survive in a first-person 3D environment, learning to navigate and collect health packs from raw pixel input. Achieved 13.95 mean reward on Health Gathering Supreme.</p>
                     <div class="tags"><span class="tag">APPO</span><span class="tag">ViZDoom</span><span class="tag">Sample-Factory</span><span class="tag">Vision RL</span></div>
-                    <div class="card-foot"><a href="https://huggingface.co/mhpromit7473/rl_course_vizdoom_health_gathering_supreme" target="_blank" rel="noopener"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:3px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#FFD21E"/><ellipse cx="11" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><ellipse cx="21" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><path d="M10 20c1.5 2.5 4 4 6 4s4.5-1.5 6-4" stroke="#111" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
+                    <div class="card-foot"><span></span><a href="https://huggingface.co/mhpromit7473/rl_course_vizdoom_health_gathering_supreme" target="_blank" rel="noopener"><svg class="hf-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="7" fill="#FFD21E"/><circle cx="5" cy="6" r="1.2" fill="#111"/><circle cx="9" cy="6" r="1.2" fill="#111"/><path d="M5 9.5c.7 1 1.5 1.3 2 1.3s1.3-.3 2-1.3" stroke="#111" stroke-width="1" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
                 </div>
             </article>
 
@@ -95,7 +95,7 @@
                     <h3>DQN Space Invaders</h3>
                     <p>A DQN agent trained with Stable-Baselines3 and the RL Zoo on SpaceInvadersNoFrameskip-v4, achieving 527.50 +/- 97.42 mean reward. Uses CNN policy with experience replay and target network updates.</p>
                     <div class="tags"><span class="tag">DQN</span><span class="tag">SB3</span><span class="tag">Atari</span><span class="tag">Deep RL</span></div>
-                    <div class="card-foot"><a href="https://huggingface.co/mhpromit7473/dqn-SpaceInvadersNoFrameskip-v4" target="_blank" rel="noopener"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:3px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#FFD21E"/><ellipse cx="11" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><ellipse cx="21" cy="13.5" rx="2.2" ry="2.5" fill="#111"/><path d="M10 20c1.5 2.5 4 4 6 4s4.5-1.5 6-4" stroke="#111" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
+                    <div class="card-foot"><span></span><a href="https://huggingface.co/mhpromit7473/dqn-SpaceInvadersNoFrameskip-v4" target="_blank" rel="noopener"><svg class="hf-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="7" fill="#FFD21E"/><circle cx="5" cy="6" r="1.2" fill="#111"/><circle cx="9" cy="6" r="1.2" fill="#111"/><path d="M5 9.5c.7 1 1.5 1.3 2 1.3s1.3-.3 2-1.3" stroke="#111" stroke-width="1" stroke-linecap="round" fill="none"/></svg> Hugging Face</a></div>
                 </div>
             </article>
 
@@ -105,7 +105,7 @@
                     <h3>ANYmal-D Quadruped Locomotion</h3>
                     <p>A PPO-trained locomotion policy for the ANYmal-D legged robot in NVIDIA Isaac Lab. A 12-DOF trot gait learned from scratch, traversing flat and rough terrain.</p>
                     <div class="tags"><span class="tag">PPO</span><span class="tag">Isaac Lab</span><span class="tag">Legged</span><span class="tag">RSL-RL</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -115,7 +115,7 @@
                     <h3>Autonomous Navigation Stack</h3>
                     <p>SLAM mapping, AMCL localization, and hybrid A*/DWA planning for dynamic obstacle avoidance, deployed on a real differential-drive robot. Real-time 2D occupancy mapping while exploring an unknown environment.</p>
                     <div class="tags"><span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">SLAM</span><span class="tag">AMCL</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -125,7 +125,7 @@
                     <h3>Multi-Robot Collaborative SLAM</h3>
                     <p>A two-robot team performing collaborative map merging in ROS2. Each robot builds a local occupancy grid; a merge node fuses them into a unified global map via pose-graph optimization and grid alignment.</p>
                     <div class="tags"><span class="tag">ROS2</span><span class="tag">SLAM</span><span class="tag">Map merging</span><span class="tag">Gazebo</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -135,7 +135,7 @@
                     <h3>Custom Quadcopter Flight Controller</h3>
                     <p>A from-scratch STM32 flight controller with cascaded PID attitude and rate loops and IMU sensor fusion, achieving stable autonomous flight. Low-level firmware handles motor mixing, failsafes, and real-time telemetry.</p>
                     <div class="tags"><span class="tag">STM32</span><span class="tag">Embedded C</span><span class="tag">PID</span><span class="tag">Control</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -145,7 +145,7 @@
                     <h3>A* Path Planning</h3>
                     <p>Heuristic optimal path planning on grid maps with diagonal movement, visualizing the search frontier, shortest-path extraction, and robot traversal in real time.</p>
                     <div class="tags"><span class="tag">A*</span><span class="tag">Planning</span><span class="tag">Python</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -155,7 +155,7 @@
                     <h3>RRT* vs A*: Optimal Planning</h3>
                     <p>A side-by-side comparison of RRT* (asymptotically optimal sampling-based planning) against A* on identical maps, showing path-cost convergence and rewiring as the tree grows.</p>
                     <div class="tags"><span class="tag">RRT*</span><span class="tag">A*</span><span class="tag">Python</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 
@@ -165,7 +165,7 @@
                     <h3>Swarm Robotics: Reynolds Flocking</h3>
                     <p>A 50-agent swarm implementing Reynolds' three rules, separation, alignment, cohesion. Emergent collective behavior navigates around obstacles while holding formation.</p>
                     <div class="tags"><span class="tag">Swarm</span><span class="tag">Multi-agent</span><span class="tag">Python</span></div>
-                    <div class="card-foot"><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
+                    <div class="card-foot"><span></span><a href="https://github.com/promit7473" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></div>
                 </div>
             </article>
 

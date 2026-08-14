@@ -450,11 +450,11 @@ section { padding: 0; }
 .card-foot {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
     flex-wrap: wrap;
 }
-.card-foot a { font-size: 0.86rem; font-weight: 500; }
+.card-foot span { flex: 1; }
+.card-foot a { font-size: 0.86rem; font-weight: 500; margin-left: auto; white-space: nowrap; }
 
 /* ---- tags ---- */
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }

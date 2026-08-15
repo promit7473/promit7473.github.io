@@ -487,6 +487,12 @@ section { padding: 0; }
     font-size: 0.75rem;
     color: var(--text-faint);
 }
+.wip {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
 
 /* =========================================================
    Filter buttons

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /archive/
+
+Sitemap: https://promit7473.github.io/sitemap.xml

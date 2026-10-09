@@ -353,10 +353,13 @@ section { padding: 0; }
     border: 1px solid var(--border);
     background: var(--bg-soft);
     overflow: hidden;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 600 / 255;
 }
-.pub-thumb video, .pub-thumb img {
+.pub-thumb video {
     width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.pub-thumb img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
 }
 .pub-title { font-size: 1.08rem; font-weight: 600; font-family: var(--font-sans); letter-spacing: -0.01em; margin-bottom: 4px; }
 .pub-authors { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 2px; }
